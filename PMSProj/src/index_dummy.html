@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멤버십 회원 관리 시스템</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: linear-gradient(to bottom, #f0f6ff, #e8f1ff);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 왼쪽 회원 목록 섹션 */
+        .member-section {
+            width: 25%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #698fc9;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-section h2 {
+            text-align: center;
+        }
+
+        .member-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .member-list li {
+            background-color: white;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .member-list li:hover {
+            background-color: #b3c4df;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* 오른쪽 컨텐츠 섹션 */
+        .content-section {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .detail-section {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin: 20px;
+        }
+
+        .detail-section h2 {
+            color: #2d62ed;
+        }
+
+        /* 그래프 스타일 */
+        .graphs {
+            display: flex;
+            /* justify-content: space-around; */
+            margin-top: 20px;
+        }
+
+        .graph {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            border-radius: 50%;
+            background: conic-gradient(lightgray 50%, lightgray 50%);
+            margin-right: 50px;
+            margin-top: 30px;
+        }
+
+        .graph span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* 관리자 섹션 */
+        .admin-section {
+            position: fixed;
+            right: 0;
+            top: 0;
+
+            width: 300px;
+            height: 600px;
+            margin-top: 30px;
+            margin-right: 40px;
+
+            background-color: #333;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .admin-section img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .admin-section p {
+            margin: 5px 0;
+        }
+
+        .highlight {
+            color: #fbbf24;
+        }
+
+        .upgrade-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #004c94;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .upgrade-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- 회원 목록 -->
+    <div class="member-section">
+        <h2>회원 목록</h2>
+        <ul id="member-list" class="member-list"></ul>
+    </div>
+
+    <!-- 상세 정보 섹션 -->
+    <div class="content-section">
+        <div class="detail-section" id="detail-section">
+            <h2>상세 정보</h2>
+            <div id="detail-info">
+                <p>회원을 선택하세요.</p>
+            </div>
+            <div class="graphs">
+                <div class="graph" id="data-graph">
+                    <span>데이터 50%</span>
+                </div>
+                <div class="graph" id="call-graph">
+                    <span>통화 50%</span>
+                </div>
+            </div>
+            <button class="upgrade-button" onclick="upgradeMember()">등급 업그레이드</button>
+        </div>
+    </div>
+
+    <!-- 관리자 정보 -->
+    <div class="admin-section">
+        <img src="https://via.placeholder.com/80" alt="관리자">
+        <p class="highlight">관리자 정보</p>
+        <p><strong>이름:</strong> 홍길동</p>
+        <p><strong>전화번호:</strong> 010-1234-5678</p>
+    </div>
+
+    <!-- 스크립트 -->
+    <script>
+        const members = [];
+        for (let i = 1; i <= 20; i++) {
+            members.push({
+                name: `회원${i}`,
+                phone: `010-${Math.floor(1000 + Math.random() * 9000)}-${Math.floor(1000 + Math.random() * 9000)}`,
+                grade: ['VIP', 'GOLD', 'SILVER', 'BRONZE'][Math.floor(Math.random() * 4)],
+                plan: ['기본 요금제', '5G 프리미엄'][Math.floor(Math.random() * 2)],
+                dataUsage: Math.floor(Math.random() * 100),
+                callUsage: Math.floor(Math.random() * 100)
+            });
+        }
+
+        let selectedMemberIndex = null;
+
+        const memberList = document.getElementById("member-list");
+        const detailInfo = document.getElementById("detail-info");
+        const dataGraph = document.getElementById("data-graph");
+        const callGraph = document.getElementById("call-graph");
+
+        // 회원 목록 표시
+        function displayMemberList() {
+            memberList.innerHTML = "";
+            members.forEach((member, index) => {
+                const li = document.createElement("li");
+                li.textContent = `${member.name} (${member.phone}) ${member.grade}`;
+                li.onclick = () => displayDetails(index);
+                memberList.appendChild(li);
+            });
+        }
+
+        // 회원 상세 정보 표시 및 그래프 업데이트
+        function displayDetails(index) {
+            selectedMemberIndex = index;
+            const member = members[index];
+            detailInfo.innerHTML = `
+                <p><strong>이름:</strong> ${member.name}</p>
+                <p><strong>전화번호:</strong> ${member.phone}</p>
+                <p><strong>등급:</strong> ${member.grade}</p>
+                <p><strong>요금제:</strong> ${member.plan}</p>
+            `;
+            updateGraphs(member.dataUsage, member.callUsage);
+        }
+
+        // 그래프 업데이트
+        function updateGraphs(dataUsage, callUsage) {
+            dataGraph.style.background = `conic-gradient(blue ${dataUsage}%, lightgray ${dataUsage}%)`;
+            callGraph.style.background = `conic-gradient(blue ${callUsage}%, lightgray ${callUsage}%)`;
+            dataGraph.querySelector("span").textContent = `데이터 ${dataUsage}%`;
+            callGraph.querySelector("span").textContent = `통화 ${callUsage}%`;
+        }
+
+        // 회원 등급 업그레이드
+        function upgradeMember() {
+            if (selectedMemberIndex === null) {
+                alert("회원을 선택하세요.");
+                return;
+            }
+            const member = members[selectedMemberIndex];
+            const grades = ['BRONZE', 'SILVER', 'GOLD', 'VIP'];
+            const currentIndex = grades.indexOf(member.grade);
+            if (currentIndex < grades.length - 1) {
+                member.grade = grades[currentIndex + 1];
+                alert(`${member.name} 님의 등급이 ${member.grade}로 업그레이드되었습니다.`);
+                displayMemberList();
+                displayDetails(selectedMemberIndex);
+            } else {
+                alert(`${member.name} 님은 이미 최고 등급입니다.`);
+            }
+        }
+
+        displayMemberList();
+    </script>
+</body>
+</html>

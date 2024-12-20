@@ -11,31 +11,61 @@
             margin: 0;
             padding: 0;
             color: #333;
-            background: linear-gradient(to bottom, #f0f6ff, #e8f1ff);
+            background: linear-gradient(to bottom, #eef2f7, #d6e4f0);
             display: flex;
             height: 100vh;
             overflow: hidden;
         }
 
+
+   
+
+
         /* 왼쪽 회원 목록 섹션 */
+        /*
         .member-section {
-            width: 25%;
+            width: 400px;
             height: 100vh;
             overflow-y: auto;
-            background-color: #698fc9;
-            padding: 10px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #698fc9, #4d73b3);
+            padding: 15px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+           
         }
+            */
+        .member-section {
+        position: fixed; /* 화면에 고정 */
+        top: 0; /* 화면 상단부터 0px */
+        left: 0; /* 화면 왼쪽부터 0px */
+        width: 350px;
+        height: 1000px;
+        overflow-y: auto; /* 스크롤 가능 */
+        background: linear-gradient(135deg, #698fc9, #4d73b3);
+        padding: 15px;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+        z-index: 10; /* 다른 요소 위에 표시 */
+        margin-left: 30px;
+        margin-top: 30px;
+        border: 1px solid #4d73b3;
+        }
+
+
+
 
         .member-section h2 {
             text-align: center;
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 15px;
         }
+
 
         .filter-buttons {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
+
 
         .filter-buttons button {
             padding: 8px 12px;
@@ -44,58 +74,88 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
+            transition: background-color 0.3s ease;
         }
 
+
         .filter-buttons button:hover {
-            background-color: #45a049;
+            background-color: #5a9bd6;
         }
+
 
         .member-list {
             list-style: none;
             padding: 0;
         }
 
+
         .member-list li {
             background-color: white;
             margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 12px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
 
         .member-list li:hover {
             background-color: #b3c4df;
-            color: white;
+            color: #fff;
             font-weight: bold;
+            transform: translateY(-3px);
         }
 
+
         /* 오른쪽 컨텐츠 섹션 */
+        /*
         .content-section {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            padding: 20px;
+            background-color: #f9faff;
         }
+            */
+
+
+            /* 오른쪽 컨텐츠 섹션 (회원 목록 옆으로 정렬) */
+.content-section {
+    margin-left: 25%; /* 회원 목록 폭만큼 오른쪽으로 밀기 */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f9faff;
+}
+
 
         .detail-section {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            margin: 20px;
+            background-color: #fff;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
+
 
         .detail-section h2 {
             color: #2d62ed;
+            font-size: 18px;
+            margin-bottom: 15px;
         }
 
-        /* 그래프 스타일 */
+/*
         .graphs {
             display: flex;
             margin-top: 20px;
         }
+
 
         .graph {
             width: 150px;
@@ -103,73 +163,118 @@
             position: relative;
             border-radius: 50%;
             background: conic-gradient(lightgray 50%, lightgray 50%);
-            margin-right: 50px;
-            margin-top: 30px;
-        }
-
-        .graph span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 14px;
             font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-right: 40px;
+            margin-top: 40px;
         }
+            */
+
+            .graph {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(#4caf50 0%, #4c56af 50%, lightgray 50%);
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 5px solid #ffffff;
+}
+
+.graph:hover {
+    transform: scale(1.1); /* 그래프 확대 효과 */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* 그림자 강화 */
+}
+
+.graph span {
+    position: absolute;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 
         /* 관리자 섹션 */
         .admin-section {
             position: fixed;
-            right: 0;
-            top: 0;
-            width: 300px;
+            right: 30px;
+            top: 40px;
+            width: 280px;
             height: 600px;
-            margin-top: 30px;
-            margin-right: 40px;
-            background-color: #333;
+            background: linear-gradient(135deg, #333, #444);
             color: white;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
 
         .admin-section img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
+
 
         .admin-section p {
             margin: 5px 0;
         }
 
+
         .highlight {
             color: #fbbf24;
+            font-weight: bold;
         }
 
+
         .upgrade-button {
-            margin-top: 10px;
-            padding: 10px 20px;
+            margin-top: 15px;
+            padding: 12px 20px;
             background-color: #004c94;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 14px;
+            transition: background-color 0.3s ease;
         }
 
+
         .upgrade-button:hover {
-            background-color: #45a049;
+            background-color: #5a9bd6;
+        }
+       
+        .admin-controls {
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
+
+
     <!-- 회원 목록 -->
     <div class="member-section">
         <h2>회원 목록</h2>
-        <!-- 필터 버튼 추가 -->
         <div class="filter-buttons">
             <button onclick="filterMembers('ALL')">ALL</button>
             <button onclick="filterMembers('BRONZE')">BRONZE</button>
@@ -180,6 +285,7 @@
         <ul id="member-list" class="member-list"></ul>
     </div>
 
+
     <!-- 상세 정보 섹션 -->
     <div class="content-section">
         <div class="detail-section" id="detail-section">
@@ -189,25 +295,31 @@
             </div>
             <div class="graphs">
                 <div class="graph" id="data-graph">
-                    <span>데이터 50%</span>
+                    <span>데이터 0%</span>
                 </div>
                 <div class="graph" id="call-graph">
-                    <span>통화 50%</span>
+                    <span>통화 0%</span>
                 </div>
             </div>
             <button class="upgrade-button" onclick="upgradeMember()">등급 업그레이드</button>
         </div>
     </div>
 
-    <!-- 관리자 정보 -->
-    <div class="admin-section">
+
+     <!-- 관리자 정보 -->
+     <div class="admin-section">
         <img src="https://via.placeholder.com/80" alt="관리자">
         <p class="highlight">관리자 정보</p>
         <p><strong>이름:</strong> 홍길동</p>
         <p><strong>전화번호:</strong> 010-1234-5678</p>
+        <div class="admin-controls">
+            <button onclick="addMember()">회원 추가</button>
+            <button onclick="removeMember()">회원 삭제</button>
+            <button onclick="updateInfo()">정보 수정</button>
+        </div>
     </div>
 
-    <!-- 스크립트 -->
+
     <script>
         const members = [];
         for (let i = 1; i <= 20; i++) {
@@ -221,10 +333,15 @@
             });
         }
 
+
         let selectedMemberIndex = null;
+
 
         const memberList = document.getElementById("member-list");
         const detailInfo = document.getElementById("detail-info");
+        const dataGraph = document.getElementById("data-graph");
+        const callGraph = document.getElementById("call-graph");
+
 
         // 회원 목록 표시
         function displayMemberList(filteredMembers = members) {
@@ -237,8 +354,10 @@
             });
         }
 
+
         // 회원 상세 정보 표시
         function displayDetails(index) {
+            selectedMemberIndex = index;
             const member = members[index];
             detailInfo.innerHTML = `
                 <p><strong>이름:</strong> ${member.name}</p>
@@ -246,7 +365,35 @@
                 <p><strong>등급:</strong> ${member.grade}</p>
                 <p><strong>요금제:</strong> ${member.plan}</p>
             `;
+            updateGraphs(member.dataUsage, member.callUsage);
         }
+
+
+        // 그래프 업데이트
+        function updateGraphs(dataUsage, callUsage) {
+            dataGraph.style.background = `conic-gradient(#4caf50 ${dataUsage}%, lightgray ${dataUsage}%)`;
+            callGraph.style.background = `conic-gradient(#2196f3 ${callUsage}%, lightgray ${callUsage}%)`;
+            dataGraph.querySelector("span").textContent = `데이터 ${dataUsage}%`;
+            callGraph.querySelector("span").textContent = `통화 ${callUsage}%`;
+        }
+
+
+        // 등급 업그레이드
+        function upgradeMember() {
+            if (selectedMemberIndex === null) return alert("회원을 선택하세요!");
+            const member = members[selectedMemberIndex];
+            const grades = ["BRONZE", "SILVER", "GOLD", "VIP"];
+            const currentGradeIndex = grades.indexOf(member.grade);
+            if (currentGradeIndex < grades.length - 1) {
+                member.grade = grades[currentGradeIndex + 1];
+                alert(`${member.name}님의 등급이 ${member.grade}로 업그레이드되었습니다.`);
+                displayDetails(selectedMemberIndex);
+                displayMemberList();
+            } else {
+                alert(`${member.name}님은 이미 최고 등급(VIP)입니다.`);
+            }
+        }
+
 
         // 회원 등급 필터링
         function filterMembers(grade) {
@@ -258,8 +405,14 @@
             }
         }
 
+
+
+
         // 초기 전체 목록 표시
         displayMemberList();
     </script>
 </body>
 </html>
+
+
+

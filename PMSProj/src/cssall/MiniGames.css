@@ -1,0 +1,36 @@
+.mini-games {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+  }
+  
+  .mini-games .game {
+    background-color: #D8E0F2;
+    border: 2px solid #03588C;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #03588C;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .mini-games .game img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .mini-games .game:hover {
+    background-color: #66CDD9;
+    transform: scale(1.1);
+  }
+  

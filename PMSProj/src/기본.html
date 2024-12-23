@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDH 통신사 홈페이지</title>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.8.1/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.8.1/slick-theme.css"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.8.1/slick.min.js"></script>
+
+<!--
+<script>
+  $(".slider").on("init", function (event, slick) {
+    console.log("Slick 초기화 완료");
+});
+
+  $(document).ready(function () {
+    $(".visual .slide").slick({
+        infinite: true, // 무한 반복
+        slidesToShow: 1, // 한 번에 보여줄 슬라이드 수
+        slidesToScroll: 1, // 한 번에 넘길 슬라이드 수
+        arrows: true, // 이전/다음 화살표 활성화
+        prevArrow: $(".prev"), // 이전 버튼 설정
+        nextArrow: $(".next"), // 다음 버튼 설정
+        dots: true, // 하단 점 네비게이션 활성화
+        appendDots: $(".navi"), // 점 네비게이션을 삽입할 위치
+        dotsClass: "navbutton", // 점 네비게이션의 클래스명
+    });
+});
+
+</script>
+-->
+
+<!--
+<script>
+// JavaScript 슬라이더 기능
+const images = document.querySelectorAll('.banner-image');
+let currentIndex = 0; // 현재 활성화된 이미지 인덱스
+
+document.querySelector('.next').addEventListener('click', () => {
+  images[currentIndex].classList.remove('active'); // 현재 이미지를 비활성화
+  currentIndex = (currentIndex + 1) % images.length; // 다음 이미지로 이동
+  images[currentIndex].classList.add('active'); // 다음 이미지를 활성화
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+  images[currentIndex].classList.remove('active'); // 현재 이미지를 비활성화
+  currentIndex = (currentIndex - 1 + images.length) % images.length; // 이전 이미지로 이동
+  images[currentIndex].classList.add('active'); // 이전 이미지를 활성화
+});
+
+
+</script>
+-->
+
+<script>
+  // JavaScript 슬라이더 기능
+  document.addEventListener('DOMContentLoaded', () => {
+  const images = document.querySelectorAll('.banner-image');
+  let currentIndex = 0; // 현재 활성화된 이미지 인덱스
+
+  // 다음 버튼 이벤트
+  document.querySelector('.next').addEventListener('click', () => {
+    images[currentIndex].classList.remove('active'); // 현재 이미지를 비활성화
+    currentIndex = (currentIndex + 1) % images.length; // 다음 이미지로 이동
+    images[currentIndex].classList.add('active'); // 다음 이미지를 활성화
+  });
+
+  // 이전 버튼 이벤트
+  document.querySelector('.prev').addEventListener('click', () => {
+    images[currentIndex].classList.remove('active'); // 현재 이미지를 비활성화
+    currentIndex = (currentIndex - 1 + images.length) % images.length; // 이전 이미지로 이동
+    images[currentIndex].classList.add('active'); // 이전 이미지를 활성화
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.banner-image');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0; // 현재 활성화된 이미지 인덱스
+
+    // 이미지 및 점 활성화 함수
+    const activateSlide = (index) => {
+      images[currentIndex].classList.remove('active'); // 현재 이미지 비활성화
+      dots[currentIndex].classList.remove('active'); // 현재 점 비활성화
+      currentIndex = index; // 새로운 인덱스 설정
+      images[currentIndex].classList.add('active'); // 새 이미지 활성화
+      dots[currentIndex].classList.add('active'); // 새 점 활성화
+    };
+
+    // 다음 버튼 이벤트
+    document.querySelector('.next').addEventListener('click', () => {
+      const nextIndex = (currentIndex + 1) % images.length;
+      activateSlide(nextIndex);
+    });
+
+    // 이전 버튼 이벤트
+    document.querySelector('.prev').addEventListener('click', () => {
+      const prevIndex = (currentIndex - 1 + images.length) % images.length;
+      activateSlide(prevIndex);
+    });
+
+    // 점 버튼 클릭 이벤트
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        activateSlide(index);
+      });
+    });
+  });
+
+
+  const phoneData = {
+  '모두': [
+    { rank: 1, name: '갤럭시 와이드7', capacity: '128G', price: '85,559원/월', provider: 'SKT 5GX', img: '../image/A5KU_001_13.png' },
+    { rank: 2, name: 'iPhone 16 Pro', capacity: '128G | 1T | 256G | 512G', price: '137,184원/월', provider: 'SKT 5GX', img: '../image/A5XC_001_13.png' },
+    { rank: 3, name: '갤럭시 S24 5G', capacity: '512G | 256G', price: '120,138원/월', provider: 'SKT 5GX', img: '../image/A5CK_001_13.png' }
+  ],
+  '10대': [
+    { rank: 1, name: 'iPhone SE', capacity: '64G | 128G', price: '55,000원/월', provider: 'SKT 5GX', img: '../image/teen_1.png' },
+    { rank: 2, name: 'Galaxy A13', capacity: '128G', price: '45,000원/월', provider: 'SKT 5GX', img: '../image/teen_2.png' },
+    { rank: 3, name: 'Galaxy M22', capacity: '128G', price: '40,000원/월', provider: 'SKT 5GX', img: '../image/teen_3.png' }
+  ],
+  '20대': [
+    { rank: 1, name: 'iPhone 14', capacity: '128G | 256G', price: '95,000원/월', provider: 'SKT 5GX', img: '../image/20s_1.png' },
+    { rank: 2, name: 'Galaxy S22', capacity: '256G', price: '85,000원/월', provider: 'SKT 5GX', img: '../image/20s_2.png' },
+    { rank: 3, name: 'Galaxy Z Flip3', capacity: '128G', price: '75,000원/월', provider: 'SKT 5GX', img: '../image/20s_3.png' }
+  ],
+  '30대': [
+    { rank: 1, name: 'iPhone 13 Pro', capacity: '128G | 256G', price: '105,000원/월', provider: 'SKT 5GX', img: '../image/30s_1.png' },
+    { rank: 2, name: 'Galaxy Note 20', capacity: '256G', price: '95,000원/월', provider: 'SKT 5GX', img: '../image/30s_2.png' },
+    { rank: 3, name: 'Galaxy S21', capacity: '256G', price: '85,000원/월', provider: 'SKT 5GX', img: '../image/30s_3.png' }
+  ],
+  '40대': [
+    { rank: 1, name: 'iPhone 12', capacity: '128G', price: '75,000원/월', provider: 'SKT 5GX', img: '../image/40s_1.png' },
+    { rank: 2, name: 'Galaxy A52', capacity: '128G', price: '65,000원/월', provider: 'SKT 5GX', img: '../image/40s_2.png' },
+    { rank: 3, name: 'Galaxy M32', capacity: '128G', price: '55,000원/월', provider: 'SKT 5GX', img: '../image/40s_3.png' }
+  ],
+  '50대': [
+    { rank: 1, name: 'Galaxy S20 FE', capacity: '128G', price: '65,000원/월', provider: 'SKT 5GX', img: '../image/50s_1.png' },
+    { rank: 2, name: 'Galaxy Note 10', capacity: '128G', price: '55,000원/월', provider: 'SKT 5GX', img: '../image/50s_2.png' },
+    { rank: 3, name: 'Galaxy A71', capacity: '128G', price: '50,000원/월', provider: 'SKT 5GX', img: '../image/50s_3.png' }
+  ],
+  '60대': [
+    { rank: 1, name: 'Galaxy A12', capacity: '128G', price: '45,000원/월', provider: 'SKT 5GX', img: '../image/60s_1.png' },
+    { rank: 2, name: 'Galaxy M12', capacity: '128G', price: '40,000원/월', provider: 'SKT 5GX', img: '../image/60s_2.png' },
+    { rank: 3, name: 'Galaxy A32', capacity: '128G', price: '35,000원/월', provider: 'SKT 5GX', img: '../image/60s_3.png' }
+  ]
+};
+
+// 📲 필터링 함수
+function filterPhones(ageGroup, event) {
+  if (event) event.preventDefault(); // 👉 a 태그의 기본 동작(페이지 스크롤) 방지
+
+  const phoneListContainer = document.getElementById('phone-list');
+  phoneListContainer.innerHTML = ''; // 기존 내용 초기화
+
+  // 선택된 나이대의 핸드폰 데이터 필터링
+  const selectedPhones = phoneData[ageGroup] || phoneData['모두'];
+
+  selectedPhones.forEach(phone => {
+    const phoneItem = document.createElement('div');
+    phoneItem.className = 'phone-item';
+    phoneItem.innerHTML = `
+      <div class="phone-rank">${phone.rank}</div>
+      <img src="${phone.img}" alt="${phone.name}">
+      <div class="phone-info">
+        <h3>${phone.name}</h3>
+        <p class="capacity">${phone.capacity}</p>
+        <p class="price">${phone.price}</p>
+        <p class="provider">${phone.provider}</p>
+      </div>
+    `;
+    phoneListContainer.appendChild(phoneItem);
+  });
+
+  document.getElementById('selected-age').textContent = ageGroup;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  filterPhones('모두'); // '모두' 카테고리를 기본으로 표시
+});
+
+</script>
+
+
+  
+  
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #F2F2F2;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #03588C;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    header .home-button {
+      font-size: 16px;
+      color: white;
+      text-decoration: none;
+      background-color: #66CDD9;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    
+
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      flex: 1;
+    }
+
+    header .menu {
+      display: flex;
+      gap: 10px;
+    }
+
+    header .menu button,
+    header .search-bar button {
+      background-color: #66CDD9;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    header .menu button:hover,
+    header .search-bar button:hover {
+      background-color: #2B718C;
+    }
+
+    header .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header .search-bar input {
+      padding: 10px;
+      border: 1px solid #66CDD9;
+      border-radius: 10px;
+      width: 200px;
+      font-size: 14px;
+    }
+
+    /*
+    .main-banner {
+      background-color: #3279A6;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      color: white;
+      font-weight: bold;
+      margin: 20px 0;
+      border-radius: 15px;
+    }
+      */
+
+      .main-banner {
+  position: relative; /* 슬라이더의 기준 위치 */
+  width: 100%; /* 배너 폭 */
+  max-width: 1000px; /* 최대 폭 */
+  height: 450px; /* 배너 높이 */
+  margin: 0 auto; /* 가운데 정렬 */
+  overflow: hidden; /* 배너 영역 밖의 이미지를 숨김 */
+}
+
+.banner-image {
+  position: absolute; /* 이미지 겹치기 */
+  top: 0;
+  left: 0;
+  width: 100%; /* 배너 크기에 맞춤 */
+  height: 100%; /* 배너 높이에 맞춤 */
+  opacity: 0; /* 초기 상태에서는 보이지 않음 */
+  transition: opacity 0.5s ease-in-out; /* 부드러운 전환 효과 */
+}
+
+.banner-image.active {
+  opacity: 1; /* 활성화된 이미지만 보임 */
+  z-index: 1;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%; /* 버튼의 세로 중앙 위치 */
+  transform: translateY(-50%);
+  /*background-color: #66CDD9;*/
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 2; /* 이미지 위로 버튼 표시 */
+}
+
+.prev img, .next img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover; /* 이미지가 칸에 맞게 늘어나거나 줄어듦 */
+  border-radius: 8px; /* 이미지도 버튼의 테두리에 맞게 둥글게 */
+}
+
+.prev {
+  left: 10px; /* 왼쪽 버튼 위치 */
+}
+
+.next {
+  right: 10px; /* 오른쪽 버튼 위치 */
+}
+
+.slide-dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .slide-dots .dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .slide-dots .dot.active {
+    background-color: #66CDD9;
+  }
+
+  
+
+
+    .mini-games {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px;
+    }
+
+    .mini-games .game {
+      background-color: #D8E0F2;
+      border: 2px solid #03588C;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: #03588C;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .mini-games .game img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지가 칸에 맞게 늘어나거나 줄어듦 */
+  border-radius: 8px; /* 이미지도 버튼의 테두리에 맞게 둥글게 */
+}
+
+    .mini-games .game:hover {
+      background-color: #66CDD9;
+      transform: scale(1.1);
+    }
+
+    .top-phones-section {
+      margin: 20px;
+      text-align: center;
+      color: #03588C;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown button {
+      background-color: #03588C;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown button:hover {
+      background-color: #66CDD9;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      background-color: white;
+      min-width: 160px;
+      border: 1px solid #66CDD9;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .dropdown-content a {
+      color: #03588C;
+      padding: 8px 16px;
+      text-decoration: none;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #66CDD9;
+      color: white;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .phone-list {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    /*
+    .phone-item {
+      background-color: #ffffff;
+      border: 2px solid #66CDD9;
+      padding: 10px;
+      text-align: center;
+      width: 200px;
+      border-radius: 15px;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+      */
+      .phone-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.phone-item {
+  background-color: #ffffff; /* 배경색 */
+  border: 2px solid #66CDD9; /* 테두리 색상 */
+  padding: 10px;
+  text-align: center;
+  width: 250px; /* 카드 너비 조정 */
+  height: 400px; /* 카드 높이 조정 */
+  border-radius: 15px; /* 둥근 모서리 */
+  transition: transform 0.3s, background-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+
+.phone-item:hover {
+  background-color: #D8E0F2;
+  transform: translateY(-5px);
+}
+
+/* 순위 표시 */
+.phone-rank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #4C51BF;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 4px 8px;
+}
+
+/* 이미지 스타일 */
+.phone-item img {
+  width: 90%;
+  height: 55%;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+/* 정보 영역 스타일 */
+.phone-info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.phone-info h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.phone-info .capacity {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.phone-info .price {
+  font-size: 14px;
+  color: #E63946;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.phone-info .provider {
+  font-size: 12px;
+  color: #777;
+}
+
+    footer {
+      background-color: #03588C;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      border-top: 4px solid #66CDD9;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header>
+    <a href="#" class="home-button">홈
+    </a>
+    <div class="logo">GDH 통신사</div>
+    <div class="menu">
+      <button>메뉴1</button>
+      <button>메뉴2</button>
+      <button>메뉴3</button>
+      <button>메뉴4</button>
+      <div class="search-bar">
+        <input type="text" placeholder="검색어를 입력하세요">
+        <button>검색</button>
+      </div>
+    </div>
+  </header>
+
+  <!--
+  <!-- 메인 배너 
+  <div class="main-banner">큰 배너 이미지 자리</div>
+-->
+
+<!--
+<<div class="main-banner">
+  <div class="slider">
+    <div><img src="https://via.placeholder.com/800x300?text=슬라이드+1" alt="슬라이드1"></div>
+    <div><img src="https://via.placeholder.com/800x300?text=슬라이드+2" alt="슬라이드2"></div>
+    <div><img src="https://via.placeholder.com/800x300?text=슬라이드+3" alt="슬라이드3"></div>
+  </div>
+  <!-- 이전 및 다음 버튼은 슬라이더와 같은 컨테이너 안에 위치 -- >
+  <button class="prev">이전</button>
+  <button class="next">다음</button>
+  <div class="navi"></div>
+</div>
+-->
+
+<div class="main-banner">
+  <!-- 이미지를 슬라이더에 적용 -->
+  <img src="../image/CK_ti375a38706082843.jpg" class="banner-image active" alt="슬라이드1">
+  <img src="../image/ti155t001114.jpg" class="banner-image" alt="슬라이드2">
+  <img src="../image/ta0169t000687.jpg" class="banner-image" alt="슬라이드3">
+
+  <!-- 이전 및 다음 버튼 -->
+  <button class="prev">
+    <img src="../image/63218642.png">
+  </button>
+  <button class="next">
+    <img src="../image/6321864.png">
+  </button>
+
+</div>
+
+<!-- 슬라이드 네비게이션 버튼 -->
+<div class="slide-dots">
+  <button class="dot active" data-index="0"></button>
+  <button class="dot" data-index="1"></button>
+  <button class="dot" data-index="2"></button>
+</div>
+
+
+
+  <!-- 미니 게임 -->
+  <div class="mini-games">
+    <div class="game">
+      <img src="../image/pngtree-lucky-wheel-png-image_6518840.png" alt="룰렛 이미지">
+    </div>
+    <div class="game">
+      <img src="../image/images.png" alt="룰렛 이미지2"></div>
+    <div class="game">
+      <img src="../image/c1fa27f2b5cec238595a9f86b0e8c5c2.png" alt="룰렛 이미지3">
+    </div>
+    <div class="game">게임4</div>
+  </div>
+  
+
+  <!-- 인기 핸드폰 섹션 -- >
+  <section class="top-phones-section">
+    <h2>인기 많은 휴대폰 BEST 3</h2>
+    <div class="dropdown">
+      <button id="selected-age">모두</button>
+      <div class="dropdown-content">
+        <a href="#" onclick="filterPhones('모두')">모두</a>
+        <a href="#" onclick="filterPhones('10대')">10대</a>
+        <a href="#" onclick="filterPhones('20대')">20대</a>
+        <a href="#" onclick="filterPhones('30대')">30대</a>
+        <a href="#" onclick="filterPhones('40대')">40대</a>
+        <a href="#" onclick="filterPhones('50대')">50대</a>
+        <a href="#" onclick="filterPhones('60대')">60대</a>
+      </div>
+    </div>
+  -->
+
+
+    <!-- 인기 핸드폰 섹션 -->
+<section class="top-phones-section">
+  <h2>모두 ▾에게 인기 많은 휴대폰 BEST 3</h2>
+  <div class="dropdown">
+    <button id="selected-age">모두</button>
+    <div class="dropdown-content">
+      <a href="#" onclick="filterPhones('모두', event)">모두</a>
+      <a href="#" onclick="filterPhones('10대', event)">10대</a>
+      <a href="#" onclick="filterPhones('20대', event)">20대</a>
+      <a href="#" onclick="filterPhones('30대', event)">30대</a>
+      <a href="#" onclick="filterPhones('40대', event)">40대</a>
+      <a href="#" onclick="filterPhones('50대', event)">50대</a>
+      <a href="#" onclick="filterPhones('60대', event)">60대</a>
+    </div>
+  </div>
+
+</div>
+<div class="phone-list" id="phone-list">
+  <!-- JavaScript가 여기에 핸드폰 항목을 동적으로 렌더링할 거예요! -->
+</div>
+
+  <!--
+  <div class="phone-list" id="phone-list">
+    <div class="phone-item">
+      <div class="phone-rank">1</div>
+      <img src="./image/A5KU_001_13.png" alt="Galaxy Wide 7">
+      <div class="phone-info">
+        <h3>갤럭시 와이드7</h3>
+        <p class="capacity">128G</p>
+        <p class="price">85,559원/월</p>
+        <p class="provider">SKT 5GX</p>
+      </div>
+    </div>
+    <div class="phone-item">
+      <div class="phone-rank">2</div>
+      <img src="./image/A5XC_001_13.png" alt="iPhone 16 Pro">
+      <div class="phone-info">
+        <h3>iPhone 16 Pro</h3>
+        <p class="capacity">128G | 1T | 256G | 512G</p>
+        <p class="price">137,184원/월</p>
+        <p class="provider">SKT 5GX</p>
+      </div>
+    </div>
+    <div class="phone-item">
+      <div class="phone-rank">3</div>
+      <img src="./image/A5CK_001_13.png" alt="Galaxy S24 5G">
+      <div class="phone-info">
+        <h3>갤럭시 S24 5G</h3>
+        <p class="capacity">512G | 256G</p>
+        <p class="price">120,138원/월</p>
+        <p class="provider">SKT 5GX</p>
+      </div>
+    </div>
+  </div>
+-->
+  </section>
+
+  <footer>
+    통신사 고객센터: 1234-5678 | COPYRIGHT 2024 GDH 통신사, ALL RIGHTS RESERVED
+  </footer>
+
+</div>
+
+
+</body>
+
+
+</html>

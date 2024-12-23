@@ -1,10 +1,10 @@
 // import { useState } from "react";
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "/vite.svg";
-import Header from "./compents/Header";
-import MainBanner from "./compents/MainBanner";
-import MiniGames from "./compents/MiniGames";
-import PhoneList from "./compents/PhoneList";
+import Header from "./component/Header";
+import MainBanner from "./component/MainBanner";
+import MiniGames from "./component/MiniGames";
+import PhoneList from "./component/PhoneList";
 import React, { useState, useEffect } from "react";
 
 import "./App.css";

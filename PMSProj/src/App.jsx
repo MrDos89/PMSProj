@@ -5,6 +5,10 @@ import Header from "./component/Header";
 import MainBanner from "./component/MainBanner";
 import MiniGames from "./component/MiniGames";
 import PhoneList from "./component/PhoneList";
+
+// @todo : 해당 코드 아직 작업 안됨
+// @NOTE : 주석 설명
+// @TEMP DHKIM 24.12.23 - 임시코드
 // import Login from "./component/login/Login";
 // import MemberList from "./component/login/MemberList";
 // import MemberDetails from "./component/login/MemberDetails";

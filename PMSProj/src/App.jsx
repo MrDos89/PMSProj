@@ -5,9 +5,9 @@ import Header from "./component/Header";
 import MainBanner from "./component/MainBanner";
 import MiniGames from "./component/MiniGames";
 import PhoneList from "./component/PhoneList";
-import Login from "./component/login/Login";
-import MemberList from "./component/login/MemberList";
-import MemberDetails from "./component/login/MemberDetails";
+// import Login from "./component/login/Login";
+// import MemberList from "./component/login/MemberList";
+// import MemberDetails from "./component/login/MemberDetails";
 import React, { useState, useEffect } from "react";
 
 import "./App.css";

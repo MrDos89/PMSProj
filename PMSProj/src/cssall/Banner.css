@@ -7,6 +7,22 @@
     overflow: hidden;
   }
   
+   /* .main-banner {
+    position: relative;
+    width: 100%; /* 브라우저 전체 너비 사용 
+    height: 450px;
+    margin: 0; /* 중앙 여백 제거 
+    overflow: hidden;
+  } */
+
+  .app-header {
+    background-color: #03588c;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%; /* 브라우저 전체 너비 사용 */
+  }
+
   .banner-image {
     position: absolute;
     top: 0;

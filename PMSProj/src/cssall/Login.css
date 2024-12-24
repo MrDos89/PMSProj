@@ -1,4 +1,6 @@
-/* 전체 컨테이너 */
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+
+/* 기존 스타일 유지 */
 .login-container {
     position: fixed;
     top: 50%;
@@ -6,25 +8,24 @@
     transform: translateY(-50%);
     width: 280px;
     height: 500px;
-    background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     box-sizing: border-box;
-    z-index: 100; /* @hs 맨앞으로 */
-  }
-  
-  /* 로그인 폼 */
-  .login-form input {
+    z-index: 100;
+    overflow: hidden;
+}
+
+.login-form input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
-  }
-  
-  .login-form button {
+}
+
+.login-form button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -32,33 +33,75 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .login-form button:hover {
+}
+
+.login-form button:hover {
     background-color: #0056b3;
-  }
-  
-  /* 에러 메시지 */
-  .error-message {
+}
+
+.error-message {
     color: red;
     font-size: 0.9em;
     margin-top: 10px;
-  }
-  
-  /* 프로필 컨테이너 */
-  .profile-container {
+}
+
+.profile-container {
     text-align: center;
-  }
-  
-  .profile-image {
+}
+
+.profile-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-bottom: 20px;
-    
-  }
-  
-  .profile-container h2 {
+}
+
+.profile-container h2 {
     margin-bottom: 10px;
-  }
-  
+}
+
+/* 새로운 스타일 추가 (기존 스타일 유지) */
+.login-container {
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif; /* 폰트 추가 */
+    overflow: hidden; /* 내용이 넘칠 경우 숨김 */
+}
+
+.login-container::after { /* 배경 이미지 추가 */
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background-image: url('../../image/Login.png');
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.login-form { /* form에 스타일 추가 */
+    margin-top: 20px;
+}
+
+.login-form input {
+    box-sizing: border-box; /* padding, border 포함하여 width 계산 */
+    padding: 12px;
+    border: 1px solid #a0a0a5;
+    background-color: #f0f0f5;
+}
+
+.login-form button {
+    background-color: #6B92A4;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 15px;
+}
+
+.login-form button:hover {
+    background-color: #2b718c;
+}
+
+.login-container::after {
+    opacity: 0.34; /* 배경 투명도 설정  */
+}

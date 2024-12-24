@@ -11,6 +11,7 @@ import MainBody from "./component/MainBody";
 // @TEMP DHKIM 24.12.23 - 임시코드
 import Login from "./component/login/Login";
 import MemberList from "./component/login/MemberList";
+import MemberList from "./component/login/MemberList";
 // import MemberDetails from "./component/login/MemberDetails";
 
 import Attendance from "./component/minigame/Attendance";

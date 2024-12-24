@@ -60,14 +60,12 @@
   }
   
   /* Banner.css */
-.slide-dots {
-    position: absolute; /* 배너 위에 위치하도록 */
-    bottom: 20px;       /* 슬라이드 아래쪽으로 배치 */
-    left: 50%;          /* 가로 중앙 정렬 */
-    transform: translateX(-50%);
+  .slide-dots {
+    position: relative; /* 부모 컨테이너에 종속되지 않도록 변경 */
+    margin-top: 10px;  /* 이미지 아래로 간격 추가 */
     display: flex;
-    gap: 10px;          /* 버튼 간 간격 */
-    top: 10px; /* 배너 위쪽에 배치 */
+    justify-content: center; /* 중앙 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
   }
   
   .dot {
@@ -81,8 +79,5 @@
   }
   
   .dot.active {
-    background-color: #333; /* 활성화된 슬라이드 버튼 색상 */
+    background-color: #66cdd9; /* 활성화된 슬라이드 버튼 색상 */
   }
-
-
-  

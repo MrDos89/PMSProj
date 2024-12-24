@@ -21,21 +21,23 @@ const MainBanner = () => {
   };
 
   return (
-    <div className="main-banner">
-      {images.map((image, index) => (
-        <img
-          key={index}
-          src={image.src}
-          alt={image.alt}
-          className={`banner-image ${index === currentIndex ? "active" : ""}`}
-        />
-      ))}
-      <button className="prev" onClick={handlePrev}>
-        ❮
-      </button>
-      <button className="next" onClick={handleNext}>
-        ❯
-      </button>
+    <div>
+      <div className="main-banner">
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image.src}
+            alt={image.alt}
+            className={`banner-image ${index === currentIndex ? "active" : ""}`}
+          />
+        ))}
+        <button className="prev" onClick={handlePrev}>
+          ❮
+        </button>
+        <button className="next" onClick={handleNext}>
+          ❯
+        </button>
+      </div>
 
       <div className="slide-dots">
         {images.map((_, index) => (

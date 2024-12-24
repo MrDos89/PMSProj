@@ -1,23 +1,21 @@
+// 주석 예시
+// @TODO : 작업할 예정
+// @NOTE : 주석 설명
+// @TEMP : 임시 기능
+
+//@note - 메인 기능
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./component/Header";
 import MainBanner from "./component/MainBanner";
-// import MiniGames from "./component/MiniGames";
 // import PhoneList from "./component/PhoneList";
 import MainBody from "./component/MainBody";
 
-// @todo : 해당 코드 아직 작업 안됨
-// @NOTE : 주석 설명
-// @TEMP DHKIM 24.12.23 - 임시코드
+//@note - 로그인 기능
 import Login from "./component/login/Login";
 import MemberList from "./component/login/MemberList";
-import MemberList from "./component/login/MemberList";
 // import MemberDetails from "./component/login/MemberDetails";
-
-import Attendance from "./component/minigame/Attendance";
-import Roulette from "./component/minigame/Roulette";
-import Ladder from "./component/minigame/Ladder";
-import ExchangeShop from "./component/minigame/ExchangeShop";
+import MiniGameButtons from "./component/minigame/MiniGameButtons";
 
 const phoneData = {
   모두: [
@@ -206,7 +204,6 @@ function App() {
   const [mode, setMode] = useState("MAIN");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("모두");
   const [phones, setPhones] = useState([]);
-  const [gameMode, setGameMode] = useState("ATTENDANCE");
 
   useEffect(() => {
     setPhones(phoneData[selectedAgeGroup] || phoneData["모두"]);
@@ -220,17 +217,6 @@ function App() {
   if (mode === "MAIN") {
     //@ todo - 홈페이지 메인 화면
     body = <MainBody phones={phones} ageHandle={handleFilter}></MainBody>;
-  } else if (mode === "GAME") {
-    //@ todo - 미니게임용 창 만들기
-    if (gameMode === "ATTENDANCE") {
-      body = <Attendance></Attendance>;
-    } else if (gameMode === "ROULETTE") {
-      body = <Roulette></Roulette>;
-    } else if (gameMode === "LADDER") {
-      body = <Ladder></Ladder>;
-    } else if (gameMode === "EXCHANGESHOP") {
-      body = <ExchangeShop></ExchangeShop>;
-    }
   } else {
     //@todo - 에러 창 만들기
     body = null;
@@ -291,37 +277,10 @@ function App() {
         <MemberList onClose={() => setShowMemberList(false)} />
       )}
 
-      <ul className="mini-games">
-        {games.map((game) => (
-          <li key={game.id} className="game" alt="game.name">
-            <a
-              href="/attendance"
-              onClick={(event) => {
-                event.preventDefault();
+      {/* @note - 미니게임 버튼 UI */}
+      <MiniGameButtons games={games}></MiniGameButtons>
 
-                alert(game.id + "눌렸다");
-                if (game.id === 1) {
-                  setMode("GAME");
-                  setGameMode("ATTENDANCE");
-                } else if (game.id === 2) {
-                  setMode("GAME");
-                  setGameMode("ROULETTE");
-                } else if (game.id === 3) {
-                  setMode("GAME");
-                  setGameMode("LADDER");
-                } else if (game.id === 4) {
-                  setMode("GAME");
-                  setGameMode("EXCHANGESHOP");
-                }
-              }}
-            >
-              <img src={game.img} alt={game.name} />
-              {/* {game.name} */}
-            </a>
-          </li>
-        ))}
-      </ul>
-
+      {/* @note - 폰 리스트 나오는 바디 */}
       {body}
     </div>
   );

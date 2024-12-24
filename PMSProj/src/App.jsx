@@ -9,7 +9,7 @@ import PhoneList from "./component/PhoneList";
 // @todo : 해당 코드 아직 작업 안됨
 // @NOTE : 주석 설명
 // @TEMP DHKIM 24.12.23 - 임시코드
-// import Login from "./component/login/Login";
+import Login from "./component/login/Login";
 // import MemberList from "./component/login/MemberList";
 // import MemberDetails from "./component/login/MemberDetails";
 import React, { useState, useEffect } from "react";
@@ -198,9 +198,7 @@ function App() {
         <button class="dot" data-index="1"></button>
         <button class="dot" data-index="2"></button>
       </div> */}
-
       <MiniGames />
-
       <div className="dropdown">
         <button onClick={() => handleFilter("모두")}>모두</button>
         <button onClick={() => handleFilter("10대")}>10대</button>
@@ -210,6 +208,7 @@ function App() {
         <button onClick={() => handleFilter("50대")}>50대</button>
       </div>
       <PhoneList phones={phones} />
+      <Login /> {/*@hs 로그인컴포넌트 */}
     </div>
   );
 }

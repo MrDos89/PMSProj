@@ -1,65 +1,61 @@
 import React, { useState } from "react";
-import "../../cssall/Login.css"; // 스타일링을 위한 CSS 파일
+import "../../cssall/Login.css";
 
-function Login() {
+function Login({ onLogin }) {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState("");
 
-  // 더미 회원 정보
-  const mockUser = {
-    phone: "010-1234-5678",
-    password: "1234",
-    name: "홍길동",
-    grade: "VIP",
-    profileImage: "https://via.placeholder.com/100", // 임시 프로필 이미지
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  // 로그인 처리
-  const handleLogin = () => {
-    if (phone === mockUser.phone && password === mockUser.password) {
-      setIsLoggedIn(true);
-      setUserInfo(mockUser);
-      setErrorMessage("");
+    // 관리자 계정
+    const adminAccount = {
+      phone: "010-1234-5678",
+      password: "admin123",
+      name: "관리자",
+      role: "admin",
+    };
+
+    // 일반 사용자 계정
+    const userAccount = {
+      phone: "010-9876-5432",
+      password: "user123",
+      name: "사용자",
+      role: "user",
+    };
+
+    if (phone === adminAccount.phone && password === adminAccount.password) {
+      onLogin(adminAccount);
+    } else if (
+      phone === userAccount.phone &&
+      password === userAccount.password
+    ) {
+      onLogin(userAccount);
     } else {
-      setErrorMessage("비밀번호를 확인해주세요.");
+      setError("전화번호나 비밀번호를 확인해주세요.");
     }
   };
 
   return (
     <div className="login-container">
-      {isLoggedIn ? (
-        <div className="profile-container">
-          <img
-            src={userInfo.profileImage}
-            alt="프로필 사진"
-            className="profile-image"
-          />
-          <h2>{userInfo.name}</h2>
-          <p>전화번호: {userInfo.phone}</p>
-          <p>회원 등급: {userInfo.grade}</p>
-        </div>
-      ) : (
-        <div className="login-form">
-          <h3>로그인</h3>
-          <input
-            type="text"
-            placeholder="전화번호"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="비밀번호"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={handleLogin}>로그인</button>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
-        </div>
-      )}
+      <h2>로그인</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="전화번호"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="비밀번호"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">로그인</button>
+      </form>
+      {error && <p className="error">{error}</p>}
     </div>
   );
 }

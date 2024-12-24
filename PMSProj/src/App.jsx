@@ -8,7 +8,7 @@ import MainBody from "./component/MainBody";
 // @NOTE : 주석 설명
 // @TEMP DHKIM 24.12.23 - 임시코드
 import Login from "./component/login/Login";
-// import MemberList from "./component/login/MemberList";
+import MemberList from "./component/login/MemberList";
 // import MemberDetails from "./component/login/MemberDetails";
 import React, { useState, useEffect } from "react";
 
@@ -200,6 +200,24 @@ function App() {
     body = null;
   }
 
+  // @hs - 로그인 창
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null); // 사용자 데이터 저장
+  const [showMemberList, setShowMemberList] = useState(false); // 회원 목록 창 표시 여부
+
+  const handleLogin = (data) => {
+    setIsLoggedIn(true);
+    setUserData(data); // 로그인한 사용자 정보 저장
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserData(null);
+    setShowMemberList(false); // 로그아웃 시 회원 목록 창 닫기
+  };
+
+  const isAdmin = userData?.role === "admin"; // 어드민인지 확인
+
   return (
     <div className="App">
       <Header />
@@ -210,6 +228,32 @@ function App() {
         <button class="dot" data-index="1"></button>
         <button class="dot" data-index="2"></button>
       </div> */}
+      {/* @hs -로그인 */}
+      <Login />
+      {!isLoggedIn ? (
+        <Login onLogin={handleLogin} />
+      ) : (
+        <div className="login-container">
+          <h2>프로필</h2>
+          <img
+            src="https://via.placeholder.com/100"
+            alt="프로필 사진"
+            className="profile-picture"
+          />
+          <p>이름: {userData.name}</p>
+          <p>전화번호: {userData.phone}</p>
+          <p>회원 등급: {userData.role === "admin" ? "관리자" : "일반 회원"}</p>
+          <button onClick={handleLogout}>로그아웃</button>
+          {isAdmin && (
+            <button onClick={() => setShowMemberList(true)}>
+              회원 목록 보기
+            </button>
+          )}
+        </div>
+      )}
+      {showMemberList && (
+        <MemberList onClose={() => setShowMemberList(false)} />
+      )}
       {body}
     </div>
   );

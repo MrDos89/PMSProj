@@ -1,0 +1,23 @@
+.member-list {
+  width: 320px;
+  height: 700px;
+  position: fixed;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  overflow-y: auto;
+}
+
+.close-button {
+  background-color: skyblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}

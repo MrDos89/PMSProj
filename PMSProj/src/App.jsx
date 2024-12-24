@@ -1,10 +1,8 @@
-// import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
 import Header from "./component/Header";
 import MainBanner from "./component/MainBanner";
-import MiniGames from "./component/MiniGames";
-import PhoneList from "./component/PhoneList";
+// import MiniGames from "./component/MiniGames";
+// import PhoneList from "./component/PhoneList";
+import MainBody from "./component/MainBody";
 
 // @todo : 해당 코드 아직 작업 안됨
 // @NOTE : 주석 설명
@@ -15,6 +13,7 @@ import Login from "./component/login/Login";
 import React, { useState, useEffect } from "react";
 
 import "./App.css";
+import MiniGamesFunctions from "./component/minigame/MiniGamesFunctions";
 
 const phoneData = {
   모두: [
@@ -177,6 +176,7 @@ const phoneData = {
 
 function App() {
   // const [count, setCount] = useState(0);
+  const [mode, setMode] = useState("MAIN");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("모두");
   const [phones, setPhones] = useState([]);
 
@@ -188,6 +188,18 @@ function App() {
     setSelectedAgeGroup(ageGroup);
   };
 
+  let body = null;
+  if (mode === "MAIN") {
+    //@ todo - 홈페이지 메인 화면
+    body = <MainBody phones={phones} ageHandle={handleFilter}></MainBody>;
+  } else if (mode === "GAME") {
+    //@ todo - 미니게임용 창 만들기
+    body = <MiniGamesFunctions></MiniGamesFunctions>;
+  } else {
+    //@todo - 에러 창 만들기
+    body = null;
+  }
+
   return (
     <div className="App">
       <Header />
@@ -198,17 +210,7 @@ function App() {
         <button class="dot" data-index="1"></button>
         <button class="dot" data-index="2"></button>
       </div> */}
-      <MiniGames />
-      <div className="dropdown">
-        <button onClick={() => handleFilter("모두")}>모두</button>
-        <button onClick={() => handleFilter("10대")}>10대</button>
-        <button onClick={() => handleFilter("20대")}>20대</button>
-        <button onClick={() => handleFilter("30대")}>30대</button>
-        <button onClick={() => handleFilter("40대")}>40대</button>
-        <button onClick={() => handleFilter("50대")}>50대</button>
-      </div>
-      <PhoneList phones={phones} />
-      <Login /> {/*@hs 로그인컴포넌트 */}
+      {body}
     </div>
   );
 }

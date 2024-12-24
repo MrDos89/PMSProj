@@ -1,4 +1,4 @@
-import MiniGames from "./MiniGames";
+import MiniGames from "./MiniGameButtons";
 import PhoneList from "./PhoneList";
 
 import PropTypes from "prop-types";

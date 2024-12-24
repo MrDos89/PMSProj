@@ -24,7 +24,7 @@ const games = [
   },
 ];
 
-function MiniGames() {
+function MiniGameButtons() {
   return (
     <ul className="mini-games">
       {games.map((game) => (
@@ -54,4 +54,4 @@ function MiniGames() {
   );
 }
 
-export default MiniGames;
+export default MiniGameButtons;

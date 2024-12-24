@@ -13,7 +13,7 @@ import Login from "./component/login/Login";
 import React, { useState, useEffect } from "react";
 
 import "./App.css";
-import MiniGamesFunctions from "./component/minigame/MiniGamesFunctions";
+import MiniGamesBody from "./component/minigame/MiniGamesBody";
 
 const phoneData = {
   모두: [
@@ -194,7 +194,7 @@ function App() {
     body = <MainBody phones={phones} ageHandle={handleFilter}></MainBody>;
   } else if (mode === "GAME") {
     //@ todo - 미니게임용 창 만들기
-    body = <MiniGamesFunctions></MiniGamesFunctions>;
+    body = <MiniGamesBody></MiniGamesBody>;
   } else {
     //@todo - 에러 창 만들기
     body = null;

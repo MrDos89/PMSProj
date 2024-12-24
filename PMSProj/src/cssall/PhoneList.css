@@ -44,6 +44,21 @@
     color: #666;
   }
 
+  /* 드롭다운 관련 스타일 */
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px; /* 문구와 버튼 사이 간격 */
+}
+
+.dropdown-label {
+  font-size: 16px;
+  color: #03588c;
+  font-weight: bold;
+}
+
   .dropdown {
     position: relative;
     display: inline-block;

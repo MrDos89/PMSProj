@@ -3,7 +3,7 @@
   height: 700px;
   position: fixed;
   top: 50%;
-  left: 10%;
+  left: 1%;
   transform: translateY(-50%);
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -11,6 +11,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: white;
   overflow-y: auto;
+  z-index: 100; /* @hs 맨앞으로 */
 }
 
 .close-button {

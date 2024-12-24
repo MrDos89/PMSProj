@@ -1,7 +1,9 @@
+import React, { useState, useEffect } from "react";
+import "./App.css";
 import Header from "./component/Header";
 import MainBanner from "./component/MainBanner";
 // import MiniGames from "./component/MiniGames";
-import PhoneList from "./component/PhoneList";
+// import PhoneList from "./component/PhoneList";
 import MainBody from "./component/MainBody";
 
 // @todo : 해당 코드 아직 작업 안됨
@@ -10,10 +12,11 @@ import MainBody from "./component/MainBody";
 import Login from "./component/login/Login";
 import MemberList from "./component/login/MemberList";
 // import MemberDetails from "./component/login/MemberDetails";
-import React, { useState, useEffect } from "react";
 
-import "./App.css";
-import MiniGamesBody from "./component/minigame/MiniGamesBody";
+import Attendance from "./component/minigame/Attendance";
+import Roulette from "./component/minigame/Roulette";
+import Ladder from "./component/minigame/Ladder";
+import ExchangeShop from "./component/minigame/ExchangeShop";
 
 const phoneData = {
   모두: [
@@ -174,11 +177,35 @@ const phoneData = {
   ],
 };
 
+const games = [
+  {
+    id: 1,
+    name: "포인트 출석체크",
+    img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
+  },
+  {
+    id: 2,
+    name: "포인트 룰렛",
+    img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
+  },
+  {
+    id: 3,
+    name: "포인트 사다리타기",
+    img: "./image/images.png",
+  },
+  {
+    id: 4,
+    name: "포인트 교환",
+    img: "./image/c1fa27f2b5cec238595a9f86b0e8c5c2.png",
+  },
+];
+
 function App() {
   // const [count, setCount] = useState(0);
   const [mode, setMode] = useState("MAIN");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("모두");
   const [phones, setPhones] = useState([]);
+  const [gameMode, setGameMode] = useState("ATTENDANCE");
 
   useEffect(() => {
     setPhones(phoneData[selectedAgeGroup] || phoneData["모두"]);
@@ -194,7 +221,15 @@ function App() {
     body = <MainBody phones={phones} ageHandle={handleFilter}></MainBody>;
   } else if (mode === "GAME") {
     //@ todo - 미니게임용 창 만들기
-    body = <MiniGamesBody></MiniGamesBody>;
+    if (gameMode === "ATTENDANCE") {
+      body = <Attendance></Attendance>;
+    } else if (gameMode === "ROULETTE") {
+      body = <Roulette></Roulette>;
+    } else if (gameMode === "LADDER") {
+      body = <Ladder></Ladder>;
+    } else if (gameMode === "EXCHANGESHOP") {
+      body = <ExchangeShop></ExchangeShop>;
+    }
   } else {
     //@todo - 에러 창 만들기
     body = null;
@@ -254,6 +289,38 @@ function App() {
       {showMemberList && (
         <MemberList onClose={() => setShowMemberList(false)} />
       )}
+
+      <ul className="mini-games">
+        {games.map((game) => (
+          <li key={game.id} className="game" alt="game.name">
+            <a
+              href="/attendance"
+              onClick={(event) => {
+                event.preventDefault();
+
+                alert(game.id + "눌렸다");
+                if (game.id === 1) {
+                  setMode("GAME");
+                  setGameMode("ATTENDANCE");
+                } else if (game.id === 2) {
+                  setMode("GAME");
+                  setGameMode("ROULETTE");
+                } else if (game.id === 3) {
+                  setMode("GAME");
+                  setGameMode("LADDER");
+                } else if (game.id === 4) {
+                  setMode("GAME");
+                  setGameMode("EXCHANGESHOP");
+                }
+              }}
+            >
+              <img src={game.img} alt={game.name} />
+              {/* {game.name} */}
+            </a>
+          </li>
+        ))}
+      </ul>
+
       {body}
     </div>
   );

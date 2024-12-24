@@ -11,7 +11,7 @@ function Login({ onLogin }) {
 
     // 관리자 계정
     const adminAccount = {
-      phone: "010-1234-5678",
+      phone: "admin123",
       password: "admin123",
       name: "관리자",
       role: "admin",

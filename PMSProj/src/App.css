@@ -87,6 +87,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%; /* 전체 너비 사용 */
+  margin-top: 110px;
 }
 
 .app-header {

@@ -6,6 +6,10 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 30px;
+    position: fixed; /* 헤더를 고정 위치로 설정 */
+    top: 0; /* 상단에 붙임 */
+    width: 100%; /* 가로 폭을 전체로 설정 (필요에 따라) */
+    z-index: 100; /* 다른 요소 위에 표시하기 위해 z-index 값 설정 */
   }
   
   .header .logo {

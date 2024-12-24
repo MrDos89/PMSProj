@@ -1,7 +1,7 @@
 import Header from "./component/Header";
 import MainBanner from "./component/MainBanner";
 // import MiniGames from "./component/MiniGames";
-// import PhoneList from "./component/PhoneList";
+import PhoneList from "./component/PhoneList";
 import MainBody from "./component/MainBody";
 
 // @todo : 해당 코드 아직 작업 안됨

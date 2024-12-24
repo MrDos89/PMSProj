@@ -27,10 +27,12 @@ export default PhoneList;
 //   const [phones, setPhones] = useState(phoneData["모두"]);
 //   const [selectedAge, setSelectedAge] = useState("모두");
 
+//---------------------------------------------------- filter
 //   const filterPhones = (ageGroup) => {
 //     setPhones(phoneData[ageGroup]);
 //     setSelectedAge(ageGroup);
 //   };
+// ---------------------------------------------
 
 //   useEffect(() => {
 //     setPhones(phoneData["모두"]);

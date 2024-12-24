@@ -43,4 +43,51 @@
     margin: 5px 0;
     color: #666;
   }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    background-color: #66cdd9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .dropdown-menu {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+    min-width: 150px;
+    padding: 5px 0;
+  }
+  
+  .dropdown-menu.show {
+    display: block; /* 드롭다운 활성화 시 표시 */
+  }
+  
+  .dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu button:hover {
+    background-color: #f0f8ff;
+  }
   

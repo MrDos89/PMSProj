@@ -13,7 +13,20 @@ import PropTypes from "prop-types";
 ReactModal.setAppElement("#root");
 function MiniGameButtons({ games }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [gameMode, setGameMode] = useState("ATTENDANCE");
+  const [gameMode, setGameMode] = useState("ROULETTE");
+
+  let body = null;
+
+  //@ todo - 미니게임용 창 만들기
+  if (gameMode === "ATTENDANCE") {
+    body = <Attendance></Attendance>;
+  } else if (gameMode === "ROULETTE") {
+    body = <Roulette></Roulette>;
+  } else if (gameMode === "LADDER") {
+    body = <Ladder></Ladder>;
+  } else if (gameMode === "EXCHANGESHOP") {
+    body = <ExchangeShop></ExchangeShop>;
+  }
 
   const openModal = () => {
     setIsOpen(true);
@@ -29,26 +42,14 @@ function MiniGameButtons({ games }) {
       zIndex: "1000",
     },
     content: {
-      width: "300px",
-      height: "400px",
-      margin: "auto",
+      width: "1200px",
+      height: "800px",
+      marginLeft: "0 auto",
       borderRadius: "4px",
       boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
       padding: "20px",
     },
   };
-
-  let body = null;
-  //@ todo - 미니게임용 창 만들기
-  if (gameMode === "ATTENDANCE") {
-    body = <Attendance></Attendance>;
-  } else if (gameMode === "ROULETTE") {
-    body = <Roulette></Roulette>;
-  } else if (gameMode === "LADDER") {
-    body = <Ladder></Ladder>;
-  } else if (gameMode === "EXCHANGESHOP") {
-    body = <ExchangeShop></ExchangeShop>;
-  }
 
   return (
     <>
@@ -69,6 +70,7 @@ function MiniGameButtons({ games }) {
       >
         <h1>Modal</h1>
         <p>모달 컨텐츠</p>
+        {body}
         <button onClick={closeModal}>닫기</button>
       </ReactModal>
     </>

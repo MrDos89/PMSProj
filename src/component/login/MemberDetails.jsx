@@ -3,7 +3,7 @@ import "../../cssall/MemberDetails.css";
 
 function MemberDetails({ member, onClose }) {
   if (!member) {
-    return <div className="member-details">선택된 회원이 없습니다.</div>;
+    return null; // 회원이 선택되지 않으면 아무것도 표시하지 않음
   }
 
   return (

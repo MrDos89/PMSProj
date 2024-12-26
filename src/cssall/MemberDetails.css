@@ -1,14 +1,16 @@
 .member-details {
-    width: 500px;
-    height: 700px;
+    width: 400px;
+    height: auto;
     border: 1px solid #ccc;
     padding: 20px;
-    position: absolute; /* or fixed depending on your layout */
+    position: fixed; /* 화면 고정 */
     top: 50%;
-    right: 0; /* Adjust as needed */
-    transform: translateY(-50%);
+    right: 38%; /* 화면 오른쪽 여백 */
+    transform: translateY(-50%); /* 세로 중앙 정렬 */
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    overflow-y: auto;
 }
 
 .member-photo {
@@ -18,27 +20,15 @@
     margin: 0 auto 20px;
     display: block;
 }
-.member-info{
-    margin-bottom: 20px;
-}
-.usage-info {
-    display: flex;
-    justify-content: space-around; /* 원형 그래프를 균등하게 배치 */
-}
-.circle-graph {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-}
 
 .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
     cursor: pointer;
 }

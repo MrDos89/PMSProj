@@ -303,28 +303,31 @@ function App() {
           <p>회원 등급: {userData.role === "admin" ? "관리자" : "일반 회원"}</p>
           <button onClick={handleLogout}>로그아웃</button>
           {isAdmin && (
-            <button onClick={() => setShowMemberList(true)}>
-              회원 목록 보기
-            </button>
+            <div>
+              {" "}
+              {/* 이 div 추가 */}
+              <button onClick={() => setShowMemberList(true)}>
+                회원 목록 보기
+              </button>
+              {showMemberList && ( // showMemberList가 true일 때만 렌더링
+                <MemberList
+                  members={members}
+                  onClose={() => setShowMemberList(false)} // 닫기 버튼 클릭 시 showMemberList를 false로
+                  onSelect={setSelectedMember}
+                />
+              )}
+            </div>
           )}
         </div>
       )}
-      {showMemberList && (
-        <MemberList onClose={() => setShowMemberList(false)} />
-      )}
 
-      {/* @note.hs : 멤버상세정보 */}
-      {/* ... other components */}
-      {showMemberList && (
-        <div style={{ display: "flex" }}>
-          <MemberList members={members} onSelect={setSelectedMember} />
-          <MemberDetails
-            member={selectedMember}
-            onClose={() => setSelectedMember(null)}
-          />
-        </div>
+      {/* 기존 멤버 상세 정보 표시 부분 유지 */}
+      {selectedMember && (
+        <MemberDetails
+          member={selectedMember}
+          onClose={() => setSelectedMember(null)}
+        />
       )}
-      {/* ... other components */}
 
       {/* @note - 미니게임 버튼 UI */}
       <MiniGameButtons games={games}></MiniGameButtons>

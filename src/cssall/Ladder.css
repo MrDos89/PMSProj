@@ -43,20 +43,19 @@
 }
 
 .ladder {
-    display: flex;
-    flex-direction: column;
-    width: calc(80px * var(--num-participants));
-    height: 300px;
     position: relative;
+    width: calc(80px * var(--num-participants));
+    height: 300px; /* 명시적인 높이 지정 */
     border-top: 2px solid black;
     border-bottom: 2px solid black;
 }
 
+
 .ladder-row {
+    height: calc(300px / (var(--num-participants) * 2 + 1)); /* 행 높이 자동 계산 */
     display: flex;
-    height: 30px;
-    position: relative;
-    margin-left: 100px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .ladder-segment {

@@ -56,13 +56,19 @@ function Ladder() {
   const runLadder = (start) => {
     let current = start;
     const path = [{ x: start, y: 0 }]; // 시작점 추가
+
+    const ladderElement = ladderRef.current;
+    if (!ladderElement) return; // ladderRef가 없을 경우 방지
+
+    const rowHeight = ladderElement.offsetHeight / (ladder.length + 1);
+
     for (let i = 0; i < ladder.length; i++) {
       if (ladder[i][current]) {
         current++;
       } else if (current > 0 && ladder[i][current - 1]) {
         current--;
       }
-      path.push({ x: current, y: (i + 1) * 30 }); // 경로에 좌표 추가 (30은 ladder-row의 높이)
+      path.push({ x: current, y: (i + 1) * rowHeight }); // y 좌표 수정
     }
     setResult(current);
     setHighlightPath({ start, end: current, path });
@@ -72,24 +78,14 @@ function Ladder() {
     if (!highlightPath || !ladderRef.current) return null;
 
     const ladderElement = ladderRef.current;
-    const ladderHeight = ladderElement.offsetHeight; // 사다리 높이
+    const ladderHeight = ladderElement.offsetHeight;
     const segmentWidth = ladderElement.offsetWidth / participants.length;
-    const rowHeight = ladderHeight / (ladder.length + 1); // 행 높이 (시작/끝점 포함)
-
-    // Check if highlightPath is an object with start, end, and path properties
-    if (
-      !highlightPath.hasOwnProperty("start") ||
-      !highlightPath.hasOwnProperty("end") ||
-      !highlightPath.hasOwnProperty("path")
-    ) {
-      console.error("highlightPath is missing required properties");
-      return null;
-    }
+    const rowHeight = ladderHeight / (ladder.length + 1);
 
     const pathData = highlightPath.path
       .map((point, index) => {
         const x = (point.x + 0.5) * segmentWidth;
-        const y = index * rowHeight; // y 좌표 수정
+        const y = point.y; // y 좌표는 runLadder에서 계산된 값 사용
         return `${index === 0 ? "M" : "L"} ${x} ${y}`;
       })
       .join(" ");

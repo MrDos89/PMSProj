@@ -70,6 +70,7 @@
     align-items: center;
     gap: 10px;
     margin-left: 10px;
+    margin-right: 30px;
   }
   
   .header .search-bar input {

@@ -184,21 +184,25 @@ const games = [
     id: 1,
     name: "포인트 출석체크",
     img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
+    mode: "ATTENDANCE",
   },
   {
     id: 2,
     name: "포인트 룰렛",
     img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
+    mode: "ROULETTE",
   },
   {
     id: 3,
     name: "포인트 사다리타기",
     img: "./image/images.png",
+    mode: "LADDER",
   },
   {
     id: 4,
     name: "포인트 교환",
     img: "./image/c1fa27f2b5cec238595a9f86b0e8c5c2.png",
+    mode: "EXCHANGESHOP",
   },
 ];
 

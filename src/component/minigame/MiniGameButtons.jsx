@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 ReactModal.setAppElement("#root");
 function MiniGameButtons({ games }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [gameMode, setGameMode] = useState("ROULETTE");
+  const [gameMode, setGameMode] = useState("EXCHANGESHOP");
 
   let body = null;
 
@@ -25,10 +25,57 @@ function MiniGameButtons({ games }) {
   } else if (gameMode === "LADDER") {
     body = <Ladder></Ladder>;
   } else if (gameMode === "EXCHANGESHOP") {
-    body = <ExchangeShop></ExchangeShop>;
+    // ExchangeShop를 위한 추가 데이터
+    const memberData = {
+      profileImage: "https://via.placeholder.com/100",
+      name: "홍길동",
+      phone: "010-1234-5678",
+      rank: "Gold",
+      points: 1200,
+    };
+
+    const productData = [
+      {
+        company: "제휴회사A",
+        name: "상품A",
+        points: 100,
+        image: "https://via.placeholder.com/150",
+      },
+      {
+        company: "제휴회사B",
+        name: "상품B",
+        points: 200,
+        image: "https://via.placeholder.com/150",
+      },
+      {
+        company: "제휴회사C",
+        name: "상품C",
+        points: 300,
+        image: "https://via.placeholder.com/150",
+      },
+      {
+        company: "제휴회사D",
+        name: "상품D",
+        points: 400,
+        image: "https://via.placeholder.com/150",
+      },
+    ];
+
+    const handleUpdatePoints = (newPoints) => {
+      console.log("업데이트된 포인트:", newPoints);
+    };
+
+    body = (
+      <ExchangeShop
+        member={memberData}
+        products={productData}
+        onUpdatePoints={handleUpdatePoints}
+      />
+    );
   }
 
-  const openModal = () => {
+  const openModal = (mode) => {
+    setGameMode(mode); // 선택된 게임 모드 설정
     setIsOpen(true);
   };
 
@@ -56,8 +103,10 @@ function MiniGameButtons({ games }) {
       <ul className="mini-games">
         {games.map((game) => (
           <li key={game.id} className="game" alt="game.name">
-            <a onClick={openModal}>
+            <a onClick={() => openModal(game.mode)}>
               <img src={game.img} alt={game.name} />
+              {/* <a onClick={openModal}>
+              <img src={game.img} alt={game.name} /> */}
               {/* {game.name} */}
             </a>
           </li>
@@ -75,7 +124,14 @@ function MiniGameButtons({ games }) {
   );
 }
 MiniGameButtons.propTypes = {
-  games: PropTypes.array,
+  games: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      mode: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default MiniGameButtons;

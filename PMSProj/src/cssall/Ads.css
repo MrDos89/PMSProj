@@ -1,0 +1,111 @@
+/* 광고 섹션 스타일 */
+.ad-section {
+    margin: 20px 0;
+    padding: 20px;
+  }
+  
+  .ad-section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: black;
+  }
+  
+  /* 슬라이더 */
+  .ad-slider {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* 브라우저 스크롤 숨김 */
+  }
+  
+  /* 이전, 다음 버튼 */
+  .ad-slider .prev,
+  .ad-slider .next {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  
+  .ad-slider .prev {
+    left: 10px;
+  }
+  
+  .ad-slider .next {
+    right: 10px;
+  }
+  
+  /* 카드 컨테이너 */
+  .ad-cards-container {
+    overflow-x: hidden; /* 스크롤 숨김 */
+    width: 100%; /* 컨테이너가 화면에 맞게 조정 */
+  }
+  
+  .ad-cards {
+    display: flex;
+    flex-wrap: nowrap; /* 카드들을 가로로 배치 */
+    gap: 10px;
+  }
+  
+  .ad-card {
+    flex: 0 0 300px; /* 고정 너비 */
+    height: 150px;
+    background-color: #e0e0e0; /* 임시 배경색 */
+    border-radius: 5px;
+  }
+  
+  .ad-banner {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 (필요한 경우) */
+    flex-direction: column; /* 요소를 세로로 쌓으려면 추가 */
+    gap: 20px; /* 배너 간격 */
+  }
+  
+  /*
+  .ad-banner-item {
+    flex: 1;
+    height: 100px; /* 배너 높이 
+    border-radius: 10px;
+    background-color: #d0d0d0; /* 임시 배경색 
+  }
+    */
+  
+  .ad-banner-item.light-green {
+    background-color: #8dffb9;
+    margin-top: 30px;
+    width: 1200px;
+    height: 300px;
+    border-radius: 5px;
+  }
+  
+  .ad-banner-item.light-blue {
+    background-color: #8fd2ff;
+    margin-top: 30px;
+    width: 1200px;
+    height: 300px;
+    border-radius: 5px;
+  }
+  
+  .ad-banner-item {
+    opacity: 0;
+    transform: translateX(-100px); /* 초기 상태: 왼쪽으로 이동 */
+    transition: all 2s ease; /* 부드러운 애니메이션 */
+  }
+  
+  .ad-banner-item.visible {
+    opacity: 1;
+    transform: translateX(0); /* 원래 위치로 이동 */
+  }

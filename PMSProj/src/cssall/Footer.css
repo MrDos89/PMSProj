@@ -1,0 +1,46 @@
+/* Footer 전체 스타일 */
+.footer {
+    background-color: #dadce8;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Footer 내부 컨텐츠 */
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Footer 텍스트 */
+  .footer-content p {
+    margin: 0 0 10px;
+  }
+  
+  /* Footer 링크 */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .footer-links li {
+    display: inline;
+  }
+  
+  .footer-links a {
+    text-decoration: none;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover {
+    color: #03588c;
+  }
+  

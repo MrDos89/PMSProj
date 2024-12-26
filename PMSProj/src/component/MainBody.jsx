@@ -24,15 +24,11 @@ function MainBody({ phones, ageHandle }) {
         <span className="dropdown-label">나이별 인기 top3</span>
         <div className="dropdown">
           {/* 드롭다운 메인 버튼 */}
-          <button
-            onClick={toggleDropdown}
-            className={`dropdown-toggle ${isDropdownOpen ? "active" : ""}`}
-          >
+          <button className="dropdown-toggle" onClick={toggleDropdown}>
             {selectedFilter}
           </button>
 
-          {/* 드롭다운 메뉴 */}
-          <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
+          <div className="dropdown-menu">
             {["모두", "10대", "20대", "30대", "40대", "50대"].map(
               (ageGroup) => (
                 <button

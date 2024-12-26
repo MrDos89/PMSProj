@@ -17,6 +17,9 @@ import MemberList from "./component/login/MemberList";
 // import MemberDetails from "./component/login/MemberDetails";
 import MiniGameButtons from "./component/minigame/MiniGameButtons";
 
+import Ads from "./component/Ads";
+import Footer from "./component/Footer";
+
 const phoneData = {
   모두: [
     {
@@ -282,6 +285,8 @@ function App() {
 
       {/* @note - 폰 리스트 나오는 바디 */}
       {body}
+      <Ads />
+      <Footer />
     </div>
   );
 }

@@ -32,7 +32,6 @@
     width: 80px;
 }
 
-
 .highlight-svg {
     position: absolute;
     top: 0;
@@ -46,38 +45,43 @@
     position: relative;
     width: calc(80px * var(--num-participants));
     height: 300px; /* 명시적인 높이 지정 */
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-}
-
-
-.ladder-row {
-    height: calc(300px / (var(--num-participants) * 2 + 1)); /* 행 높이 자동 계산 */
+    /* border-top: 2px solid black;
+    border-bottom: 2px solid black; */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.ladder-segment {
-    width: calc(100% / var(--num-participants));
-    display: flex;
-    justify-content: center; /* 가운데 정렬 유지 */
-    align-items: center;
-    border-left: 2px solid black;
+    flex-direction: column;
     box-sizing: border-box;
 }
 
-.ladder-segment:last-child {
+.ladder-row {
+    height: calc(300px / (var(--num-participants) * 2 + 1));
+    display: flex;
+    justify-content: space-between; /* 양 끝으로 정렬 */
+    align-items: center;
+    width: 100%; /* 추가: 부모 너비에 맞춤 */
+    box-sizing: border-box; /* border가 width에 포함되도록 */
+}
+
+.ladder-segment {
+    width: calc(120% / var(--num-participants)); /* 너비 계산 유지 */
+    height: 100%;
+    border-left: 2px solid black;
+    box-sizing: border-box; /*border가 width에 포함되도록*/
+    display: flex;
+    justify-content: center; /* 추가: 가로선 중앙 정렬 */
+    align-items: center; /* 추가: 세로선 중앙 정렬 */
+}
+
+.ladder-row .ladder-segment:last-of-type {
     border-right: 2px solid black;
 }
 
 .ladder-bridge {
-    width: 17%;
+    width: 100%;
     height: 2px;
     background-color: black;
-    position: absolute;
+    /* position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 25%; */
 }
 
 .result {

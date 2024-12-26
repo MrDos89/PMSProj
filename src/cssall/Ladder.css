@@ -43,7 +43,8 @@
 
 .ladder {
     position: relative;
-    width: calc(80px * var(--num-participants));
+    left: 2.5em;
+    width: calc(80px * var(--num-participants) + 20px);
     height: 300px; /* 명시적인 높이 지정 */
     /* border-top: 2px solid black;
     border-bottom: 2px solid black; */
@@ -53,11 +54,11 @@
 }
 
 .ladder-row {
-    height: calc(300px / (var(--num-participants) * 2 + 1));
+    height: calc(350px / (var(--num-participants) * 2 + 1));
     display: flex;
     justify-content: space-between; /* 양 끝으로 정렬 */
     align-items: center;
-    width: 100%; /* 추가: 부모 너비에 맞춤 */
+    width: 83%; /* 추가: 부모 너비에 맞춤 */
     box-sizing: border-box; /* border가 width에 포함되도록 */
 }
 

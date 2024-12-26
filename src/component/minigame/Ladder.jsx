@@ -55,12 +55,17 @@ function Ladder() {
 
   const runLadder = (start) => {
     let current = start;
-    const path = [{ x: start, y: 0 }]; // 시작점 y 좌표 명확히 0으로 설정
+    const path = [];
 
     const ladderElement = ladderRef.current;
     if (!ladderElement) return;
 
-    const rowHeight = ladderElement.offsetHeight / ladder.length; // 행 높이 계산 수정
+    const rowHeight = ladderElement.offsetHeight / ladder.length;
+    const numParticipants = participants.length;
+    const segmentWidth = ladderElement.offsetWidth / numParticipants;
+
+    // 시작점 x 좌표를 segment의 시작 위치로 조정
+    path.push({ x: start * segmentWidth, y: 0 });
 
     for (let i = 0; i < ladder.length; i++) {
       const prevX = current;
@@ -72,15 +77,16 @@ function Ladder() {
       }
 
       if (prevX !== current) {
-        path.push({ x: prevX, y: i * rowHeight });
-        path.push({ x: current, y: i * rowHeight });
-      } else {
-        if (path.length > 0) {
-          path[path.length - 1].y = i * rowHeight;
-        }
+        // 가로선 시작점과 끝점 x 좌표를 정확하게 계산
+        const startX = prevX * segmentWidth;
+        const endX = current * segmentWidth;
+
+        path.push({ x: startX, y: i * rowHeight + 12 });
+        path.push({ x: endX, y: i * rowHeight + 12 });
       }
+      path.push({ x: current * segmentWidth, y: (i + 1) * rowHeight + 12 });
     }
-    path.push({ x: current, y: ladderElement.offsetHeight }); // 끝점 y 좌표 명확히 사다리 높이로 설정
+
     setResult(current);
     setHighlightPath({ start, end: current, path });
   };
@@ -89,14 +95,9 @@ function Ladder() {
     if (!highlightPath || !ladderRef.current || !highlightPath.path)
       return null;
 
-    const ladderElement = ladderRef.current;
-    const segmentWidth = ladderElement.offsetWidth / participants.length;
-
     const pathData = highlightPath.path
       .map((point, index) => {
-        const x = (point.x + 0.5) * segmentWidth; // x 좌표 계산 수정 (0.5 추가)
-        const y = point.y;
-        return `${index === 0 ? "M" : "L"} ${x} ${y}`;
+        return `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`;
       })
       .join(" ");
 

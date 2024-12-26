@@ -25,6 +25,7 @@ function ExchangeShop({ member, products, onUpdatePoints }) {
           alt={`${member.name} 프로필`}
           className="profile-image"
         />
+
         <div className="member-details">
           <p><strong>이름:</strong> {member.name}</p>
           <p><strong>전화번호:</strong> {member.phone}</p>
@@ -32,6 +33,21 @@ function ExchangeShop({ member, products, onUpdatePoints }) {
           <p><strong>포인트:</strong> {userPoints} point</p>
         </div>
       </div>
+      
+      {/*
+      <img
+          src={member.profileImage}
+          alt={`${member.name} 프로필`}
+          className="profile-image"
+        />
+          <p><strong>이름:</strong> {member.name}</p>
+          <p><strong>전화번호:</strong> {member.phone}</p>
+          <p><strong>등급:</strong> {member.rank}</p>
+          <p><strong>포인트:</strong> {userPoints} point</p>
+        </div>
+        */}
+
+    
 
       {/* 상품 목록 섹션 */}
       <h3 className="product-title">상품 목록</h3>

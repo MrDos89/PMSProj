@@ -1,0 +1,87 @@
+/* App.css */
+.ladderGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.ladder-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.participants {
+    display: flex;
+    justify-content: space-around;
+    width: calc(80px * var(--num-participants));
+}
+
+.participants.top {
+    margin-top: 10px;
+}
+
+.participants.bottom {
+    margin-bottom: 10px;
+}
+
+.participant {
+    text-align: center;
+    width: 80px;
+}
+
+
+.highlight-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* SVG가 클릭 이벤트를 가로채지 않도록 */
+}
+
+.ladder {
+    display: flex;
+    flex-direction: column;
+    width: calc(80px * var(--num-participants));
+    height: 300px;
+    position: relative;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.ladder-row {
+    display: flex;
+    height: 30px;
+    position: relative;
+    margin-left: 100px;
+}
+
+.ladder-segment {
+    width: calc(100% / var(--num-participants));
+    display: flex;
+    justify-content: center; /* 가운데 정렬 유지 */
+    align-items: center;
+    border-left: 2px solid black;
+    box-sizing: border-box;
+}
+
+.ladder-segment:last-child {
+    border-right: 2px solid black;
+}
+
+.ladder-bridge {
+    width: 17%;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.2em;
+}

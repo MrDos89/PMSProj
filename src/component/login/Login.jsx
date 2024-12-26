@@ -33,6 +33,7 @@ function Login({ onLogin }) {
     ) {
       onLogin(userAccount);
     } else {
+      alert("전화번호나 비밀번호를 확인해주세요.");
       setError("전화번호나 비밀번호를 확인해주세요.");
     }
   };

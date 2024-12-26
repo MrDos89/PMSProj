@@ -15,6 +15,10 @@ function Roulette() {
   const [prizeNumber, setPrizeNumber] = useState(0);
 
   const handleSpinClick = () => {
+    if (mustSpin === true) {
+      return;
+    }
+
     const newPrizeNumber = Math.floor(Math.random() * data.length);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);

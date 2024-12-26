@@ -68,8 +68,6 @@ function MiniGameButtons({ games }) {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <h1>Modal</h1>
-        <p>모달 컨텐츠</p>
         {body}
         <button onClick={closeModal}>닫기</button>
       </ReactModal>

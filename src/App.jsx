@@ -304,21 +304,21 @@ function App() {
           <button onClick={handleLogout}>로그아웃</button>
           {isAdmin && (
             <div>
-              {" "}
-              {/* 이 div 추가 */}
               <button onClick={() => setShowMemberList(true)}>
                 회원 목록 보기
               </button>
-              {showMemberList && ( // showMemberList가 true일 때만 렌더링
-                <MemberList
-                  members={members}
-                  onClose={() => setShowMemberList(false)} // 닫기 버튼 클릭 시 showMemberList를 false로
-                  onSelect={setSelectedMember}
-                />
-              )}
             </div>
           )}
         </div>
+      )}
+
+      {/* MemberList를 로그인 여부와 관계없이 항상 렌더링 */}
+      {showMemberList && (
+        <MemberList
+          members={members}
+          onClose={() => setShowMemberList(false)}
+          onSelect={setSelectedMember}
+        />
       )}
 
       {/* 기존 멤버 상세 정보 표시 부분 유지 */}

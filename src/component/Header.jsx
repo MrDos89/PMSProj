@@ -1,14 +1,18 @@
 // import react from "react";
 import "../cssall/Header.css";
+import Logo from "../../image/GDH logo.png";
+import home from "../../image/homebutton.png";
 
 function Header() {
   return (
     <header className="header">
       <a href="#" className="home">
-        홈
+        <img src={home} alt="homebutton" />
       </a>
 
-      <div className="logo">GDH 통신사</div>
+      <div className="logo">
+        <img src={Logo} alt="GDH 통신사 로고" />
+      </div>
       <nav className="menu">
         <button>서비스</button>
         <button>고객센터</button>

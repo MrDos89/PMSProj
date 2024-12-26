@@ -54,7 +54,7 @@ const phoneData = {
       capacity: "64G | 128G",
       price: "55,000원/월",
       provider: "SKT 5GX",
-      img: "../image/teen_1.png",
+      img: "../image/phone/phone image01.png",
     },
     {
       rank: 2,
@@ -62,7 +62,7 @@ const phoneData = {
       capacity: "128G",
       price: "45,000원/월",
       provider: "SKT 5GX",
-      img: "../image/teen_2.png",
+      img: "../image/phone/phone image02.png",
     },
     {
       rank: 3,
@@ -70,7 +70,7 @@ const phoneData = {
       capacity: "128G",
       price: "40,000원/월",
       provider: "SKT 5GX",
-      img: "../image/teen_3.png",
+      img: "../image/phone/phone image03.png",
     },
   ],
   "20대": [
@@ -80,7 +80,7 @@ const phoneData = {
       capacity: "128G | 256G",
       price: "95,000원/월",
       provider: "SKT 5GX",
-      img: "../image/20s_1.png",
+      img: "../image/phone/phone image04.png",
     },
     {
       rank: 2,
@@ -88,7 +88,7 @@ const phoneData = {
       capacity: "256G",
       price: "85,000원/월",
       provider: "SKT 5GX",
-      img: "../image/20s_2.png",
+      img: "../image/phone/phone image05.png",
     },
     {
       rank: 3,
@@ -96,7 +96,7 @@ const phoneData = {
       capacity: "128G",
       price: "75,000원/월",
       provider: "SKT 5GX",
-      img: "../image/20s_3.png",
+      img: "../image/phone/phone image06.png",
     },
   ],
   "30대": [
@@ -106,7 +106,7 @@ const phoneData = {
       capacity: "128G | 256G",
       price: "105,000원/월",
       provider: "SKT 5GX",
-      img: "../image/30s_1.png",
+      img: "../image/phone/phone image07.png",
     },
     {
       rank: 2,
@@ -114,7 +114,7 @@ const phoneData = {
       capacity: "256G",
       price: "95,000원/월",
       provider: "SKT 5GX",
-      img: "../image/30s_2.png",
+      img: "../image/phone/phone image08.png",
     },
     {
       rank: 3,
@@ -122,7 +122,7 @@ const phoneData = {
       capacity: "256G",
       price: "85,000원/월",
       provider: "SKT 5GX",
-      img: "../image/30s_3.png",
+      img: "../image/phone/phone image09.png",
     },
   ],
   "40대": [
@@ -132,7 +132,7 @@ const phoneData = {
       capacity: "128G",
       price: "75,000원/월",
       provider: "SKT 5GX",
-      img: "../image/40s_1.png",
+      img: "../image/phone/phone image10.png",
     },
     {
       rank: 2,
@@ -140,7 +140,7 @@ const phoneData = {
       capacity: "128G",
       price: "65,000원/월",
       provider: "SKT 5GX",
-      img: "../image/40s_2.png",
+      img: "../image/phone/phone image11.png",
     },
     {
       rank: 3,
@@ -148,7 +148,7 @@ const phoneData = {
       capacity: "128G",
       price: "55,000원/월",
       provider: "SKT 5GX",
-      img: "../image/40s_3.png",
+      img: "../image/phone/phone image12.png",
     },
   ],
   "50대": [
@@ -158,7 +158,7 @@ const phoneData = {
       capacity: "128G",
       price: "65,000원/월",
       provider: "SKT 5GX",
-      img: "../image/50s_1.png",
+      img: "../image/phone/phone image13.png",
     },
     {
       rank: 2,
@@ -166,7 +166,7 @@ const phoneData = {
       capacity: "128G",
       price: "55,000원/월",
       provider: "SKT 5GX",
-      img: "../image/50s_2.png",
+      img: "../image/phone/phone image14.png",
     },
     {
       rank: 3,
@@ -174,7 +174,7 @@ const phoneData = {
       capacity: "128G",
       price: "50,000원/월",
       provider: "SKT 5GX",
-      img: "../image/50s_3.png",
+      img: "../image/phone/phone image15.png",
     },
   ],
 };

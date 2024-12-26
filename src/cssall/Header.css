@@ -1,7 +1,8 @@
 .header {
-    background-color: #03588c;
-    color: white;
+    background-color: #83c4f8;
+    color: #03588c;
     padding: 15px 20px;
+    box-shadow: 0 2px 0 #03588c; /* 아래쪽에 10px 두께의 그림자 생성 */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,14 +21,27 @@
     flex: 1;
   }
 
-  header .home {
+
+  /* header .home {
     font-size: 16px;
     color: white;
     text-decoration: none;
-    background-color: #66CDD9;
+    background-color: #03588c;
     padding: 10px 15px;
     border-radius: 20px;
     cursor: pointer;
+  } */
+
+  .header .home {
+    height: 50px; /* 원하는 높이 (헤더 높이에 맞춰 조절) */
+  }
+  
+  .header .home img {
+    max-height: 100%; /* 헤더 높이에 맞춤 */
+    width: auto; /* 가로 비율 유지 */
+    /* 또는 */
+    /* height: 100%; */
+    /* width: auto; */
   }
 
   .header .menu {
@@ -36,8 +50,8 @@
   }
   
   .header .menu button {
-    background-color: #66cdd9;
-    color: white;
+    background-color: #83c4f8;
+    color: #03588c;
     border: none;
     padding: 10px 15px;
     font-size: 14px;
@@ -47,13 +61,15 @@
   }
   
   .header .menu button:hover {
-    background-color: #2b718c;
+    background-color: #03588c;
+    color:white;
   }
   
   .header .search-bar {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 10px;
   }
   
   .header .search-bar input {
@@ -65,7 +81,7 @@
   }
   
   .header .search-bar button {
-    background-color: #66cdd9;
+    background-color: #03588c;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -76,6 +92,7 @@
   }
   
   .header .search-bar button:hover {
-    background-color: #2b718c;
+    background-color: #ffffff;
+    color:#03588c
   }
   

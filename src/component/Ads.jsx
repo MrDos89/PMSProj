@@ -69,6 +69,9 @@ function Ads() {
             <div className="ad-card"></div>
             <div className="ad-card"></div>
             <div className="ad-card"></div>
+            <div className="ad-card"></div>
+            <div className="ad-card"></div>
+            <div className="ad-card"></div>
           </div>
         </div>
         {/* 다음 버튼 */}

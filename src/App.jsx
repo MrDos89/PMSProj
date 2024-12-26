@@ -14,7 +14,7 @@ import MainBody from "./component/MainBody";
 //@note - 로그인 기능
 import Login from "./component/login/Login";
 import MemberList from "./component/login/MemberList";
-// import MemberDetails from "./component/login/MemberDetails";
+import MemberDetails from "./component/login/MemberDetails";
 import MiniGameButtons from "./component/minigame/MiniGameButtons";
 
 import Ads from "./component/Ads";
@@ -243,6 +243,39 @@ function App() {
 
   const isAdmin = userData?.role === "admin"; // 어드민인지 확인
 
+  // @note.hs : 멤버임시데이터
+  // ... other states
+  const [selectedMember, setSelectedMember] = useState(null);
+  const members = [
+    {
+      id: 1,
+      name: "홍길동",
+      phone: "010-1111-2222",
+      role: "user",
+      points: 1500,
+      callUsage: 70,
+      dataUsage: 30,
+    },
+    {
+      id: 2,
+      name: "김영희",
+      phone: "010-3333-4444",
+      role: "user",
+      points: 2200,
+      callUsage: 20,
+      dataUsage: 90,
+    },
+    {
+      id: 3,
+      name: "이철수",
+      phone: "010-5555-6666",
+      role: "user",
+      points: 800,
+      callUsage: 50,
+      dataUsage: 60,
+    },
+  ];
+
   return (
     <div className="App">
       <Header />
@@ -279,6 +312,19 @@ function App() {
       {showMemberList && (
         <MemberList onClose={() => setShowMemberList(false)} />
       )}
+
+      {/* @note.hs : 멤버상세정보 */}
+      {/* ... other components */}
+      {showMemberList && (
+        <div style={{ display: "flex" }}>
+          <MemberList members={members} onSelect={setSelectedMember} />
+          <MemberDetails
+            member={selectedMember}
+            onClose={() => setSelectedMember(null)}
+          />
+        </div>
+      )}
+      {/* ... other components */}
 
       {/* @note - 미니게임 버튼 UI */}
       <MiniGameButtons games={games}></MiniGameButtons>

@@ -1,32 +1,54 @@
-// function ExchangeShop() {
-//   return <div></div>;
-// }
-
-// export default ExchangeShop;
-
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../../cssall/ExchangeShop.css";
 
 function ExchangeShop({ member, products, onUpdatePoints }) {
+  const [userPoints, setUserPoints] = useState(member.points);
+
+  // 구매 함수
+  const handlePurchase = (productPoints) => {
+    if (userPoints >= productPoints) {
+      const updatedPoints = userPoints - productPoints;
+      setUserPoints(updatedPoints);
+      onUpdatePoints(updatedPoints);
+    } else {
+      alert("포인트가 부족합니다!");
+    }
+  };
+
   return (
-    <div>
-      <h2>교환소</h2>
-      <div>
-        <img src={member.profileImage} alt={`${member.name} 프로필`} />
-        <p>이름: {member.name}</p>
-        <p>전화번호: {member.phone}</p>
-        <p>등급: {member.rank}</p>
-        <p>포인트: {member.points}</p>
+    <div className="exchange-shop">
+      {/* 회원 정보 섹션 */}
+      <div className="member-info">
+        <img
+          src={member.profileImage}
+          alt={`${member.name} 프로필`}
+          className="profile-image"
+        />
+        <div className="member-details">
+          <p><strong>이름:</strong> {member.name}</p>
+          <p><strong>전화번호:</strong> {member.phone}</p>
+          <p><strong>등급:</strong> {member.rank}</p>
+          <p><strong>포인트:</strong> {userPoints} point</p>
+        </div>
       </div>
-      <div>
-        <h3>상품 목록</h3>
+
+      {/* 상품 목록 섹션 */}
+      <h3 className="product-title">상품 목록</h3>
+      <div className="product-grid">
         {products.map((product, index) => (
-          <div key={index}>
-            <img src={product.image} alt={product.name} />
-            <p>상품명: {product.name}</p>
-            <p>포인트: {product.points}</p>
-            <p>회사: {product.company}</p>
+          <div key={index} className="product-card">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="product-image"
+            />
+            <p><strong>{product.company}</strong></p>
+            <p>{product.name}</p>
+            <p><strong>-{product.points} point</strong></p>
+            <button onClick={() => handlePurchase(product.points)}>
+              구매하기
+            </button>
           </div>
         ))}
       </div>

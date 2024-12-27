@@ -43,6 +43,8 @@ function MemberDetails({ member, onClose, onUpdate }) {
       )}
       <h2>{updatedMember.name}</h2>
       <p>전화번호: {updatedMember.phone}</p>
+      <p>전화량: {updatedMember.callUsage || 0}%</p> {/* 추가 */}
+      <p>데이터량: {updatedMember.dataUsage || 0}%</p> {/* 추가 */}
       <p>
         등급:
         <select
@@ -56,7 +58,6 @@ function MemberDetails({ member, onClose, onUpdate }) {
         </select>
       </p>
       <p>포인트: {updatedMember.point || 0}</p>
-
       <div className="point-management">
         {/* 포인트 관리 영역 */}
         <input
@@ -67,10 +68,10 @@ function MemberDetails({ member, onClose, onUpdate }) {
           className="point-input"
         />
         <button onClick={() => handlePointChange(1)} className="point-button">
-          주기
+          후원
         </button>
         <button onClick={() => handlePointChange(-1)} className="point-button">
-          뺏기
+          강탈
         </button>
       </div>
       <button className="save-button bottom-right" onClick={handleSave}>

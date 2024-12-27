@@ -1,6 +1,23 @@
-.header {
+/* .header {
   background: linear-gradient(90deg, #03588c, #66cdd9, #bde1ff),
                linear-gradient(270deg, #bde1ff, #66cdd9, #03588c);
+  background-size: 300% 300%;
+  color: #03588c;
+  height: 100px; /* 세로 크기를 100px로 설정 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: fixed;
+  top: 0;
+  width: 100%; /* 가로 크기 100% 
+  z-index: 100;
+  animation: gradientMove 10s ease-in-out infinite; /* 무한 반복 애니메이션 
+  padding: 0 20px; /* 상하 패딩 제거, 좌우는 20px 
+} */
+
+.header {
+  /* background-color: rgba(255, 255, 255, 0.364); */
   background-size: 300% 300%;
   color: #03588c;
   height: 100px; /* 세로 크기를 100px로 설정 */
@@ -20,10 +37,14 @@
 .header .logo {
   font-size: 24px;
   font-weight: bold;
-  text-align: center;
+  /* text-align: center; */
   color: white;
   flex: 1;
-  padding-left: 100px;
+}
+
+.header .logo img {
+  /* height: 300px; */
+  width: 100px;
 }
 
 /* header .home {
@@ -50,7 +71,7 @@
 
 
 /* 메뉴 및 버튼 스타일 */
-.header .menu button {
+/* .header .menu button {
   background-color: #bde1ff;
   color: #03588c;
   border: none;
@@ -65,6 +86,29 @@
 .header .menu button:hover {
   background-color: #03588c;
   color: white;
+} */
+
+/* 메뉴 및 버튼 스타일 */
+.header .menu button {
+  background-color: transparent; /* 배경 투명 */
+  color: #03588c; /* 기본 글자 색 */
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
+  margin-right: 10px;
+}
+
+.header .menu button:hover {
+  color: #7e57c2; /* 보라색으로 텍스트 강조 */
+}
+
+.header .menu button:active {
+  background-color: #7e57c2; /* 클릭 시 보라색 배경 */
+  color: white; /* 클릭 시 글자 색상 변경 */
 }
 
 /* 검색창 스타일 */

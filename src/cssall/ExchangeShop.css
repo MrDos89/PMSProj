@@ -7,6 +7,7 @@
   padding: 20px;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+  background-color: rgb(220, 233, 255);
   
 
 }
@@ -17,7 +18,7 @@
   flex-direction: row; /* 가로 방향으로 배치 */
   justify-content: space-between; /* 공간을 최대한 활용하여 요소들을 양쪽 끝으로 배치 */
   align-items: center; /* 수직 가운데 정렬 */
-  width: 100%;
+  width: 95%;
   max-width: 800px;
   padding: 20px;
   background-color: #f0f8ff;

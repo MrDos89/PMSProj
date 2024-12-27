@@ -1,6 +1,6 @@
 // import react from "react";
 import "../cssall/Header.css";
-import Logo from "../../image/GDH logo.png";
+import Logo from "../../image/logo.png";
 import home from "../../image/homebutton.png";
 
 function Header() {
@@ -14,9 +14,10 @@ function Header() {
         <img src={Logo} alt="GDH 통신사 로고" />
       </div>
       <nav className="menu">
-        <button>서비스</button>
+        <button>회사소개</button>
+        <button>상품서비스</button>
         <button>고객센터</button>
-        <button>메뉴3</button>
+        <button>마이페이지</button>
       </nav>
       <div className="search-bar">
         <input type="text" placeholder="검색어를 입력하세요" />

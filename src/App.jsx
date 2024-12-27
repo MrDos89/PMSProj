@@ -6,6 +6,8 @@
 //@note - 메인 기능
 import React, { useState, useEffect } from "react";
 import "./App.css";
+
+import WaveBackground from "./component/WaveBackground"; // 경로는 파일 위치에 맞게 조정
 import Header from "./component/Header";
 import MainBanner from "./component/MainBanner";
 // import PhoneList from "./component/PhoneList";
@@ -356,6 +358,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <WaveBackground />
       <MainBanner />
       {/* 슬라이드 네비게이션 버튼 */}
       {/* <div class="slide-dots">

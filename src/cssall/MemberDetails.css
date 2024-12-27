@@ -13,6 +13,39 @@
     overflow-y: auto;
 }
 
+.role-dropdown{
+    margin-left: 10px;
+}
+
+.point-management {
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 가운데 정렬 */
+    margin-top: 10px;
+}
+
+.point-input {
+    flex-grow: 1; /* 입력 필드가 남는 공간 차지 */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px; /* 버튼과의 간격 */
+}
+
+.point-button {
+    padding: 5px 10px;
+    background-color: #4CAF50; /* 초록색 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 3px;
+}
+
+.member-details .bottom-right{
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
 .member-photo {
     width: 150px;
     height: 150px;

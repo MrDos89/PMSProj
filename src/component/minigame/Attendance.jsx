@@ -4,17 +4,48 @@ import "react-calendar/dist/Calendar.css";
 import styled from "styled-components";
 
 const CalendarContainer = styled.div`
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   background-color: #e0f2f7;
   border-radius: 8px;
   padding: 20px;
-  justify-content: space-between;
+
+  /* react-calendar 스타일 덮어쓰기 */
+  .react-calendar {
+    width: 100%; /* 캘린더 자체 너비 100% */
+    max-width: 100%;
+    border: none;
+  }
+  .react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+  }
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+  .react-calendar__month-view__days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7개의 동일한 너비 열 생성 */
+    grid-gap: 5px; /* 날짜 사이 간격 */
+  }
+  .react-calendar__tile {
+    max-width: 100%; /* 타일 최대 너비 설정 */
+    padding: 0.75em 0.5em;
+  }
 `;
 
 const AttendanceButton = styled.button`
+  width: 100%;
+  height: 100%;
+
   background-color: #2196f3;
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 0;
   border-radius: 4px;
   cursor: pointer;
   &:disabled {
@@ -72,7 +103,7 @@ function Attendance() {
       <CalendarContainer>
         <Calendar
           value={date}
-          minDate={new Date("2025-01-01")}
+          minDate={new Date("2024-01-01")}
           maxDate={new Date("2025-01-31")}
           tileContent={({ date, view }) => {
             if (view === "month") {
@@ -82,8 +113,7 @@ function Attendance() {
                   onClick={() => handleDateClick(date)}
                   disabled={
                     attendedDays[dateString] ||
-                    date.toLocaleDateString() !==
-                      new Date().toLocaleDateString()
+                    dateString !== new Date().toDateString()
                   }
                 >
                   {date.getDate()}

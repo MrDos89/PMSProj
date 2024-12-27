@@ -28,7 +28,7 @@ const phoneData = {
       capacity: "128G",
       price: "85,559원/월",
       provider: "SKT 5GX",
-      img: "../image/A5KU_001_13.png",
+      img: "../image/phone/phone image24.png",
     },
     {
       rank: 2,
@@ -36,7 +36,7 @@ const phoneData = {
       capacity: "128G | 1T | 256G | 512G",
       price: "137,184원/월",
       provider: "SKT 5GX",
-      img: "../image/A5XC_001_13.png",
+      img: "../image/phone/phone image25.png",
     },
     {
       rank: 3,
@@ -44,7 +44,7 @@ const phoneData = {
       capacity: "512G | 256G",
       price: "120,138원/월",
       provider: "SKT 5GX",
-      img: "../image/A5CK_001_13.png",
+      img: "../image/phone/phone image26.png",
     },
   ],
   "10대": [

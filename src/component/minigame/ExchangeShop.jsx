@@ -56,7 +56,7 @@ function ExchangeShop({ member, products, onUpdatePoints }) {
             />
             <p><strong>{product.company}</strong></p>
             <p>{product.name}</p>
-            <p><strong>-{product.points} point</strong></p>
+            <p className="product-points"><strong>-{product.points} point</strong></p>
             <button onClick={() => handlePurchase(product.points)}>
               구매하기
             </button>

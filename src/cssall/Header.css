@@ -23,6 +23,7 @@
   text-align: center;
   color: white;
   flex: 1;
+  padding-left: 100px;
 }
 
 /* header .home {

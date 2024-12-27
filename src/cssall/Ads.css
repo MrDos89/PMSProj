@@ -109,3 +109,34 @@
     opacity: 1;
     transform: translateX(0); /* 원래 위치로 이동 */
   }
+
+/* 이미지 크기 조정 - 비율 깨지더라도 박스에 맞추기 */
+.ad-card img {
+  width: 100%; /* 카드 너비에 맞춤 */
+  height: 100%; /* 카드 높이에 맞춤 */
+  object-fit: fill; /* 비율을 무시하고 박스를 채우도록 조정 */
+  border-radius: 5px; /* 둥근 모서리와 일치 */
+}
+
+/* ad-card 스타일 */
+.ad-card {
+  flex: 0 0 300px; /* 고정 너비 */
+  height: 200px; /* 고정 높이 */
+  background-color: #e0e0e0; /* 배경색 (이미지가 없는 경우 대비) */
+  border-radius: 5px;
+  overflow: hidden; /* 박스 밖으로 넘친 이미지는 숨김 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .ad-card {
+    flex: 0 0 150px; /* 모바일에서 카드 너비를 줄임 */
+    height: 100px; /* 모바일에서 높이도 조정 */
+  }
+}
+
+.ad-banner img {
+  width: 100%; /* 카드 너비에 맞춤 */
+  height: 100%; /* 카드 높이에 맞춤 */
+  object-fit: fill; /* 비율을 무시하고 박스를 채우도록 조정 */
+  border-radius: 5px; /* 둥근 모서리와 일치 */

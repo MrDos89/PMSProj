@@ -51,7 +51,7 @@
 /* 포인트 텍스트에만 추가적인 스타일 적용 */
 .text-info .point {
   font-size: 20px;
-  color: #0400ff;
+  color: #2c48ff;
   font-weight: bold;
 }
 
@@ -133,10 +133,15 @@
   font-display: bolck;
 }
 
+.product-card .product-points {
+  font-size: 17px;
+  color:rgb(255, 50, 98);
+}
+
 .product-card button {
   margin-top: 10px;
   padding: 5px 10px;
-  background-color: #4caf50;
+  background-color: #3bc2b7;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -145,7 +150,7 @@
 }
 
 .product-card button:hover {
-  background-color: #388e3c;
+  background-color: #008e82;
 }
 
 /* 전체 컨테이너 

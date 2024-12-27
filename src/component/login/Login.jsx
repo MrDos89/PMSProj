@@ -21,7 +21,7 @@ function Login({ onLogin }) {
 
     // 일반 사용자 계정
     const userAccount = {
-      phone: "010-9876-5432",
+      phone: "user123",
       password: "user123",
       name: "사용자",
       role: "user",
@@ -78,7 +78,7 @@ function Login({ onLogin }) {
           />
           <p>이름: {user.name}</p>
           <p>전화번호: {user.phone}</p>
-          <p>회원 등급: {user.role === "admin" ? "관리자" : "일반 회원"}</p>
+          <p>회원 등급: {user.role === "admin" ? "신" : "일반 회원"}</p>
           <button onClick={() => setIsLoggedIn(false)}>로그아웃</button>
         </div>
       )}

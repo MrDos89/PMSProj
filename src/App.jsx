@@ -377,7 +377,7 @@ function App() {
           />
           <p>이름: {userData.name}</p>
           <p>전화번호: {userData.phone}</p>
-          <p>회원 등급: {userData.role === "admin" ? "관리자" : "일반 회원"}</p>
+          <p>회원 등급: {userData.role === "admin" ? "신" : "일반 회원"}</p>
           <button onClick={handleLogout}>로그아웃</button>
           {isAdmin && (
             <div>

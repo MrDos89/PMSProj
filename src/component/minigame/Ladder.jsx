@@ -5,8 +5,8 @@ function Ladder() {
   const [participants, setParticipants] = useState([]);
   const [ladder, setLadder] = useState([]);
   const [result, setResult] = useState(null);
-  const [numParticipantsInput, setNumParticipantsInput] = useState("");
-
+  // const [numParticipantsInput, setNumParticipantsInput] = useState("");
+  const [start, setStart] = useState(null);
   const [highlightPath, setHighlightPath] = useState(null);
   const ladderRef = useRef(null);
 
@@ -14,18 +14,25 @@ function Ladder() {
     setNumParticipantsInput(event.target.value);
   };
 
-  const generateLadder = () => {
-    const numParticipants = parseInt(numParticipantsInput, 10);
-    if (isNaN(numParticipants) || numParticipants < 2) {
-      alert("2명 이상 입력해주세요.");
-      return;
-    }
+  useEffect(() => {
+    const initLadder = () => {
+      const newParticipants = Array.from(
+        { length: 6 },
+        (_, i) =>
+          `${
+            i * Math.round(Math.random() * 10 + 1) +
+            Math.round(Math.random() * 5)
+          }`
+      );
+      setParticipants(newParticipants);
+    };
 
-    const newParticipants = Array.from(
-      { length: numParticipants },
-      (_, i) => `참가자 ${i + 1}`
-    );
-    setParticipants(newParticipants);
+    initLadder();
+  }, []);
+
+  const generateLadder = (start) => {
+    // const numParticipants = parseInt(numParticipantsInput, 10);
+    const numParticipants = 6;
 
     const newLadder = [];
     for (let i = 0; i < numParticipants * 2; i++) {
@@ -50,6 +57,43 @@ function Ladder() {
     document.documentElement.style.setProperty(
       "--num-participants",
       numParticipants
+    );
+  };
+
+  useEffect(() => {
+    if (ladder.length > 0 && start === "number") {
+      runLadder(currentStart);
+      setStart(null);
+    }
+  }, [ladder, start]);
+
+  const [currentStart, setCurrentStart] = useState(null);
+
+  const renderParticipantsBottom = () => {
+    return (
+      <div className="participants bottom">
+        {participants.map(
+          (
+            p,
+            i // newParticipants를 사용해야 함
+          ) => (
+            <div key={i} className="participant">
+              <button
+                onClick={() => {
+                  if (ladder.length === 0) {
+                    setStart(i);
+                    generateLadder(i); // key 값(i)을 generateLadder에 전달
+                  } else {
+                    runLadder(i);
+                  }
+                }}
+              >
+                시작
+              </button>
+            </div>
+          )
+        )}
+      </div>
     );
   };
 
@@ -125,23 +169,17 @@ function Ladder() {
   return (
     <div className="ladderGame">
       <h1>사다리 게임</h1>
-      <input
+      {/* <input
         type="number"
         placeholder="참가자 수를 입력하세요"
         value={numParticipantsInput}
         onChange={handleNumParticipantsChange}
-      />
-      <button onClick={generateLadder}>사다리 생성</button>
+      /> */}
+      {/* <button onClick={generateLadder}>사다리 생성</button> */}
+      {renderParticipantsBottom()}
       <div className="ladder-container">
         {participants.length > 0 && (
           <>
-            <div className="participants bottom">
-              {participants.map((p, i) => (
-                <div key={i} className="participant">
-                  <button onClick={() => runLadder(i)}>시작</button>
-                </div>
-              ))}
-            </div>
             <div className="ladder" ref={ladderRef}>
               {ladder.map((row, rowIndex) => (
                 <div key={rowIndex} className="ladder-row">

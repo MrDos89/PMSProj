@@ -1,28 +1,31 @@
 .header {
-    background-color: #83c4f8;
-    color: #03588c;
-    padding: 15px 20px;
-    box-shadow: 0 2px 0 #03588c; /* 아래쪽에 10px 두께의 그림자 생성 */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    position: fixed; /* 헤더를 고정 위치로 설정 */
-    top: 0; /* 상단에 붙임 */
-    width: 100%; /* 가로 폭을 전체로 설정 (필요에 따라) */
-    z-index: 100; /* 다른 요소 위에 표시하기 위해 z-index 값 설정 */
-  }
-  
-  .header .logo {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    color: white;
-    flex: 1;
-  }
+  background: linear-gradient(90deg, #03588c, #66cdd9, #bde1ff),
+               linear-gradient(270deg, #bde1ff, #66cdd9, #03588c);
+  background-size: 300% 300%;
+  color: #03588c;
+  height: 100px; /* 세로 크기를 100px로 설정 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: fixed;
+  top: 0;
+  width: 100%; /* 가로 크기 100% */
+  z-index: 100;
+  animation: gradientMove 10s ease-in-out infinite; /* 무한 반복 애니메이션 */
+  padding: 0 20px; /* 상하 패딩 제거, 좌우는 20px */
+}
 
+/* 로고 스타일 */
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  flex: 1;
+}
 
-  /* header .home {
+/* header .home {
     font-size: 16px;
     color: white;
     text-decoration: none;
@@ -44,56 +47,60 @@
     /* width: auto; */
   }
 
-  .header .menu {
-    display: flex;
-    gap: 10px;
+
+/* 메뉴 및 버튼 스타일 */
+.header .menu button {
+  background-color: #bde1ff;
+  color: #03588c;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.header .menu button:hover {
+  background-color: #03588c;
+  color: white;
+}
+
+/* 검색창 스타일 */
+.header .search-bar input {
+  padding: 10px;
+  border: 1px solid #66cdd9;
+  border-radius: 10px;
+  width: 200px;
+  font-size: 14px;
+}
+
+.header .search-bar button {
+  background-color: #03588c;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  margin-right: 30px;
+}
+
+.header .search-bar button:hover {
+  background-color: #ffffff;
+  color: #03588c;
+}
+
+/* 그라데이션 애니메이션 */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  .header .menu button {
-    background-color: #83c4f8;
-    color: #03588c;
-    border: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s;
+  50% {
+    background-position: 100% 50%;
   }
-  
-  .header .menu button:hover {
-    background-color: #03588c;
-    color:white;
+  100% {
+    background-position: 0% 50%;
   }
-  
-  .header .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-left: 10px;
-    margin-right: 30px;
-  }
-  
-  .header .search-bar input {
-    padding: 10px;
-    border: 1px solid #66cdd9;
-    border-radius: 10px;
-    width: 200px;
-    font-size: 14px;
-  }
-  
-  .header .search-bar button {
-    background-color: #03588c;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s;
-  }
-  
-  .header .search-bar button:hover {
-    background-color: #ffffff;
-    color:#03588c
-  }
-  
+}

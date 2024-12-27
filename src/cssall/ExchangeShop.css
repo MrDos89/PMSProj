@@ -13,29 +13,63 @@
 
 /* 회원 정보 섹션 */
 .member-info {
-  display: flex; /* 가로 배치 */
-  align-items: center; /* 세로 중앙 정렬 */
-  justify-content: flex-start; /* 좌측 정렬 */
-  width: 100%; /* 전체 너비 사용 */
-  max-width: 600px; /* 최대 너비 제한 */
+  display: flex;
+  flex-direction: row; /* 가로 방향으로 배치 */
+  justify-content: space-between; /* 공간을 최대한 활용하여 요소들을 양쪽 끝으로 배치 */
+  align-items: center; /* 수직 가운데 정렬 */
+  width: 100%;
+  max-width: 800px;
   padding: 20px;
-  margin-bottom: 30px;
   background-color: #f0f8ff;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  overflow: hidden; /* 넘침 방지 */
-  flex-direction: column; /* 세로로 나열 */
+  justify-content: start; /* 이미지를 왼쪽에 붙이고, 텍스트와의 간격을 최소화 */
 }
 
 /* 프로필 이미지 */
-.profile-image {
-  width: 80px;
-  height: 80px;
+.member-info img {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 20px; /* 이미지와 텍스트 간격 */
-  flex-shrink: 0; /* 이미지 크기 유지 */
+  margin-right: 10px; /* 이미지와 텍스트 사이 간격 */
+}
+
+/* 텍스트 정보 */
+.member-info .text-info {
+  /* 텍스트를 담을 컨테이너 추가 */
+  display: flex;
+  flex-direction: column; /* 텍스트를 세로로 배치 */
+}
+
+/* 전체적인 텍스트 스타일 */
+.text-info p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* 포인트 텍스트에만 추가적인 스타일 적용 */
+.text-info .point {
+  font-size: 20px;
+  color: #0400ff;
+  font-weight: bold;
+}
+
+/* 텍스트 정보를 세로로 나열 
+.member-info div {
+  /* 불필요한 스타일 제거 
+}
+  */
+
+.member-info p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* 텍스트가 이미지 옆에서 세로로 나열되도록 강제 */
+.member-info {
+  gap: 20px; /* 이미지와 텍스트 사이 간격 */
 }
 
 /* 회원 세부 정보 */

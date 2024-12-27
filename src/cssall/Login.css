@@ -14,25 +14,56 @@
     padding: 20px;
     box-sizing: border-box;
     z-index: 100;
+    background-color: white;
     overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+/* 프로필 활성화 시 전체 덮음 */
+.profile-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-form input {
     width: 100%;
-    padding: 10px;
+    padding: 15px; /* 입력 칸 크기 확대 */
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 1rem; /* 텍스트 크기 확대 */
+}
+
+.input-large {
+    font-size: 1.2rem;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 .login-form button {
-    width: 100%;
-    padding: 10px;
+   width: 100%;
+    padding: 12px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .login-form button:hover {

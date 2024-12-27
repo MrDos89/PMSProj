@@ -20,7 +20,7 @@
   /* background-color: rgba(255, 255, 255, 0.364); */
   background-size: 300% 300%;
   color: #03588c;
-  height: 100px; /* 세로 크기를 100px로 설정 */
+  height: 80px; /* 세로 크기를 100px로 설정 */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,7 +31,7 @@
   z-index: 100;
   animation: gradientMove 10s ease-in-out infinite; /* 무한 반복 애니메이션 */
   padding: 0 20px; /* 상하 패딩 제거, 좌우는 20px */
-  background-color: #ffffff96;
+  /* background-color: #ffffff96; */
 }
 
 /* 로고 스타일 */

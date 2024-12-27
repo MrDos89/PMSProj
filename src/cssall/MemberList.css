@@ -12,6 +12,26 @@
   background-color: white;
   overflow-y: auto;
   z-index: 100; /* @hs 맨앞으로 */
+  display: flex; /* flexbox 추가 */
+  flex-direction: column; /* 세로 방향 정렬 */
+}
+
+.member-list ul {
+  flex-grow: 1; /* 목록이 남는 공간을 채우도록 설정 */
+  overflow-y: auto; /* 목록에 스크롤 추가 */
+  padding: 0;
+  margin: 10px 0;
+  list-style: none; /* 목록 스타일 제거 */
+}
+
+.member-list li {
+  padding: 8px;
+  border-bottom: 1px solid #eee; /* 구분선 추가 */
+  cursor: pointer;
+}
+
+.member-list li:hover {
+  background-color: #f5f5f5;
 }
 
 .close-button {
@@ -21,4 +41,31 @@
   border-radius: 4px;
   padding: 8px 16px;
   cursor: pointer;
+  align-self: flex-end; /* 오른쪽 정렬 */
+  margin-top: 10px;
+}
+
+.bottom-right { /* 추가된 클래스 */
+  margin-top: auto; /* 하단으로 밀어내기 */
+  margin-bottom: 0;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-around; /* 버튼 균등 간격 배치 */
+  margin-bottom: 10px;
+}
+
+.filter-buttons button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.filter-buttons button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
 }

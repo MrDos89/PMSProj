@@ -70,7 +70,7 @@
     background-color: #0056b3;
 }
 
-.error-message {
+.error-message {  /* @note.hs :들어가야하나..?*/
     color: red;
     font-size: 0.9em;
     margin-top: 10px;

@@ -46,7 +46,7 @@ const phoneData = {
       capacity: "512G | 256G",
       price: "120,138원/월",
       provider: "SKT 5GX",
-      img: "../image/phone/phone image26.pn",
+      img: "../image/phone/phone image26.png",
     },
   ],
   "10대": [

@@ -90,7 +90,7 @@ function MiniGameButtons({ games }) {
     },
     content: {
       width: "800px",
-      height: "600px",
+      height: "650px",
       marginLeft: "0 auto",
       borderRadius: "4px",
       boxShadow: "0 2px 4px rgba(0,0,0,0.2)",

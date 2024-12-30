@@ -3,6 +3,8 @@ import "../../cssall/MemberDetails.css";
 import History from "./History"; // 기록 보기 컴포넌트 추가
 
 function MemberDetails({ member, onClose, onUpdate }) {
+  const apiUserUrl = "http://localhost:3000/userList/";
+
   const initialMember = member || {}; // member가 null일 경우 빈 객체로 초기화
   const [updatedMember, setUpdatedMember] = useState({ ...initialMember });
   const [pointInput, setPointInput] = useState("");
@@ -29,7 +31,7 @@ function MemberDetails({ member, onClose, onUpdate }) {
     setUpdatedMember(member ? { ...member } : {}); // member가 null일 경우 빈 객체 설정
   }, [member]);
 
-  const handlePointChange = (amount) => {
+  const handlePointChange = async (amount) => {
     if (!pointInput) {
       // 빈 문자열일 경우 처리
       return; //아무것도 입력하지 않았을때는 그냥 리턴
@@ -47,6 +49,26 @@ function MemberDetails({ member, onClose, onUpdate }) {
       ...updatedMember,
       point: (updatedMember.points || 0) + amount * parsedAmount,
     });
+
+    //@todo - 데이터 업데이트가 안됨
+    try {
+      const response = await fetch(`apiUserUrl/${updatedMember.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...updatedMember,
+          points: updatedMember.points + amount * parsedAmount,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("포인트 업데이트 실패");
+      }
+    } catch (err) {
+      console.error("포인트 업데이트 실패:", err);
+    }
+
     setPointInput("");
   };
 

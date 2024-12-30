@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "../../cssall/MemberDetails.css";
+import History from "./History"; // 기록 보기 컴포넌트 추가
 
 function MemberDetails({ member, onClose, onUpdate }) {
   const initialMember = member || {}; // member가 null일 경우 빈 객체로 초기화
   const [updatedMember, setUpdatedMember] = useState({ ...initialMember });
   const [pointInput, setPointInput] = useState("");
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false); // 기록 보기 상태 추가
 
   const handleRoleChange = (event) => {
     setUpdatedMember({ ...updatedMember, role: event.target.value });
@@ -25,6 +27,7 @@ function MemberDetails({ member, onClose, onUpdate }) {
 
   const handleSave = () => {
     onUpdate(updatedMember);
+    alert("저장되었습니다."); // 저장 알림 추가
     onClose();
   };
 
@@ -43,8 +46,8 @@ function MemberDetails({ member, onClose, onUpdate }) {
       )}
       <h2>{updatedMember.name}</h2>
       <p>전화번호: {updatedMember.phone}</p>
-      <p>전화량: {updatedMember.callUsage || 0}%</p> {/* 추가 */}
-      <p>데이터량: {updatedMember.dataUsage || 0}%</p> {/* 추가 */}
+      <p>전화량: {updatedMember.callUsage || 0}%</p>
+      <p>데이터량: {updatedMember.dataUsage || 0}%</p>
       <p>
         등급:
         <select
@@ -77,6 +80,19 @@ function MemberDetails({ member, onClose, onUpdate }) {
       <button className="save-button bottom-right" onClick={handleSave}>
         저장
       </button>
+
+      {/* 기록 보기 버튼 */}
+      <button className="history-button" onClick={() => setIsHistoryOpen(true)}>
+        기록 보기
+      </button>
+
+      {/* 기록 창 */}
+      {isHistoryOpen && (
+        <History
+          member={updatedMember} // 현재 수정된 멤버 정보 전달
+          onClose={() => setIsHistoryOpen(false)} // 기록 보기 닫기 핸들러
+        />
+      )}
     </div>
   );
 }

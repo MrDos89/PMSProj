@@ -7,7 +7,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-import WaveBackground from "./component/WaveBackground"; 
+import WaveBackground from "./component/WaveBackground";
 import Header from "./component/Header";
 import MainBanner from "./component/MainBanner";
 // import PhoneList from "./component/PhoneList";
@@ -411,6 +411,8 @@ function App() {
           onClose={() => setSelectedMember(null)}
         />
       )}
+
+      {mode === "HISTORY" && <div>상세정보 창입니다</div>}
 
       {/* @note - 미니게임 버튼 UI */}
       <MiniGameButtons games={games}></MiniGameButtons>

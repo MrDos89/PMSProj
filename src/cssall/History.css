@@ -1,0 +1,42 @@
+.history-modal { /* 모달 스타일 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* MemberDetails보다 높게 */
+}
+
+.history-content { /* 내용 컨테이너 스타일 */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px; /* 적절한 너비 설정 */
+    max-height: 80vh; /* 최대 높이 설정 (화면 높이의 80%) */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
+    position: relative; /* close button absolute position 기준점 */
+}
+
+.history-content .close-button { /* 내용 컨테이너 내부 close button */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f00;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.history-content h3 {
+    margin-top: 0;
+}
+
+.history-content p {
+    margin: 10px 0;
+}

@@ -14,7 +14,7 @@ function History({ member, onClose }) {
         <button className="close-button" onClick={onClose}>
           닫기
         </button>
-        <h3>{member.name} 너가 뭘했는지 난 알고있다</h3>
+        <h3>{member.name} 너가 뭘했는지 난 알고있다╭( •̀ •́ )╮</h3>
       </div>
     </div>
   );

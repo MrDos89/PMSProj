@@ -3,102 +3,144 @@
         {
             "id": 1,
             "name": "홍길동",
-            "phone": "010-1111-2222",
-            "role": "vip",
+            "phone": "01011112222",
+            "password": "1234",
+            "role": 3,
             "points": 1500,
             "callUsage": 70,
             "dataUsage": 30,
-            "photo": "/images/profile1.jpg"
+            "photo": "/images/profile1.jpg",
+            "history":[],
+            "isAdmin": false
           },
           {
             "id": 2,
             "name": "김영희",
-            "phone": "010-3333-4444",
-            "role": "gold",
+            "phone": "01033334444",
+            "password": "1234",
+            "role": 2,
             "points": 2200,
             "callUsage": 20,
             "dataUsage": 90,
-            "photo": "/images/profile2.jpg"
+            "photo": "/images/profile2.jpg",
+            "history":[],
+            "isAdmin": false
           },
           {
             "id": 3,
             "name": "이철수",
-            "phone": "010-5555-6666",
-            "role": "silver",
+            "phone": "01055556666",
+            "password": "1234",
+            "role": 1,
             "points": 800,
             "callUsage": 50,
             "dataUsage": 60,
-            "photo": "/image/thumbnail/thumbnail_1.jpg"
+            "photo": "/image/thumbnail/thumbnail_1.jpg",
+            "history":[],
+            "isAdmin": false
           },
           {
             "id": 4,
             "name": "박지성",
-            "phone": "010-7777-8888",
-            "role": "vip",
+            "phone": "01077778888",
+            "password": "1234",
+            "role": 3,
             "points": 3000,
             "callUsage": 90,
             "dataUsage": 10,
-            "photo": "/images/profile4.jpg"
+            "photo": "/images/profile4.jpg",
+            "history":[],
+            "isAdmin": false
           },
           {
             "id": 5,
             "name": "김연아",
-            "phone": "010-9999-0000",
-            "role": "gold",
+            "phone": "01099990000",
+            "password": "1234",
+            "role": 2,
             "points": 1800,
             "callUsage": 60,
             "dataUsage": 40,
-            "photo": "/images/profile5.jpg"
+            "photo": "/images/profile5.jpg",
+            "history":[],
+            "isAdmin": false
           },
           {
             "id": 6,
             "name": "류현진",
-            "phone": "010-1234-5678",
-            "role": "silver",
+            "phone": "01012345678",
+            "password": "1234",
+            "role": 1,
             "points": 1200,
             "callUsage": 40,
             "dataUsage": 70,
-            "photo": "/images/profile6.jpg"
+            "photo": "/images/profile6.jpg",
+            "history":[],
+            "isAdmin": false
           },
           {
             "id": 7,
             "name": "손흥민",
-            "phone": "010-8765-4321",
-            "role": "vip",
+            "phone": "01087654321",
+            "password": "1234",
+            "role": 3,
             "points": 2500,
             "callUsage": 80,
             "dataUsage": 20,
-            "photo": "/images/profile7.jpg"
+            "photo": "/images/profile7.jpg",
+            "history":[],
+            "isAdmin": false
           },
           {
             "id": 8,
             "name": "추신수",
-            "phone": "010-2468-1357",
-            "role": "gold",
+            "phone": "01024681357",
+            "password": "1234",
+            "role": 2,
             "points": 2000,
             "callUsage": 55,
             "dataUsage": 55,
-            "photo": "/images/profile8.jpg"
+            "photo": "/images/profile8.jpg",
+            "history":[],
+            "isAdmin": false
           },
           {
             "id": 9,
             "name": "박찬호",
-            "phone": "010-1357-2468",
-            "role": "silver",
+            "phone": "01013572468",
+            "password": "1234",
+            "role": 1,
             "points": 900,
             "callUsage": 30,
             "dataUsage": 80,
-            "photo": "/images/profile9.jpg"
+            "photo": "/images/profile9.jpg",
+            "history":[],
+            "isAdmin": false
           },
           {
             "id": 10,
             "name": "이승엽",
-            "phone": "010-9876-5432",
-            "role": "vip",
+            "phone": "01098765432",
+            "password": "1234",
+            "role": 3,
             "points": 2800,
             "callUsage": 85,
             "dataUsage": 15,
-            "photo": "/images/profile10.jpg"
+            "photo": "/images/profile10.jpg",
+            "history":[],
+            "isAdmin": false
+          },{
+            "id": 11,
+            "name": "신",
+            "phone": "01000000000",
+            "password": "admin123",
+            "role": 0,
+            "points": 99999999,
+            "callUsage": 0,
+            "dataUsage": 0,
+            "photo": "/image/thumbnail/God_1.gif",
+            "history":[],
+            "isAdmin": true
           }
     ],
     "gameList": [

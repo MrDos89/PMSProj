@@ -209,8 +209,18 @@ const games = [
 ];
 
 function App() {
+  //@note - 서버 위치
+  const apiUserUrl = "http://localhost:3000/userList/";
+  const apiGameUrl = "http://localhost:3000/gameList/";
+
   // const [count, setCount] = useState(0);
   const [mode, setMode] = useState("MAIN");
+  //  페이지 로딩 상태 체크 state
+  const [isLoading, setIsLoading] = useState(true);
+  //  에러 메시지 출력을 위한 state
+  const [error, setError] = useState(null);
+  const [gameList, setGameList] = useState([]);
+  const [userList, setUserList] = useState([]);
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("모두");
   const [phones, setPhones] = useState([]);
 
@@ -222,6 +232,53 @@ function App() {
     setSelectedAgeGroup(ageGroup);
   };
 
+  //@note - 서버로부터 유저 데이터 받아옴
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch(apiUserUrl);
+      if (!response.ok) {
+        throw new Error("유저 데이터를 받아오지 못했습니다.");
+      }
+
+      const users = await response.json();
+      setUserList(users);
+      setIsLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []); //  -> 컴포넌트가 처음 로딩되었을 때의 이펙트 발생
+
+  //@note - 서버로부터 게임 데이터 받아옴
+  const fetchGames = async () => {
+    try {
+      const response = await fetch(apiGameUrl);
+      if (!response.ok) {
+        throw new Error("게임 데이터를 받아오지 못했습니다.");
+      }
+
+      const games = await response.json();
+      setGameList(games);
+      setIsLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchGames();
+  }, []); //  -> 컴포넌트가 처음 로딩되었을 때의 이펙트 발생
+
+  //@todo - 로딩창을 보여줄려고 하면 에러가 보임 아마 로딩창을 껏다켰다를 반복해서 그런듯
+  //        한번에 처리하는 방법으로 바꿔야함
+  // if (isLoading) return <div>데이터 로딩 중...</div>;
+  // if (error) return <div>에러: {error}</div>;
+
   let body = null;
   if (mode === "MAIN") {
     //@ todo - 홈페이지 메인 화면
@@ -232,6 +289,7 @@ function App() {
   }
 
   // @hs - 로그인 창
+  // @todo - 로그인 데이터에 있는 데이터로 로그인 되도록 수정할 예정
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null); // 사용자 데이터 저장
   const [showMemberList, setShowMemberList] = useState(false); // 회원 목록 창 표시 여부
@@ -259,118 +317,108 @@ function App() {
   // @note.hs : 멤버임시데이터
   // ... other states
   const [selectedMember, setSelectedMember] = useState(null);
-  const members = [
-    {
-      id: 1,
-      name: "홍길동",
-      phone: "010-1111-2222",
-      role: "vip",
-      points: 1500,
-      callUsage: 70,
-      dataUsage: 30,
-      photo: "/images/profile1.jpg", // 프로필 사진 추가
-    },
-    {
-      id: 2,
-      name: "김영희",
-      phone: "010-3333-4444",
-      role: "gold",
-      points: 2200,
-      callUsage: 20,
-      dataUsage: 90,
-      photo: "/images/profile2.jpg", // 프로필 사진 추가
-    },
-    {
-      id: 3,
-      name: "이철수",
-      phone: "010-5555-6666",
-      role: "silver",
-      points: 800,
-      callUsage: 50,
-      dataUsage: 60,
-      photo: "/image/thumbnail/thumbnail_1.jpg", // 프로필 사진 추가
-      history: [
-        // 임시 이용 내역 추가
-        { date: new Date("2024-07-20"), description: "VIP 룸 이용" },
-        { date: new Date("2024-07-21"), description: "음료 주문" },
-        { date: new Date("2024-07-20"), description: "VIP 룸 이용" },
-        { date: new Date("2024-07-21"), description: "음료 주문" },
-        { date: new Date("2024-07-20"), description: "VIP 룸 이용" },
-        { date: new Date("2024-07-21"), description: "음료 주문" },
-        { date: new Date("2024-07-20"), description: "VIP 룸 이용" },
-      ],
-    },
-    {
-      id: 4,
-      name: "박지성",
-      phone: "010-7777-8888",
-      role: "vip",
-      points: 3000,
-      callUsage: 90,
-      dataUsage: 10,
-      photo: "/images/profile4.jpg", // 프로필 사진 추가
-    },
-    {
-      id: 5,
-      name: "김연아",
-      phone: "010-9999-0000",
-      role: "gold",
-      points: 1800,
-      callUsage: 60,
-      dataUsage: 40,
-      photo: "/images/profile5.jpg", // 프로필 사진 추가
-    },
-    {
-      id: 6,
-      name: "류현진",
-      phone: "010-1234-5678",
-      role: "silver",
-      points: 1200,
-      callUsage: 40,
-      dataUsage: 70,
-      photo: "/images/profile6.jpg", // 프로필 사진 추가
-    },
-    {
-      id: 7,
-      name: "손흥민",
-      phone: "010-8765-4321",
-      role: "vip",
-      points: 2500,
-      callUsage: 80,
-      dataUsage: 20,
-      photo: "/images/profile7.jpg", // 프로필 사진 추가
-    },
-    {
-      id: 8,
-      name: "추신수",
-      phone: "010-2468-1357",
-      role: "gold",
-      points: 2000,
-      callUsage: 55,
-      dataUsage: 55,
-      photo: "/images/profile8.jpg", // 프로필 사진 추가
-    },
-    {
-      id: 9,
-      name: "박찬호",
-      phone: "010-1357-2468",
-      role: "silver",
-      points: 900,
-      callUsage: 30,
-      dataUsage: 80,
-      photo: "/images/profile9.jpg", // 프로필 사진 추가
-    },
-    {
-      id: 10,
-      name: "이승엽",
-      phone: "010-9876-5432",
-      role: "vip",
-      points: 2800,
-      callUsage: 85,
-      dataUsage: 15,
-      photo: "/images/profile10.jpg", // 프로필 사진 추가
-    },
-  ];
+  // const members = [
+  //   {
+  //     id: 1,
+  //     name: "홍길동",
+  //     phone: "010-1111-2222",
+  //     role: "vip",
+  //     points: 1500,
+  //     callUsage: 70,
+  //     dataUsage: 30,
+  //     photo: "/images/profile1.jpg", // 프로필 사진 추가
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "김영희",
+  //     phone: "010-3333-4444",
+  //     role: "gold",
+  //     points: 2200,
+  //     callUsage: 20,
+  //     dataUsage: 90,
+  //     photo: "/images/profile2.jpg", // 프로필 사진 추가
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "이철수",
+  //     phone: "010-5555-6666",
+  //     role: "silver",
+  //     points: 800,
+  //     callUsage: 50,
+  //     dataUsage: 60,
+  //     photo: "/image/thumbnail/thumbnail_1.jpg", // 프로필 사진 추가
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "박지성",
+  //     phone: "010-7777-8888",
+  //     role: "vip",
+  //     points: 3000,
+  //     callUsage: 90,
+  //     dataUsage: 10,
+  //     photo: "/images/profile4.jpg", // 프로필 사진 추가
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "김연아",
+  //     phone: "010-9999-0000",
+  //     role: "gold",
+  //     points: 1800,
+  //     callUsage: 60,
+  //     dataUsage: 40,
+  //     photo: "/images/profile5.jpg", // 프로필 사진 추가
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "류현진",
+  //     phone: "010-1234-5678",
+  //     role: "silver",
+  //     points: 1200,
+  //     callUsage: 40,
+  //     dataUsage: 70,
+  //     photo: "/images/profile6.jpg", // 프로필 사진 추가
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "손흥민",
+  //     phone: "010-8765-4321",
+  //     role: "vip",
+  //     points: 2500,
+  //     callUsage: 80,
+  //     dataUsage: 20,
+  //     photo: "/images/profile7.jpg", // 프로필 사진 추가
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "추신수",
+  //     phone: "010-2468-1357",
+  //     role: "gold",
+  //     points: 2000,
+  //     callUsage: 55,
+  //     dataUsage: 55,
+  //     photo: "/images/profile8.jpg", // 프로필 사진 추가
+  //   },
+  //   {
+  //     id: 9,
+  //     name: "박찬호",
+  //     phone: "010-1357-2468",
+  //     role: "silver",
+  //     points: 900,
+  //     callUsage: 30,
+  //     dataUsage: 80,
+  //     photo: "/images/profile9.jpg", // 프로필 사진 추가
+  //   },
+  //   {
+  //     id: 10,
+  //     name: "이승엽",
+  //     phone: "010-9876-5432",
+  //     role: "vip",
+  //     points: 2800,
+  //     callUsage: 85,
+  //     dataUsage: 15,
+  //     photo: "/images/profile10.jpg", // 프로필 사진 추가
+  //   },
+  // ];
 
   return (
     <div className="App">
@@ -412,7 +460,7 @@ function App() {
       {/* MemberList를 로그인 여부와 관계없이 항상 렌더링 */}
       {showMemberList && (
         <MemberList
-          members={members}
+          members={userList}
           onClose={() => setShowMemberList(false)}
           onSelect={handleMemberClick} // handleMemberClick 함수 전달
         />
@@ -429,7 +477,7 @@ function App() {
       {mode === "HISTORY" && <div>상세정보 창입니다</div>}
 
       {/* @note - 미니게임 버튼 UI */}
-      <MiniGameButtons games={games}></MiniGameButtons>
+      <MiniGameButtons games={gameList}></MiniGameButtons>
 
       {/* @note - 폰 리스트 나오는 바디 */}
       {body}

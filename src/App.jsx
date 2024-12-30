@@ -511,12 +511,20 @@ function App() {
 
       {/* MemberList를 로그인 여부와 관계없이 항상 렌더링 */}
       {showMemberList && (
-        <MemberList members={userList} onSelect={setSelectedMember} />
+        <MemberList
+          members={userList}
+          onClose={() => setShowMemberList(false)}
+          onSelect={setSelectedMember}
+        />
       )}
 
       {/* 기존 멤버 상세 정보 표시 부분 유지 */}
       {selectedMember && (
-        <MemberDetails member={selectedMember} onUpdate={handleUpdate} />
+        <MemberDetails
+          member={selectedMember}
+          onClose={() => setSelectedMember(null)}
+          onUpdate={handleUpdate}
+        />
       )}
 
       {mode === "HISTORY" && <div>상세정보 창입니다</div>}

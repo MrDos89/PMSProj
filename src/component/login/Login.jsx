@@ -22,11 +22,11 @@ function Login({ userList, onLogin }) {
       setUser(foundUser);
       setIsLoggedIn(true);
       onLogin(foundUser); // App.jsx로 사용자 정보 전달
-      if (user.grade === 3) {
+      if (foundUser.grade === 3) {
         setUserGrade("VIP 회원");
-      } else if (user.grade === 2) {
+      } else if (foundUser.grade === 2) {
         setUserGrade("GOLD 회원");
-      } else if (user.grade === 1) {
+      } else if (foundUser.grade === 1) {
         setUserGrade("SILVER 회원");
       } else {
         setUserGrade("일반 회원");
@@ -71,7 +71,7 @@ function Login({ userList, onLogin }) {
           />
           <p>이름: {user.name}</p>
           <p>전화번호: {user.phone}</p>
-          <p>회원 등급: {userData.isAdmin ? "신" : userGrade}</p>{" "}
+          <p>회원 등급: {user.isAdmin ? "신" : userGrade}</p>{" "}
           {/* isAdmin으로 변경 */}
           <button onClick={() => setIsLoggedIn(false)}>로그아웃</button>
         </div>

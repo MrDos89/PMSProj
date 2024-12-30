@@ -14,9 +14,7 @@ function History({ member, onClose }) {
         <button className="close-button" onClick={onClose}>
           닫기
         </button>
-        <h3>{member.name} 기록</h3>
-        <p>전화번호: {member.phone}</p>
-        <p>기록 예시: (여기에 기록 내용을 추가하세요)</p>
+        <h3>{member.name} 너가 뭘했는지 난 알고있다</h3>
       </div>
     </div>
   );

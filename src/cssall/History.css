@@ -1,5 +1,5 @@
 
-.history-modal { /* 모달 스타일 */
+.history-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@
     z-index: 1001; /* MemberDetails보다 높게 */
 }
 
-.history-content { /* 내용 컨테이너 스타일 */
+.history-content { /* 내용 컨테이너 */
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -21,6 +21,25 @@
     max-height: 80vh; /* 최대 높이 설정 (화면 높이의 80%) */
     overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
     position: relative; /* close button absolute position 기준점 */
+    display: flex; /* flexbox 추가 */
+    flex-direction: column; /* flex direction 추가 */
+    overflow: hidden; /* history-content 자체의 스크롤 방지 */
+}
+
+.history-header { /* 제목과 닫기 버튼을 감싸는 wrapper 추가 */
+    display: flex;
+    justify-content: space-between; /* 양쪽 끝으로 정렬 */
+    align-items: center; /* 세로 가운데 정렬 */
+    margin-bottom: 10px; /* history-details와의 간격 */
+    position: sticky; /* sticky position 적용 */
+    top: 0; /* 상단에 고정 */
+    background-color: white; /* 배경색 추가 (스크롤 시 내용 가려짐 방지) */
+    z-index: 1; /* 다른 요소 위에 표시 */
+    padding-bottom: 10px; /* history-details와의 간격 */
+}
+
+.history-header h3 {
+    margin: 0;
 }
 
 .history-content .close-button { /* 내용 컨테이너 내부 close button */
@@ -34,8 +53,20 @@
     cursor: pointer;
 }
 
-.history-content h3 {
-    margin-top: 0;
+.history-details {
+    overflow-y: auto;
+    max-height: calc(80vh - 70px); /* history-header 높이 + margin 값 조절 */
+    padding-top: 10px; /* 제목과의 간격 */
+    flex-grow: 1; /* 남는 공간을 history-details가 모두 차지하도록 함 */
+}
+
+
+.history-content .close-button {
+    background: #f00;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
 }
 
 .history-content p {

@@ -71,7 +71,7 @@ function Login({ userList, onLogin }) {
           />
           <p>이름: {user.name}</p>
           <p>전화번호: {user.phone}</p>
-          <p>회원 등급: {user.isAdmin ? "신" : userGrade}</p>{" "}
+          <p>회원 등급: {user.isAdmin ? "신" : userGrade}</p>
           {/* isAdmin으로 변경 */}
           <button onClick={() => setIsLoggedIn(false)}>로그아웃</button>
         </div>

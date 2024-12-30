@@ -45,7 +45,7 @@ function MemberDetails({ member, onClose, onUpdate }) {
 
     setUpdatedMember({
       ...updatedMember,
-      point: (updatedMember.point || 0) + amount * parsedAmount,
+      point: (updatedMember.points || 0) + amount * parsedAmount,
     });
     setPointInput("");
   };
@@ -89,7 +89,7 @@ function MemberDetails({ member, onClose, onUpdate }) {
                 <option value={1}>Silver</option>
               </select>
             </p>
-            <p>포인트: {updatedMember.point || 0}</p>
+            <p>포인트: {updatedMember.points || 0}</p>
             <div className="point-management">
               <input
                 type="number"

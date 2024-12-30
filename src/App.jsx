@@ -496,7 +496,8 @@ function App() {
           />
           <p>이름: {userData.name}</p>
           <p>전화번호: {userData.phone}</p>
-          <p>회원 등급: {userData.isAdmin ? "신" : userGrade}</p>{" "}
+          <p>회원 등급: {userData.isAdmin ? "신" : userGrade}</p>
+          <p>마일리지: {userData.points} </p>
           {/* isAdmin으로 변경 */}
           <button onClick={handleLogout}>로그아웃</button>
           {isAdmin && (

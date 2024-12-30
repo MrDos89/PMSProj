@@ -1,43 +1,36 @@
 import React, { useState } from "react";
 import "../../cssall/Login.css";
 
-function Login({ onLogin }) {
+function Login({ userList, onLogin }) {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 여부 상태
   const [user, setUser] = useState(null); // 로그인된 사용자 정보 저장
+  const [userGrade, setUserGrade] = useState("일반 회원");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
 
-    // 관리자 계정
-    const adminAccount = {
-      phone: "admin123",
-      password: "admin123",
-      name: "관리자",
-      role: "admin",
-    };
+    // db.json의 userList에서 사용자 찾기
+    const foundUser = userList.find(
+      (u) => u.phone === phone && u.password === password
+    );
 
-    // 일반 사용자 계정
-    const userAccount = {
-      phone: "user123",
-      password: "user123",
-      name: "사용자",
-      role: "user",
-    };
-
-    if (phone === adminAccount.phone && password === adminAccount.password) {
-      setUser(adminAccount);
+    if (foundUser) {
+      setUser(foundUser);
       setIsLoggedIn(true);
-      onLogin(adminAccount);
-    } else if (
-      phone === userAccount.phone &&
-      password === userAccount.password
-    ) {
-      setUser(userAccount);
-      setIsLoggedIn(true);
-      onLogin(userAccount);
+      onLogin(foundUser); // App.jsx로 사용자 정보 전달
+      if (user.grade === 3) {
+        setUserGrade("VIP 회원");
+      } else if (user.grade === 2) {
+        setUserGrade("GOLD 회원");
+      } else if (user.grade === 1) {
+        setUserGrade("SILVER 회원");
+      } else {
+        setUserGrade("일반 회원");
+      }
     } else {
       alert("전화번호나 비밀번호를 확인해주세요.");
       setError("전화번호나 비밀번호를 확인해주세요.");
@@ -72,13 +65,14 @@ function Login({ onLogin }) {
         <div className="profile-container profile-active">
           <h2>프로필</h2>
           <img
-            src="https://via.placeholder.com/100"
+            src={user.photo || "https://via.placeholder.com/100"} // photo 연결, 기본 이미지 설정
             alt="프로필 사진"
             className="profile-image"
           />
           <p>이름: {user.name}</p>
           <p>전화번호: {user.phone}</p>
-          <p>회원 등급: {user.role === "admin" ? "신" : "일반 회원"}</p>
+          <p>회원 등급: {userData.isAdmin ? "신" : userGrade}</p>{" "}
+          {/* isAdmin으로 변경 */}
           <button onClick={() => setIsLoggedIn(false)}>로그아웃</button>
         </div>
       )}

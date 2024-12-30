@@ -18,8 +18,9 @@ class MemberList extends React.Component {
     const filteredMembers =
       this.state.filter === "all"
         ? members
-        : members.filter((member) => member.role === this.state.filter);
-
+        : members.filter(
+            (member) => member.grade === parseInt(this.state.filter, 10)
+          );
     return (
       <div className="member-list">
         <h2>회원 목록</h2>
@@ -32,20 +33,20 @@ class MemberList extends React.Component {
             All
           </button>
           <button
-            onClick={() => this.setFilter("vip")}
-            className={this.state.filter === "vip" ? "active" : ""}
+            onClick={() => this.setFilter("3")}
+            className={this.state.filter === "3" ? "active" : ""}
           >
             VIP
           </button>
           <button
-            onClick={() => this.setFilter("gold")}
-            className={this.state.filter === "gold" ? "active" : ""}
+            onClick={() => this.setFilter("2")}
+            className={this.state.filter === "2" ? "active" : ""}
           >
             Gold
           </button>
           <button
-            onClick={() => this.setFilter("silver")}
-            className={this.state.filter === "silver" ? "active" : ""}
+            onClick={() => this.setFilter("1")}
+            className={this.state.filter === "1" ? "active" : ""}
           >
             Silver
           </button>
@@ -53,10 +54,15 @@ class MemberList extends React.Component {
 
         <ul>
           {filteredMembers.map((member) => (
-            <li key={member.id} onClick={() => onSelect(member)}>
-              {" "}
-              {/* 이 부분 확인 */}
-              {member.name} ({member.phone})
+            <li
+              key={member.id}
+              className="member-item"
+              onClick={() => onSelect(member)}
+            >
+              <div className="member-info">
+                <span className="member-name">{member.name}</span>
+                <span className="member-phone">{member.phone}</span>
+              </div>
             </li>
           ))}
         </ul>

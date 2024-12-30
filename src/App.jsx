@@ -6,6 +6,7 @@
 //@note - 메인 기능
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import db from "../db.json";
 
 import WaveBackground from "./component/WaveBackground";
 import Header from "./component/Header";
@@ -49,7 +50,7 @@ const phoneData = {
       price: "120,138원/월",
       provider: "GDH 5GX",
       img: "../image/phone/phone image26.png",
-      link:"https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010014&productGrpId=000006332",
+      link: "https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010014&productGrpId=000006332",
     },
   ],
   "10대": [
@@ -190,32 +191,32 @@ const phoneData = {
   ],
 };
 
-const games = [
-  {
-    id: 1,
-    name: "포인트 출석체크",
-    img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
-    mode: "ATTENDANCE",
-  },
-  {
-    id: 2,
-    name: "포인트 룰렛",
-    img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
-    mode: "ROULETTE",
-  },
-  {
-    id: 3,
-    name: "포인트 사다리타기",
-    img: "./image/images.png",
-    mode: "LADDER",
-  },
-  {
-    id: 4,
-    name: "포인트 교환",
-    img: "./image/c1fa27f2b5cec238595a9f86b0e8c5c2.png",
-    mode: "EXCHANGESHOP",
-  },
-];
+// const games = [
+//   {
+//     id: 1,
+//     name: "포인트 출석체크",
+//     img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
+//     mode: "ATTENDANCE",
+//   },
+//   {
+//     id: 2,
+//     name: "포인트 룰렛",
+//     img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
+//     mode: "ROULETTE",
+//   },
+//   {
+//     id: 3,
+//     name: "포인트 사다리타기",
+//     img: "./image/images.png",
+//     mode: "LADDER",
+//   },
+//   {
+//     id: 4,
+//     name: "포인트 교환",
+//     img: "./image/c1fa27f2b5cec238595a9f86b0e8c5c2.png",
+//     mode: "EXCHANGESHOP",
+//   },
+// ];
 
 function App() {
   //@note - 서버 위치
@@ -232,6 +233,7 @@ function App() {
   const [userList, setUserList] = useState([]);
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("모두");
   const [phones, setPhones] = useState([]);
+  const [userGrade, setUserGrade] = useState("일반 회원");
 
   useEffect(() => {
     setPhones(phoneData[selectedAgeGroup] || phoneData["모두"]);
@@ -241,26 +243,55 @@ function App() {
     setSelectedAgeGroup(ageGroup);
   };
 
-  //@note - 서버로부터 유저 데이터 받아옴
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch(apiUserUrl);
-      if (!response.ok) {
-        throw new Error("유저 데이터를 받아오지 못했습니다.");
-      }
+  // db.json 로딩 로직 (fetch 사용)
+  useEffect(() => {
+    fetch("/db.json")
+      .then((res) => res.json())
+      .then((data) => setUserList(data.userList))
+      .catch((error) => console.error("Error loading db.json:", error));
+  }, []);
 
-      const users = await response.json();
-      setUserList(users);
-      setIsLoading(false);
-    } catch (err) {
-      setError(err.message);
-      setIsLoading(false);
-    }
+  const handleUpdate = (updatedMember) => {
+    // userList 상태 업데이트
+    setUserList(
+      userList.map((member) =>
+        member.id === updatedMember.id ? updatedMember : member
+      )
+    );
+    setSelectedMember(updatedMember);
+    // db.json 업데이트 (선택적)
+    fetch("/db.json", {
+      method: "PUT", //또는 PATCH
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userList: userList.map((member) =>
+          member.id === updatedMember.id ? updatedMember : member
+        ),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error updating db.json:", error));
   };
 
-  useEffect(() => {
-    fetchUsers();
-  }, []); //  -> 컴포넌트가 처음 로딩되었을 때의 이펙트 발생
+  // //@note - 서버로부터 유저 데이터 받아옴
+  // const fetchUsers = async () => {
+  //   try {
+  //     const response = await fetch(apiUserUrl);
+  //     if (!response.ok) {
+  //       throw new Error("유저 데이터를 받아오지 못했습니다.");
+  //     }
+
+  //     const users = await response.json();
+  //     setUserList(users);
+  //     setIsLoading(false);
+  //   } catch (err) {
+  //     setError(err.message);
+  //     setIsLoading(false);
+  //   }
+  // };
 
   //@note - 서버로부터 게임 데이터 받아옴
   const fetchGames = async () => {
@@ -302,30 +333,39 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null); // 사용자 데이터 저장
   const [showMemberList, setShowMemberList] = useState(false); // 회원 목록 창 표시 여부
+  const [selectedMember, setSelectedMember] = useState(null);
 
-  const handleLogin = (data) => {
+  const handleLogin = (user) => {
+    // Login 컴포넌트에서 호출될 로그인 핸들러
     setIsLoggedIn(true);
-    setUserData(data); // 로그인한 사용자 정보 저장
+    setUserData(user);
+
+    if (user.grade === 3) {
+      setUserGrade("VIP 회원");
+    } else if (user.grade === 2) {
+      setUserGrade("GOLD 회원");
+    } else if (user.grade === 1) {
+      setUserGrade("SILVER 회원");
+    } else {
+      setUserGrade("일반 회원");
+    }
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUserData(null);
-    setShowMemberList(false); // 로그아웃 시 회원 목록 창 닫기
+    setShowMemberList(false);
   };
 
-  const isAdmin = userData?.role === "admin"; // 어드민인지 확인
+  const isAdmin = userData?.isAdmin; // isAdmin으로 변경
 
   // @note - handleMemberClick 함수 추가 (핵심 변경 부분)
   const handleMemberClick = (member) => {
-    console.log("handleMemberClick called with:", member); // 이 로그 확인!
     setSelectedMember(member);
-    console.log("selectedMember is now:", selectedMember); // 이 로그 확인!
   };
 
   // @note.hs : 멤버임시데이터
   // ... other states
-  const [selectedMember, setSelectedMember] = useState(null);
   // const members = [
   //   {
   //     id: 1,
@@ -429,6 +469,8 @@ function App() {
   //   },
   // ];
 
+  //@note - 유저 등급 정해줌
+
   return (
     <div className="App">
       <Header />
@@ -442,19 +484,20 @@ function App() {
       </div> */}
       {/* @hs -로그인 */}
       <Login />
-      {!isLoggedIn ? (
-        <Login onLogin={handleLogin} />
+      {!isLoggedIn ? ( // Login 컴포넌트 렌더링 방식 수정
+        <Login userList={userList} onLogin={handleLogin} />
       ) : (
         <div className="login-container">
           <h2>프로필</h2>
           <img
-            src="https://via.placeholder.com/100"
+            src={userData.photo || "https://via.placeholder.com/100"}
             alt="프로필 사진"
             className="profile-picture"
           />
           <p>이름: {userData.name}</p>
           <p>전화번호: {userData.phone}</p>
-          <p>회원 등급: {userData.role === "admin" ? "신" : "일반 회원"}</p>
+          <p>회원 등급: {userData.isAdmin ? "신" : userGrade}</p>{" "}
+          {/* isAdmin으로 변경 */}
           <button onClick={handleLogout}>로그아웃</button>
           {isAdmin && (
             <div>
@@ -468,19 +511,12 @@ function App() {
 
       {/* MemberList를 로그인 여부와 관계없이 항상 렌더링 */}
       {showMemberList && (
-        <MemberList
-          members={userList}
-          onClose={() => setShowMemberList(false)}
-          onSelect={handleMemberClick} // handleMemberClick 함수 전달
-        />
+        <MemberList members={userList} onSelect={setSelectedMember} />
       )}
 
       {/* 기존 멤버 상세 정보 표시 부분 유지 */}
       {selectedMember && (
-        <MemberDetails
-          member={selectedMember}
-          onClose={() => setSelectedMember(null)} // 기존 닫기 핸들러 유지
-        />
+        <MemberDetails member={selectedMember} onUpdate={handleUpdate} />
       )}
 
       {mode === "HISTORY" && <div>상세정보 창입니다</div>}

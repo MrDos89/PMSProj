@@ -22,6 +22,7 @@
   padding: 0;
   margin: 10px 0;
   list-style: none; /* 목록 스타일 제거 */
+  overflow-x: hidden;
 }
 
 .member-list li {

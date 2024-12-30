@@ -8,7 +8,10 @@ function PhoneList({ phones }) {
       {phones.map((phone) => (
         <div className="phone-item" key={phone.rank}>
           <div className="phone-rank">{phone.rank}</div>
+          {/* 이미지를 a 태그로 감싸기 */}
+          <a href={phone.link} target="_blank" rel="noopener noreferrer">
           <img src={phone.img} alt={phone.name} className="phone-image" />
+          </a>
           <div className="phone-info">
             <h3>{phone.name}</h3>
             <p className="capacity">{phone.capacity}</p>

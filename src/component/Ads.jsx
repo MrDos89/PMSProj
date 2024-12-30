@@ -66,7 +66,9 @@ function Ads() {
 
   return (
     <div className="ad-section">
-      <h1 className="ad-section-title">HOT 뜨거 Deal</h1>
+      <div className="ad-section-title-wrapper">
+  <h1 className="ad-section-title">HOT 뜨거 Deal</h1>
+</div>
       <div className="ad-slider">
         {/* 이전 버튼 */}
         <button className="prev" onClick={handlePrev}>
@@ -90,7 +92,7 @@ function Ads() {
             <div className="ad-card" onClick={() => alert("괜히 했다 해지가 힘들어짐")}>
             <img src={image2} alt="광고 이미지 5" />
             </div>
-            <div className="ad-card"onClick={() => alert("고생했다다")}>
+            <div className="ad-card"onClick={() => alert("고생했다")}>
             <img src={image1} alt="광고 이미지 6" />
             </div>
             <div className="ad-card" onClick={() => alert("제 4의 조원")}>
@@ -110,14 +112,35 @@ function Ads() {
         </button>
       </div>
 
+
       <div className="ad-banner">
+  <div className="ad-banner-item light-green" ref={bannerRef1}>
+    <img src={image10} alt="광고 이미지10" />
+    {/* 이미지 위 텍스트와 버튼 */}
+    <div className="banner-content">
+      <h2 className="banner-title">지루하지 않은 통신사♫ ♪</h2>
+      <p className="banner-description">근데 이제 대박 할인을 곁들인.....</p>
+      <button className="banner-button" onClick={() => alert("더 보기")}>더 보기</button>
+    </div>
+  </div>
+  <div className="ad-banner-item light-blue" ref={bannerRef2}>
+    <img src={image11} alt="광고 이미지11" />
+    <div className="banner-content2">
+      <h2 className="banner-title2">GDH에서만 만날 수 있는 혜택?! <br />놓치지 마세요!</h2>
+      <p className="banner-description2">20분 동안만 제공되는 혜택입니다.</p>
+      <button className="banner-button2" onClick={() => alert("지금 구매")}>지금 구매</button>
+    </div>
+  </div>
+</div>
+
+      {/* <div className="ad-banner">
         <div className="ad-banner-item light-green" ref={bannerRef1} onClick={() => alert("선착순 탈락!")}>
           <img src={image10} alt="광고 이미지10" />
         </div>
         <div className="ad-banner-item light-blue" ref={bannerRef2} onClick={() => alert("선착순 탈락!")}>
         <img src={image11} alt="광고 이미지11" />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

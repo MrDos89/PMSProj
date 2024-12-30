@@ -36,28 +36,28 @@ function MiniGameButtons({ games }) {
 
     const productData = [
       {
-        company: "제휴회사A",
-        name: "상품A",
+        company: "4조 카페",
+        name: "커피 10% 할인권",
         points: 100,
-        image: "https://via.placeholder.com/150",
+        image: "../../image/Wasabi Latte.png",
       },
       {
-        company: "제휴회사B",
-        name: "상품B",
+        company: "집게리아",
+        name: "햄버거 15% 할인권",
         points: 200,
-        image: "https://via.placeholder.com/150",
+        image: "../../image/KrustyKrab.jpg",
       },
       {
-        company: "제휴회사C",
-        name: "상품C",
+        company: "HA.MI 돈카츠",
+        name: "점심 30% 할인권",
         points: 300,
-        image: "https://via.placeholder.com/150",
+        image: "../../image/donkatsu2.png",
       },
       {
-        company: "제휴회사D",
-        name: "상품D",
-        points: 400,
-        image: "https://via.placeholder.com/150",
+        company: "벤츠",
+        name: "자동차 교환권",
+        points: 9999999999999,
+        image: "../../image/Benz.jpg",
       },
     ];
 

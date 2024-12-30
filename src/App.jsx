@@ -31,6 +31,7 @@ const phoneData = {
       price: "85,559원/월",
       provider: "GDH 5GX",
       img: "../image/phone/phone image24.png",
+      link: "https://www.samsung.com/sec/smartphones/galaxy-m15-5g-m156-co/SM-M156SDBASKC/",
     },
     {
       rank: 2,
@@ -39,6 +40,7 @@ const phoneData = {
       price: "137,184원/월",
       provider: "GDH 5GX",
       img: "../image/phone/phone image25.png",
+      link: "https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010014&productGrpId=000006534&subscriptionId=NA00008100&subcommDcMthd=30&addServiceId=&addServiceNm=&usingSubscriptionExYn=Y",
     },
     {
       rank: 3,
@@ -47,6 +49,7 @@ const phoneData = {
       price: "120,138원/월",
       provider: "GDH 5GX",
       img: "../image/phone/phone image26.png",
+      link:"https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010014&productGrpId=000006332",
     },
   ],
   "10대": [
@@ -57,6 +60,7 @@ const phoneData = {
       price: "55,000원/월",
       provider: "GDH 5GX",
       img: "../image/phone/phone image01.png",
+      link: "https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010014&productGrpId=000005496",
     },
     {
       rank: 2,
@@ -65,6 +69,7 @@ const phoneData = {
       price: "45,000원/월",
       provider: "GDH 5GX",
       img: "../image/phone/phone image02.png",
+      link: "https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010001&productGrpId=000006652",
     },
     {
       rank: 3,
@@ -73,6 +78,7 @@ const phoneData = {
       price: "40,000원/월",
       provider: "GDH 5GX",
       img: "../image/phone/phone image03.png",
+      link: "https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010001&productGrpId=000005532",
     },
   ],
   "20대": [
@@ -83,6 +89,7 @@ const phoneData = {
       price: "95,000원/월",
       provider: "GDH 5GX",
       img: "../image/phone/phone image04.png",
+      link: "https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010014&productGrpId=000006532&subscriptionId=NA00008100&subcommDcMthd=30&addServiceId=&addServiceNm=&usingSubscriptionExYn=Y",
     },
     {
       rank: 2,
@@ -91,6 +98,7 @@ const phoneData = {
       price: "85,000원/월",
       provider: "GDH 5GX",
       img: "../image/phone/phone image05.png",
+      link: "https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010014&productGrpId=000006333&subscriptionId=NA00008100&subcommDcMthd=30&addServiceId=&addServiceNm=&usingSubscriptionExYn=Y",
     },
     {
       rank: 3,
@@ -98,7 +106,8 @@ const phoneData = {
       capacity: "128G",
       price: "75,000원/월",
       provider: "GDH 5GX",
-      img: "../image/phone/phone image06.png",
+      img: "../image/phone/phone image19.png",
+      link: "https://shop.tworld.co.kr/buyproc/prod-detail?stepSeq=1&categoryId=20010014&productGrpId=000006592&subscriptionId=NA00008100&subcommDcMthd=30&addServiceId=&addServiceNm=&usingSubscriptionExYn=Y",
     },
   ],
   "30대": [

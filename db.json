@@ -173,25 +173,28 @@
         {
             "id": 1,
             "uid": 1,
-            "isAttended": false,
-            "point": 100,
-            "registerDate": "2024-12-30"
+            "isTodayAttended": false,
+            "attendDays": [
+                "2024-12-28",
+                "2024-12-29"
+            ],
+            "updateDate": "2024-12-30 00:00:00"
         }
     ],
     "rouletteHistory": [
         {
             "id": 1,
             "uid": 1,
-            "point": 100,
-            "registerDate": "2024-12-30"
+            "point": 0,
+            "updateDate": "2024-12-30 00:00:00"
         }
     ],
     "ladderHistory": [
         {
             "id": 1,
             "uid": 1,
-            "point": 100,
-            "registerDate": "2024-12-30"
+            "point": 0,
+            "updateDate": "2024-12-30 00:00:00"
         }
     ],
     "exchangeShopHistory": [
@@ -199,7 +202,7 @@
             "id": 1,
             "uid": 1,
             "itemId": 1,
-            "registerDate": "2024-12-30"
+            "updateDate": "2024-12-30 00:00:00"
         }
     ]
 }

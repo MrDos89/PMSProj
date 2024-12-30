@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../cssall/MemberDetails.css";
 import History from "./History"; // 기록 보기 컴포넌트 추가
 
@@ -11,6 +11,11 @@ function MemberDetails({ member, onClose, onUpdate }) {
   const handleRoleChange = (event) => {
     setUpdatedMember({ ...updatedMember, role: event.target.value });
   };
+
+  useEffect(() => {
+    console.log("MemberDetails useEffect triggered with:", member); // 이 로그 확인!
+    setUpdatedMember(member ? { ...member } : {}); // member가 null일 경우 빈 객체 설정
+  }, [member]);
 
   const handlePointChange = (amount) => {
     const parsedAmount = parseInt(pointInput);

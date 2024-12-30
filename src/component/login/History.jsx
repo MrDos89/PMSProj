@@ -6,15 +6,26 @@ function History({ member, onClose }) {
 
   return (
     <div className="history-modal">
-      {" "}
-      {/* 모달 래퍼 추가 */}
       <div className="history-content">
-        {" "}
-        {/* 내용 컨테이너 추가 */}
-        <button className="close-button" onClick={onClose}>
-          닫기
-        </button>
-        <h3>{member.name} 너가 뭘했는지 난 알고있다╭( •̀ •́ )╮</h3>
+        <div className="history-header">
+          <h3>{member.name}님의 이용 내역</h3>
+          <button className="close-button" onClick={onClose}>
+            닫기
+          </button>
+        </div>
+        <div className="history-details">
+          {member.history && member.history.length > 0 ? (
+            <ul>
+              {member.history.map((item, index) => (
+                <li key={index}>
+                  {item.date.toLocaleDateString()}: {item.description}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="no-history">이용 내역이 없습니다.</p>
+          )}
+        </div>
       </div>
     </div>
   );

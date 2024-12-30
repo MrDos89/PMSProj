@@ -54,6 +54,8 @@ class MemberList extends React.Component {
         <ul>
           {filteredMembers.map((member) => (
             <li key={member.id} onClick={() => onSelect(member)}>
+              {" "}
+              {/* 이 부분 확인 */}
               {member.name} ({member.phone})
             </li>
           ))}

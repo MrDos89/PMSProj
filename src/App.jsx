@@ -249,6 +249,13 @@ function App() {
 
   const isAdmin = userData?.role === "admin"; // 어드민인지 확인
 
+  // @note - handleMemberClick 함수 추가 (핵심 변경 부분)
+  const handleMemberClick = (member) => {
+    console.log("handleMemberClick called with:", member); // 이 로그 확인!
+    setSelectedMember(member);
+    console.log("selectedMember is now:", selectedMember); // 이 로그 확인!
+  };
+
   // @note.hs : 멤버임시데이터
   // ... other states
   const [selectedMember, setSelectedMember] = useState(null);
@@ -282,6 +289,16 @@ function App() {
       callUsage: 50,
       dataUsage: 60,
       photo: "/image/thumbnail/thumbnail_1.jpg", // 프로필 사진 추가
+      history: [
+        // 임시 이용 내역 추가
+        { date: new Date("2024-07-20"), description: "VIP 룸 이용" },
+        { date: new Date("2024-07-21"), description: "음료 주문" },
+        { date: new Date("2024-07-20"), description: "VIP 룸 이용" },
+        { date: new Date("2024-07-21"), description: "음료 주문" },
+        { date: new Date("2024-07-20"), description: "VIP 룸 이용" },
+        { date: new Date("2024-07-21"), description: "음료 주문" },
+        { date: new Date("2024-07-20"), description: "VIP 룸 이용" },
+      ],
     },
     {
       id: 4,
@@ -397,7 +414,7 @@ function App() {
         <MemberList
           members={members}
           onClose={() => setShowMemberList(false)}
-          onSelect={setSelectedMember}
+          onSelect={handleMemberClick} // handleMemberClick 함수 전달
         />
       )}
 
@@ -405,7 +422,7 @@ function App() {
       {selectedMember && (
         <MemberDetails
           member={selectedMember}
-          onClose={() => setSelectedMember(null)}
+          onClose={() => setSelectedMember(null)} // 기존 닫기 핸들러 유지
         />
       )}
 

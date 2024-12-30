@@ -168,5 +168,38 @@
           "img": "./image/c1fa27f2b5cec238595a9f86b0e8c5c2.png",
           "mode": "EXCHANGESHOP"
         }
+    ],
+    "attendanceCheckHistory": [
+        {
+            "id": 1,
+            "uid": 1,
+            "isAttended": false,
+            "point": 100,
+            "registerDate": "2024-12-30"
+        }
+    ],
+    "rouletteHistory": [
+        {
+            "id": 1,
+            "uid": 1,
+            "point": 100,
+            "registerDate": "2024-12-30"
+        }
+    ],
+    "ladderHistory": [
+        {
+            "id": 1,
+            "uid": 1,
+            "point": 100,
+            "registerDate": "2024-12-30"
+        }
+    ],
+    "exchangeShopHistory": [
+        {
+            "id": 1,
+            "uid": 1,
+            "itemId": 1,
+            "registerDate": "2024-12-30"
+        }
     ]
 }

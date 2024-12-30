@@ -147,7 +147,7 @@
         {
           "id": 1,
           "name": "포인트 출석체크",
-          "img": "./image/pngtree-lucky-wheel-png-image_6518840.png",
+          "img": "./image/attendance.png",
           "mode": "ATTENDANCE"
         },
         {
@@ -165,7 +165,7 @@
         {
           "id": 4,
           "name": "포인트 교환",
-          "img": "./image/c1fa27f2b5cec238595a9f86b0e8c5c2.png",
+          "img": "./image/exchangeshop.png",
           "mode": "EXCHANGESHOP"
         }
     ],

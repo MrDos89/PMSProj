@@ -129,7 +129,7 @@ function MiniGameButtons({ games }) {
 MiniGameButtons.propTypes = {
   games: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       img: PropTypes.string.isRequired,
       mode: PropTypes.string.isRequired,

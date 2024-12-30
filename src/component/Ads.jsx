@@ -66,7 +66,7 @@ function Ads() {
 
   return (
     <div className="ad-section">
-      <h1 className="ad-section-title">핫 딜!</h1>
+      <h1 className="ad-section-title">HOT 뜨거 Deal</h1>
       <div className="ad-slider">
         {/* 이전 버튼 */}
         <button className="prev" onClick={handlePrev}>

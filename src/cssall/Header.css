@@ -1,3 +1,11 @@
+
+@font-face {
+  font-family: 'Freesentation-9Black';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+
 /* .header {
   background: linear-gradient(90deg, #03588c, #66cdd9, #bde1ff),
                linear-gradient(270deg, #bde1ff, #66cdd9, #03588c);
@@ -28,10 +36,18 @@
   position: fixed;
   top: 0;
   width: 100%; /* 가로 크기 100% */
-  z-index: 100;
+  z-index: 1000;
   animation: gradientMove 10s ease-in-out infinite; /* 무한 반복 애니메이션 */
   padding: 0 20px; /* 상하 패딩 제거, 좌우는 20px */
-  /* background-color: #ffffff96; */
+
+
+  background-color: transparent; /* 기본 상태는 투명 */
+  transition: background-color 0.9s ease; /* 자연스러운 배경색 전환 */
+   /*background-color: #ffffff96; */
+}
+
+body:has(.header:sticky) .header {
+  background-color: #ffffff; /* 스크롤 시 활성화되는 배경색 */
 }
 
 /* 로고 스타일 */
@@ -95,12 +111,13 @@
   color: #010326; /* 기본 글자 색 */
   border: none;
   padding: 10px 15px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 21px;
+  /*font-weight: bold;*/
   cursor: pointer;
   border-radius: 10px;
   transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
   margin-right: 10px;
+  font-family: 'Freesentation-9Black', sans-serif;
 }
 
 .header .menu button:hover {

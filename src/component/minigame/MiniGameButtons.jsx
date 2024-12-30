@@ -100,6 +100,8 @@ function MiniGameButtons({ games }) {
 
   return (
     <>
+    {/*<div className="mini-games-container">*/}
+      <h2 className="mini-font">도파민 팡팡! 오늘의 포인트는~🎶</h2>
       <ul className="mini-games">
         {games.map((game) => (
           <li key={game.id} className="game" alt="game.name">
@@ -112,6 +114,7 @@ function MiniGameButtons({ games }) {
           </li>
         ))}
       </ul>
+      {/*</div>*/}
       <ReactModal
         isOpen={isOpen}
         onRequestClose={closeModal}

@@ -1,3 +1,20 @@
+@font-face {
+  font-family: 'yg-jalnan';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mini-games-container {
+  margin: 20px auto;
+  width: 600px;
+  height: 200px;
+  border-radius: 10px;
+  background-color: #f3f8ff54;
+  text-align: center;
+}
+
+
 .mini-games {
     display: flex;
     justify-content: center;
@@ -34,3 +51,42 @@
     transform: scale(1.1);
   }
   
+  /*
+  .mini-games-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+    */
+  
+
+
+  .mini-font{
+    font-size: 26px;
+    font-weight: bold;
+    color: #03588c; /* 보라색 포인트 색상 */
+    margin-bottom: 15px; /* 제목과 버튼 사이 간격 */
+    text-align: center; /* 텍스트를 왼쪽 정렬 */
+    margin-right: 2%; /* 컨테이너 기준 약간 왼쪽으로 이동 */
+    margin-top: 40px;
+    font-family: 'yg-jalnan', sans-serif; /* 'yg-jalnan' 폰트 우선 사용, 대체 폰트로 sans-serif 추가 */
+  
+  }
+  
+  /*
+  .mini-games {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 버튼 간 간격 
+    list-style: none;
+    padding: 0;
+  }
+  
+  .game {
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .game:hover {
+    transform: scale(1.1); /* 버튼 살짝 커짐 
+  }
+    */

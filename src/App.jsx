@@ -29,7 +29,7 @@ const phoneData = {
       name: "갤럭시 와이드7",
       capacity: "128G",
       price: "85,559원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image24.png",
     },
     {
@@ -37,7 +37,7 @@ const phoneData = {
       name: "iPhone 16 Pro",
       capacity: "128G | 1T | 256G | 512G",
       price: "137,184원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image25.png",
     },
     {
@@ -45,7 +45,7 @@ const phoneData = {
       name: "갤럭시 S24 5G",
       capacity: "512G | 256G",
       price: "120,138원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image26.png",
     },
   ],
@@ -55,7 +55,7 @@ const phoneData = {
       name: "iPhone SE",
       capacity: "64G | 128G",
       price: "55,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image01.png",
     },
     {
@@ -63,7 +63,7 @@ const phoneData = {
       name: "Galaxy A13",
       capacity: "128G",
       price: "45,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image02.png",
     },
     {
@@ -71,7 +71,7 @@ const phoneData = {
       name: "Galaxy M22",
       capacity: "128G",
       price: "40,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image03.png",
     },
   ],
@@ -81,7 +81,7 @@ const phoneData = {
       name: "iPhone 14",
       capacity: "128G | 256G",
       price: "95,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image04.png",
     },
     {
@@ -89,7 +89,7 @@ const phoneData = {
       name: "Galaxy S22",
       capacity: "256G",
       price: "85,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image05.png",
     },
     {
@@ -97,7 +97,7 @@ const phoneData = {
       name: "Galaxy Z Flip3",
       capacity: "128G",
       price: "75,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image06.png",
     },
   ],
@@ -107,7 +107,7 @@ const phoneData = {
       name: "iPhone 13 Pro",
       capacity: "128G | 256G",
       price: "105,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image07.png",
     },
     {
@@ -115,7 +115,7 @@ const phoneData = {
       name: "Galaxy Note 20",
       capacity: "256G",
       price: "95,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image08.png",
     },
     {
@@ -123,7 +123,7 @@ const phoneData = {
       name: "Galaxy S21",
       capacity: "256G",
       price: "85,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image09.png",
     },
   ],
@@ -133,7 +133,7 @@ const phoneData = {
       name: "iPhone 12",
       capacity: "128G",
       price: "75,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image10.png",
     },
     {
@@ -141,7 +141,7 @@ const phoneData = {
       name: "Galaxy A52",
       capacity: "128G",
       price: "65,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image11.png",
     },
     {
@@ -149,7 +149,7 @@ const phoneData = {
       name: "Galaxy M32",
       capacity: "128G",
       price: "55,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image12.png",
     },
   ],
@@ -159,7 +159,7 @@ const phoneData = {
       name: "Galaxy S20 FE",
       capacity: "128G",
       price: "65,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image13.png",
     },
     {
@@ -167,7 +167,7 @@ const phoneData = {
       name: "Galaxy Note 10",
       capacity: "128G",
       price: "55,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image14.png",
     },
     {
@@ -175,7 +175,7 @@ const phoneData = {
       name: "Galaxy A71",
       capacity: "128G",
       price: "50,000원/월",
-      provider: "SKT 5GX",
+      provider: "GDH 5GX",
       img: "../image/phone/phone image15.png",
     },
   ],
@@ -207,6 +207,9 @@ const games = [
     mode: "EXCHANGESHOP",
   },
 ];
+
+
+
 
 function App() {
   // const [count, setCount] = useState(0);

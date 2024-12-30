@@ -1,10 +1,47 @@
+
+@font-face {
+  font-family: 'LotteMartDream';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//fastly.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2') format('woff2'), url('//fastly.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'PyeongChangPeace-Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Dovemayo_gothic';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'SDSamliphopangche_Basic';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ONE-Mobile-POP';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 /* PhoneList.css */
 .phone-list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 20px;
 }
 
 .phone-item {
@@ -54,25 +91,42 @@ margin: 20px 0;
 }
 
 .dropdown-label {
-font-size: 30px;
+font-size: 35px;
 color: #03588c;
 font-weight: bold;
+font-family: 'PyeongChangPeace-Bold', sans-serif;
+margin-top: 70px;
+text-shadow: 
+        -2px -2px 0 #ffffff, /* 왼쪽 위 */
+         2px -2px 0 #ffffff, /* 오른쪽 위 */
+        -2px  2px 0 #ffffff, /* 왼쪽 아래 */
+         2px  2px 0 #ffffff; /* 오른쪽 아래 */
+margin-right: -10px;
 }
 
 /* 드롭다운 */
 .dropdown {
   position: relative;
   display: inline-block;
+  margin-top: 80px;
 }
+
+
+.dropdown .dropdown-toggle {
+  font-size: 20px;
+  font-family: 'LotteMartDream', sans-serif;
+}
+  
 
 /* 드롭다운 토글 버튼 */
 .dropdown-toggle {
   padding: 10px 15px;
-  font-size: 14px;
   background-color: #f1f1f1;
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 17px;
+  
 }
 
 /* 드롭다운 토글 버튼 활성화 상태 */

@@ -3,6 +3,15 @@ import "../cssall/Header.css";
 import Logo from "../../image/logo.png";
 import home from "../../image/homebutton.png";
 
+document.addEventListener("scroll", function () {
+  const header = document.querySelector(".header");
+  if (window.scrollY > 0) {
+    header.style.backgroundColor = "#ffffff96"; // 스크롤 시 배경색
+  } else {
+    header.style.backgroundColor = "transparent"; // 초기 상태 투명
+  }
+});
+
 function Header() {
   return (
     <header className="header">

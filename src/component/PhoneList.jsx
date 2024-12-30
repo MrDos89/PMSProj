@@ -17,7 +17,11 @@ function PhoneList({ phones }) {
           </div>
         </div>
       ))}
+      
+      
     </div>
+
+    
   );
 }
 

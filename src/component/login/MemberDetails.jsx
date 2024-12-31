@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../../cssall/MemberDetails.css";
 import History from "./History"; // 기록 보기 컴포넌트 추가
 
-const gradeImages = {
-  3: "../../image/grade/3.jpg",
-  2: "../../image/grade/2.jpg",
-  1: "../../image/grade/1.jpg",
-  0: "/images/default_profile.png",
-};
-
 function MemberDetails({ member, onClose, onUpdate }) {
   const apiUserUrl = "http://localhost:3000/userList/";
 
@@ -24,12 +17,12 @@ function MemberDetails({ member, onClose, onUpdate }) {
   }, [member]);
 
   const handleRoleChange = (event) => {
-    const selectedGrade = parseInt(event.target.value, 10);
     setUpdatedMember({
       ...updatedMember,
-      grade: selectedGrade, // grade만 업데이트
+      grade: parseInt(event.target.value, 10),
     });
   };
+
   useEffect(() => {
     console.log("MemberDetails useEffect triggered with:", member); // 이 로그 확인!
     setUpdatedMember(member ? { ...member } : {}); // member가 null일 경우 빈 객체 설정
@@ -108,8 +101,8 @@ function MemberDetails({ member, onClose, onUpdate }) {
             {/* Fragment 사용 */}
             <div className="member-photo-details">
               <img
-                src={gradeImages[updatedMember.grade] || gradeImages[0]} // 이 부분!
-                alt={updatedMember.name + " 등급 이미지"}
+                src={updatedMember.photo || "/images/default_profile.png"}
+                alt={updatedMember.name + " 프로필"} // alt 텍스트 개선
                 className="profile-image-details"
               />
             </div>

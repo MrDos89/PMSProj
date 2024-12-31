@@ -67,12 +67,10 @@ class MemberList extends React.Component {
               onClick={() => onSelect(member)}
             >
               <div className="member-info">
-                <span className="member-name">{member.name}</span>
-                <span className="member-phone">{member.phone}</span>
                 <img
                   src={
                     gradeImages[member.grade] || "/images/default_profile.png"
-                  } // 이 부분!
+                  }
                   alt={`${member.name} 등급 이미지`}
                   style={{
                     width: "35px",
@@ -81,6 +79,8 @@ class MemberList extends React.Component {
                     verticalAlign: "middle",
                   }}
                 />
+                <span className="member-name">{member.name}</span>
+                <span className="member-phone">{member.phone}</span>
               </div>
             </li>
           ))}

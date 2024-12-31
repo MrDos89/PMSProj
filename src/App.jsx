@@ -191,36 +191,10 @@ const phoneData = {
   ],
 };
 
-// const games = [
-//   {
-//     id: 1,
-//     name: "포인트 출석체크",
-//     img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
-//     mode: "ATTENDANCE",
-//   },
-//   {
-//     id: 2,
-//     name: "포인트 룰렛",
-//     img: "./image/pngtree-lucky-wheel-png-image_6518840.png",
-//     mode: "ROULETTE",
-//   },
-//   {
-//     id: 3,
-//     name: "포인트 사다리타기",
-//     img: "./image/images.png",
-//     mode: "LADDER",
-//   },
-//   {
-//     id: 4,
-//     name: "포인트 교환",
-//     img: "./image/c1fa27f2b5cec238595a9f86b0e8c5c2.png",
-//     mode: "EXCHANGESHOP",
-//   },
-// ];
-
 function App() {
   //@note - 서버 위치
   const apiUserUrl = "http://localhost:3000/userList/";
+  const apiPhoneUrl = "http://localhost:3000/phoneList/";
   const apiGameUrl = "http://localhost:3000/gameList/";
 
   // const [count, setCount] = useState(0);
@@ -231,13 +205,60 @@ function App() {
   const [error, setError] = useState(null);
   const [gameList, setGameList] = useState([]);
   const [userList, setUserList] = useState([]);
+  const [phoneList, setPhoneList] = useState([]);
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("모두");
   const [phones, setPhones] = useState([]);
   const [userGrade, setUserGrade] = useState("일반 회원");
 
+  //  API에서 목록 받아오는 함수
+  const fetchPhones = async () => {
+    try {
+      const response = await fetch(apiPhoneUrl);
+      if (!response.ok) {
+        throw new Error("데이터를 받아오지 못했습니다.");
+      }
+      const data = await response.json();
+      // console.log(data);
+      setPhoneList(data);
+      setIsLoading(false); //  로딩이 끝났음을 알림
+    } catch (err) {
+      // console.error(err);
+      setError(err.message);
+      setIsLoading(false); //  로딩이 끝남
+    }
+  };
   useEffect(() => {
-    setPhones(phoneData[selectedAgeGroup] || phoneData["모두"]);
-  }, [selectedAgeGroup]);
+    fetchPhones();
+  }, []); //  -> 컴포넌트가 처음 로딩되었을 때의 이펙트 발생
+
+  useEffect(() => {
+    let currentPhoneGroup = phoneData[selectedAgeGroup];
+
+    switch (selectedAgeGroup) {
+      case "모두":
+        currentPhoneGroup = phoneList.filter((phone) => phone.categoryId === 1);
+        break;
+      case "10대":
+        currentPhoneGroup = phoneList.filter((phone) => phone.categoryId === 2);
+        break;
+      case "20대":
+        currentPhoneGroup = phoneList.filter((phone) => phone.categoryId === 3);
+        break;
+      case "30대":
+        currentPhoneGroup = phoneList.filter((phone) => phone.categoryId === 4);
+        break;
+      case "40대":
+        currentPhoneGroup = phoneList.filter((phone) => phone.categoryId === 5);
+        break;
+      case "50대":
+        currentPhoneGroup = phoneList.filter((phone) => phone.categoryId === 6);
+        break;
+      default:
+        currentPhoneGroup = phoneList.filter((phone) => phone.categoryId === 1);
+        break;
+    }
+    setPhones(currentPhoneGroup);
+  }, [selectedAgeGroup, phoneList]);
 
   const handleFilter = (ageGroup) => {
     setSelectedAgeGroup(ageGroup);

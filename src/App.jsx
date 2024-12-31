@@ -6,7 +6,7 @@
 //@note - 메인 기능
 import React, { useState, useEffect } from "react";
 import "./App.css";
-// import db from "../db.json";
+import db from "../db.json";
 
 import WaveBackground from "./component/WaveBackground";
 import Header from "./component/Header";
@@ -111,6 +111,9 @@ function App() {
         member.id === updatedMember.id ? updatedMember : member
       )
     );
+    if (userData && userData.id === updatedMember.id) {
+      setUserData(updatedMember);
+    }
     setSelectedMember(updatedMember);
     // db.json 업데이트 (선택적)
     fetch("/db.json", {

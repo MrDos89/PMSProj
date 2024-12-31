@@ -1,6 +1,13 @@
 import React from "react";
 import "../../cssall/MemberList.css";
 
+const gradeImages = {
+  3: "../../image/grade/3.jpg",
+  2: "../../image/grade/2.jpg",
+  1: "../../image/grade/1.jpg",
+  0: "/images/default_profile.png",
+};
+
 class MemberList extends React.Component {
   constructor(props) {
     super(props);
@@ -62,6 +69,18 @@ class MemberList extends React.Component {
               <div className="member-info">
                 <span className="member-name">{member.name}</span>
                 <span className="member-phone">{member.phone}</span>
+                <img
+                  src={
+                    gradeImages[member.grade] || "/images/default_profile.png"
+                  } // 이 부분!
+                  alt={`${member.name} 등급 이미지`}
+                  style={{
+                    width: "35px",
+                    height: "35px",
+                    marginRight: "5px",
+                    verticalAlign: "middle",
+                  }}
+                />
               </div>
             </li>
           ))}

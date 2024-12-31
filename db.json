@@ -6,6 +6,7 @@
       "phone": "01011112222",
       "password": "1234",
       "grade": 3,
+      "gradeImage": "/image/grade/3.jpg",
       "points": 41,
       "callUsage": 70,
       "dataUsage": 30,
@@ -19,6 +20,7 @@
       "phone": "01033334444",
       "password": "1234",
       "grade": 2,
+      "gradeImage": "/image/grade/2.jpg",
       "points": 2200,
       "callUsage": 20,
       "dataUsage": 90,
@@ -32,6 +34,7 @@
       "phone": "01055556666",
       "password": "1234",
       "grade": 1,
+      "gradeImage": "/image/grade/1.jpg",
       "points": 800,
       "callUsage": 50,
       "dataUsage": 60,
@@ -389,8 +392,8 @@
       "id": 1,
       "user_name": "홍길동",
       "item_id": 1,
-      "point":0,
-      "remain_point":0,
+      "point": 0,
+      "remain_point": 0,
       "updateDate": "2024-12-30 00:00:00"
     }
   ]

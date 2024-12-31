@@ -1,7 +1,7 @@
 {
   "userList": [
     {
-      "id": "1",
+      "id": 1,
       "name": "홍길동",
       "phone": "01011112222",
       "password": "1234",
@@ -15,7 +15,7 @@
       "isAdmin": false
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "윈터",
       "phone": "01033334444",
       "password": "1234",
@@ -29,7 +29,7 @@
       "isAdmin": false
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "이철수",
       "phone": "01055556666",
       "password": "1234",
@@ -43,7 +43,7 @@
       "isAdmin": false
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "박지성",
       "phone": "01077778888",
       "password": "1234",
@@ -56,7 +56,7 @@
       "isAdmin": false
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "김연아",
       "phone": "01099990000",
       "password": "1234",
@@ -69,7 +69,7 @@
       "isAdmin": false
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "류현진",
       "phone": "01012345678",
       "password": "1234",
@@ -82,7 +82,7 @@
       "isAdmin": false
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "손흥민",
       "phone": "01087654321",
       "password": "1234",
@@ -95,7 +95,7 @@
       "isAdmin": false
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "양준혁",
       "phone": "01024681357",
       "password": "1234",
@@ -108,7 +108,7 @@
       "isAdmin": false
     },
     {
-      "id": "9",
+      "id": 9,
       "name": "박지원",
       "phone": "01013572468",
       "password": "1234",
@@ -121,7 +121,7 @@
       "isAdmin": false
     },
     {
-      "id": "10",
+      "id": 10,
       "name": "카리나",
       "phone": "01098765432",
       "password": "1234",
@@ -134,7 +134,7 @@
       "isAdmin": false
     },
     {
-      "id": "11",
+      "id": 11,
       "name": "신",
       "phone": "01000000000",
       "password": "admin123",
@@ -147,12 +147,12 @@
       "isAdmin": true
     },
     {
-      "id": "5fb1",
+      "id": 12,
       "name": "김도형",
       "phone": "01088728783",
       "password": "1234",
       "grade": 3,
-      "points": 30000,
+      "points": 30004,
       "callUsage": 70,
       "dataUsage": 30,
       "photo": "/image/thumbnail/man.jpg",
@@ -162,25 +162,25 @@
   ],
   "gameList": [
     {
-      "id": "1",
+      "id": 1,
       "name": "포인트 출석체크",
       "img": "./image/attendance.png",
       "mode": "ATTENDANCE"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "포인트 룰렛",
       "img": "./image/pngtree-lucky-wheel-png-image_6518840.png",
       "mode": "ROULETTE"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "포인트 사다리타기",
       "img": "./image/images.png",
       "mode": "LADDER"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "포인트 교환",
       "img": "./image/exchangeshop.png",
       "mode": "EXCHANGESHOP"
@@ -379,7 +379,7 @@
   ],
   "attendanceCheckHistory": [
     {
-      "id": "1",
+      "id": 1,
       "uid": 1,
       "isTodayAttended": false,
       "attendDays": [
@@ -391,7 +391,7 @@
   ],
   "rouletteHistory": [
     {
-      "id": "1",
+      "id": 1,
       "uid": 1,
       "point": 0,
       "updateDate": "2024-12-30 00:00:00"
@@ -399,7 +399,7 @@
   ],
   "ladderHistory": [
     {
-      "id": "1",
+      "id": 1,
       "uid": 1,
       "point": 0,
       "updateDate": "2024-12-30 00:00:00"
@@ -407,7 +407,7 @@
   ],
   "exchangeShopHistory": [
     {
-      "id": "1",
+      "id": 1,
       "user_name": "홍길동",
       "item_id": 1,
       "point": 0,

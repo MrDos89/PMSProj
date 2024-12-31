@@ -8,7 +8,7 @@ function Roulette({ userData }) {
 
   const data = [
     { id: 1, option: 10 },
-    { id: 2, option: -30 },
+    { id: 2, option: 0 },
     { id: 3, option: 50 },
     { id: 4, option: 30 },
     { id: 5, option: 40 },

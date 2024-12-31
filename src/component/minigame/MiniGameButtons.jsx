@@ -144,7 +144,7 @@ MiniGameButtons.propTypes = {
       mode: PropTypes.string.isRequired,
     })
   ).isRequired,
-  userData: PropTypes.array,
+  userData: PropTypes.object,
 };
 
 export default MiniGameButtons;

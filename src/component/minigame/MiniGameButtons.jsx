@@ -26,6 +26,7 @@ function MiniGameButtons({ games, userData }) {
     body = <Ladder userData={userData}></Ladder>;
   } else if (gameMode === "EXCHANGESHOP") {
     // ExchangeShop를 위한 추가 데이터
+
     const memberData = {
       profileImage: "https://via.placeholder.com/100",
       name: "홍길동",
@@ -36,24 +37,28 @@ function MiniGameButtons({ games, userData }) {
 
     const productData = [
       {
+        id: 1,
         company: "4조 카페",
         name: "커피 10% 할인권",
         points: 100,
         image: "../../image/Wasabi Latte.png",
       },
       {
+        id: 2,
         company: "집게리아",
         name: "햄버거 15% 할인권",
         points: 200,
         image: "../../image/KrustyKrab.jpg",
       },
       {
+        id: 3,
         company: "HA.MI 돈카츠",
         name: "점심 30% 할인권",
         points: 300,
         image: "../../image/donkatsu2.png",
       },
       {
+        id: 4,
         company: "벤츠",
         name: "자동차 교환권",
         points: 9999999999999,
@@ -139,7 +144,7 @@ MiniGameButtons.propTypes = {
       mode: PropTypes.string.isRequired,
     })
   ).isRequired,
-  userData: PropTypes.object,
+  userData: PropTypes.array,
 };
 
 export default MiniGameButtons;

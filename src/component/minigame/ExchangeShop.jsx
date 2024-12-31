@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import "../../cssall/ExchangeShop.css";
 
@@ -7,12 +7,7 @@ function ExchangeShop({ products, onUpdatePoints }) {
   const [userPoints, setUserPoints] = useState(0); // 사용자 포인트
   const [loading, setLoading] = useState(true); // 로딩 상태
 
-  useEffect(() => {
-    const loggedInUserPhone = localStorage.getItem("loggedInUserPhone");
-    console.log("📱 loggedInUserPhone:", loggedInUserPhone);
-  });
-
-  // ✅ 로그인한 회원 정보 불러오기
+  // ✅ 초기 로드 시 회원 정보 복구
   useEffect(() => {
     const fetchLoggedInUser = async () => {
       try {
@@ -29,7 +24,9 @@ function ExchangeShop({ products, onUpdatePoints }) {
         }
 
         const userList = await response.json();
-        const foundMember = userList.find((user) => user.phone === loggedInUserPhone);
+        const foundMember = userList.find(
+          (user) => user.phone === loggedInUserPhone
+        );
 
         if (foundMember) {
           setMember(foundMember); // 회원 정보 저장
@@ -48,40 +45,66 @@ function ExchangeShop({ products, onUpdatePoints }) {
   }, []);
 
   // ✅ 상품 구매 처리
-  const handlePurchase = (product) => {
-    if (product.company === "벤츠") {
-      alert("네가 과연 살 수 있을까?");
-      return;
-    }
-
-    if (userPoints >= product.points) {
-      const updatedPoints = userPoints - product.points;
-      alert("🎉 구매 완료되었습니다.");
-      setUserPoints(updatedPoints);
-
-      // 포인트 업데이트
-      if (member) {
-        fetch(`http://localhost:3000/userList/${member.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ points: updatedPoints }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("⚠️ 포인트 업데이트 실패");
-            }
-          })
-          .catch((error) => {
-            console.error("⚠️ 서버 오류:", error);
-          });
+  const handlePurchase = useCallback(
+    async (product) => {
+      if (product.company === "벤츠") {
+        alert("네가 과연 살 수 있을까?");
+        return;
       }
-      onUpdatePoints(updatedPoints); // 부모 컴포넌트로 포인트 업데이트 전달
-    } else {
-      alert("⚠️ 포인트가 부족합니다!");
-    }
-  };
+
+      if (userPoints >= product.points) {
+        const updatedPoints = userPoints - product.points;
+
+        const newHistoryItem = {
+          id: member.id,
+          user_name: member.name,
+          item_id: product.id,
+          point: product.points,
+          remain_point: updatedPoints,
+          updateDate: new Date().toLocaleString(),
+        };
+
+        alert("🎉 구매 완료되었습니다.");
+
+        // 포인트 및 히스토리 업데이트 최소화
+        try {
+          const response = await fetch(
+            `http://localhost:3000/userList/${member.id}`,
+            {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                points: updatedPoints,
+                history: [...member.history, newHistoryItem],
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("⚠️ 포인트 및 히스토리 업데이트 실패");
+          }
+
+          console.log("✅ 히스토리 저장 성공");
+
+          // 로컬 상태 업데이트
+          setMember((prevMember) => ({
+            ...prevMember,
+            points: updatedPoints,
+            history: [...prevMember.history, newHistoryItem],
+          }));
+          setUserPoints(updatedPoints);
+          onUpdatePoints(updatedPoints); // 부모 컴포넌트로 포인트 업데이트 전달
+        } catch (error) {
+          console.error("⚠️ 서버 오류:", error);
+        }
+      } else {
+        alert("⚠️ 포인트가 부족합니다!");
+      }
+    },
+    [userPoints, member, onUpdatePoints]
+  );
 
   // ✅ 로딩 중이거나 회원 정보가 없을 경우
   if (loading) {
@@ -96,7 +119,7 @@ function ExchangeShop({ products, onUpdatePoints }) {
     <div className="exchange-shop">
       <div className="member-info">
         <img
-          src={member.photo || "https://via.placeholder.com/100"}
+          src={member.photo}
           alt={`${member.name} 프로필`}
           className="profile-image"
         />
@@ -109,7 +132,9 @@ function ExchangeShop({ products, onUpdatePoints }) {
           </p>
           <p>
             <strong>등급:</strong>{" "}
-            {member.grade === 3
+            {member.isAdmin
+              ? "신"
+              : member.grade === 3
               ? "VIP 회원"
               : member.grade === 2
               ? "GOLD 회원"
@@ -132,9 +157,13 @@ function ExchangeShop({ products, onUpdatePoints }) {
               alt={product.name}
               className="product-image"
             />
-            <p><strong>{product.company}</strong></p>
+            <p>
+              <strong>{product.company}</strong>
+            </p>
             <p>{product.name}</p>
-            <p className="product-points"><strong>{product.points} point</strong></p>
+            <p className="product-points">
+              <strong>{product.points} point</strong>
+            </p>
             <button onClick={() => handlePurchase(product)}>구매하기</button>
           </div>
         ))}
@@ -156,6 +185,7 @@ ExchangeShop.propTypes = {
 };
 
 export default ExchangeShop;
+
 
 
 

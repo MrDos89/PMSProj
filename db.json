@@ -21,11 +21,52 @@
       "password": "1234",
       "grade": 2,
       "gradeImage": "/image/grade/2.jpg",
-      "points": 2200,
+      "points": 1400,
       "callUsage": 20,
       "dataUsage": 90,
       "photo": "/images/profile2.jpg",
-      "history": [],
+      "history": [
+        {
+          "id": "2",
+          "user_name": "김영희",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 2100,
+          "updateDate": "2024. 12. 31. 오후 4:25:16"
+        },
+        {
+          "id": "2",
+          "user_name": "김영희",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 1900,
+          "updateDate": "2024. 12. 31. 오후 4:25:21"
+        },
+        {
+          "id": "2",
+          "user_name": "김영희",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 1700,
+          "updateDate": "2024. 12. 31. 오후 4:26:37"
+        },
+        {
+          "id": "2",
+          "user_name": "김영희",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 1500,
+          "updateDate": "2024. 12. 31. 오후 4:27:47"
+        },
+        {
+          "id": "2",
+          "user_name": "김영희",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 1400,
+          "updateDate": "2024. 12. 31. 오후 4:36:02"
+        }
+      ],
       "isAdmin": false
     },
     {

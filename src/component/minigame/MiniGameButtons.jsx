@@ -11,7 +11,7 @@ import ExchangeShop from "./ExchangeShop";
 import PropTypes from "prop-types";
 
 ReactModal.setAppElement("#root");
-function MiniGameButtons({ games }) {
+function MiniGameButtons({ games, userData }) {
   const [isOpen, setIsOpen] = useState(false);
   const [gameMode, setGameMode] = useState("EXCHANGESHOP");
 
@@ -19,11 +19,11 @@ function MiniGameButtons({ games }) {
 
   //@ todo - 미니게임용 창 만들기
   if (gameMode === "ATTENDANCE") {
-    body = <Attendance></Attendance>;
+    body = <Attendance userData={userData}></Attendance>;
   } else if (gameMode === "ROULETTE") {
-    body = <Roulette></Roulette>;
+    body = <Roulette userData={userData}></Roulette>;
   } else if (gameMode === "LADDER") {
-    body = <Ladder></Ladder>;
+    body = <Ladder userData={userData}></Ladder>;
   } else if (gameMode === "EXCHANGESHOP") {
     // ExchangeShop를 위한 추가 데이터
     const memberData = {
@@ -75,6 +75,10 @@ function MiniGameButtons({ games }) {
   }
 
   const openModal = (mode) => {
+    if (userData === null) {
+      alert("로그인 후 이용가능합니다.");
+      return;
+    }
     setGameMode(mode); // 선택된 게임 모드 설정
     setIsOpen(true);
   };
@@ -135,6 +139,7 @@ MiniGameButtons.propTypes = {
       mode: PropTypes.string.isRequired,
     })
   ).isRequired,
+  userData: PropTypes.array,
 };
 
 export default MiniGameButtons;

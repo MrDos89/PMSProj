@@ -364,113 +364,6 @@ function App() {
     setSelectedMember(member);
   };
 
-  // @note.hs : 멤버임시데이터
-  // ... other states
-  // const members = [
-  //   {
-  //     id: 1,
-  //     name: "홍길동",
-  //     phone: "010-1111-2222",
-  //     role: "vip",
-  //     points: 1500,
-  //     callUsage: 70,
-  //     dataUsage: 30,
-  //     photo: "/images/profile1.jpg", // 프로필 사진 추가
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "김영희",
-  //     phone: "010-3333-4444",
-  //     role: "gold",
-  //     points: 2200,
-  //     callUsage: 20,
-  //     dataUsage: 90,
-  //     photo: "/images/profile2.jpg", // 프로필 사진 추가
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "이철수",
-  //     phone: "010-5555-6666",
-  //     role: "silver",
-  //     points: 800,
-  //     callUsage: 50,
-  //     dataUsage: 60,
-  //     photo: "/image/thumbnail/thumbnail_1.jpg", // 프로필 사진 추가
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "박지성",
-  //     phone: "010-7777-8888",
-  //     role: "vip",
-  //     points: 3000,
-  //     callUsage: 90,
-  //     dataUsage: 10,
-  //     photo: "/images/profile4.jpg", // 프로필 사진 추가
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "김연아",
-  //     phone: "010-9999-0000",
-  //     role: "gold",
-  //     points: 1800,
-  //     callUsage: 60,
-  //     dataUsage: 40,
-  //     photo: "/images/profile5.jpg", // 프로필 사진 추가
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "류현진",
-  //     phone: "010-1234-5678",
-  //     role: "silver",
-  //     points: 1200,
-  //     callUsage: 40,
-  //     dataUsage: 70,
-  //     photo: "/images/profile6.jpg", // 프로필 사진 추가
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "손흥민",
-  //     phone: "010-8765-4321",
-  //     role: "vip",
-  //     points: 2500,
-  //     callUsage: 80,
-  //     dataUsage: 20,
-  //     photo: "/images/profile7.jpg", // 프로필 사진 추가
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "추신수",
-  //     phone: "010-2468-1357",
-  //     role: "gold",
-  //     points: 2000,
-  //     callUsage: 55,
-  //     dataUsage: 55,
-  //     photo: "/images/profile8.jpg", // 프로필 사진 추가
-  //   },
-  //   {
-  //     id: 9,
-  //     name: "박찬호",
-  //     phone: "010-1357-2468",
-  //     role: "silver",
-  //     points: 900,
-  //     callUsage: 30,
-  //     dataUsage: 80,
-  //     photo: "/images/profile9.jpg", // 프로필 사진 추가
-  //   },
-  //   {
-  //     id: 10,
-  //     name: "이승엽",
-  //     phone: "010-9876-5432",
-  //     role: "vip",
-  //     points: 2800,
-  //     callUsage: 85,
-  //     dataUsage: 15,
-  //     photo: "/images/profile10.jpg", // 프로필 사진 추가
-  //   },
-  // ];
-
-  //@note - 유저 등급 정해줌
-
   return (
     <div className="App">
       <Header />
@@ -531,7 +424,7 @@ function App() {
       {mode === "HISTORY" && <div>상세정보 창입니다</div>}
 
       {/* @note - 미니게임 버튼 UI */}
-      <MiniGameButtons games={gameList}></MiniGameButtons>
+      <MiniGameButtons games={gameList} userData={userData}></MiniGameButtons>
 
       {/* @note - 폰 리스트 나오는 바디 */}
       {body}

@@ -88,10 +88,35 @@ function MemberDetails({ member, onClose, onUpdate }) {
     setPointInput("");
   };
 
-  const handleSave = () => {
-    onUpdate(updatedMember);
-    alert("저장되었습니다."); // 저장 알림 추가
-    onClose();
+  const handleSave = async () => {
+    try {
+      const requestUrl = `${apiUserUrl}${updatedMember.id}`;
+      console.log("Request URL:", requestUrl);
+
+      const response = await fetch(requestUrl, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedMember), // updatedMember 전체를 전송 (등급 포함)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("API Error Response:", errorData);
+        throw new Error(`저장 실패: ${response.status} ${response.statusText}`);
+      }
+
+      const updatedData = await response.json();
+      console.log("API Response Data:", updatedData);
+      setUpdatedMember(updatedData);
+      onUpdate(updatedData);
+      alert("저장되었습니다.");
+      onClose();
+    } catch (error) {
+      console.error("저장 실패:", error);
+      alert("저장에 실패했습니다.");
+    }
   };
 
   return (

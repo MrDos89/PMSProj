@@ -8,15 +8,12 @@ function MemberDetails({ member, onClose, onUpdate }) {
   const initialMember = member || {}; // member가 null일 경우 빈 객체로 초기화
   const [updatedMember, setUpdatedMember] = useState({ ...initialMember });
   const [pointInput, setPointInput] = useState("");
+  const [tempPoints, setTempPoints] = useState(null); // 포인트 값 화면에 보이기 상태 추가
   const [isHistoryOpen, setIsHistoryOpen] = useState(false); // 기록 보기 상태 추가
 
   useEffect(() => {
-    // member가 유효할 때만 상태 업데이트
-    if (member) {
-      setUpdatedMember({ ...member });
-    } else {
-      setUpdatedMember({}); // member가 null이나 undefined일 경우 빈 객체로 설정
-    }
+    setUpdatedMember(member ? { ...member } : {});
+    setTempPoints(null); // member prop이 변경될 때 임시 포인트 초기화
   }, [member]);
 
   const handleRoleChange = (event) => {
@@ -31,74 +28,46 @@ function MemberDetails({ member, onClose, onUpdate }) {
     setUpdatedMember(member ? { ...member } : {}); // member가 null일 경우 빈 객체 설정
   }, [member]);
 
-  const handlePointChange = async (amount) => {
+  const handlePointChange = (amount) => {
     if (!pointInput) {
-      // 빈 문자열일 경우 처리
-      return; //아무것도 입력하지 않았을때는 그냥 리턴
+      return;
     }
 
     const parsedAmount = parseInt(pointInput, 10);
     if (isNaN(parsedAmount) || parsedAmount === 0) {
-      // 숫자가 아니거나 0일 경우 알림
       alert("0이 아닌 숫자를 입력해주세요.");
-      setPointInput(""); // 입력 필드 초기화
+      setPointInput("");
       return;
     }
 
-    setUpdatedMember({
-      ...updatedMember,
-      point: (updatedMember.points || 0) + amount * parsedAmount,
-    });
-
-    //@todo - 데이터 업데이트가 안됨
-    try {
-      const requestUrl = `${apiUserUrl}${updatedMember.id}`; // 올바른 URL 생성
-      console.log("Request URL:", requestUrl); // 요청 URL 출력 (디버깅)
-
-      const response = await fetch(requestUrl, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json", // 요청 본문의 데이터 형식을 JSON으로 지정
-        },
-        body: JSON.stringify({
-          points: (updatedMember.points || 0) + amount * parsedAmount, // 업데이트할 포인트 값
-          // amount: 후원(+1) 또는 강탈(-1) 여부
-          // parsedAmount: 입력된 포인트 값
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json(); // 서버에서 보낸 에러 데이터를 JSON 형태로 파싱
-        console.error("API Error Response:", errorData);
-        throw new Error(
-          `포인트 업데이트 실패: ${response.status} ${response.statusText}`
-        );
-      }
-
-      const updatedData = await response.json();
-      console.log("API Response Data:", updatedData); // 응답 데이터 출력 (디버깅)
-      setUpdatedMember(updatedData);
-      onUpdate(updatedData);
-      alert("포인트가 업데이트 되었습니다."); // 성공 메시지 추가
-    } catch (error) {
-      console.error("포인트 업데이트 실패:", error);
-      alert("포인트 업데이트에 실패했습니다.");
-    }
-
+    // 임시 포인트 값 계산 및 저장
+    setTempPoints((updatedMember.points || 0) + amount * parsedAmount);
     setPointInput("");
   };
 
   const handleSave = async () => {
     try {
+      let pointsToUpdate; // 변수 선언 위치 수정
+
+      if (tempPoints !== null) {
+        pointsToUpdate = tempPoints;
+      } else {
+        pointsToUpdate = updatedMember.points || 0; // updatedMember.points가 undefined일 경우 0으로 설정
+      }
+
       const requestUrl = `${apiUserUrl}${updatedMember.id}`;
       console.log("Request URL:", requestUrl);
+
+      // @node: pointsToUpdate를 사용하여 updatedMember의 points를 업데이트한 후 전송
+      const updatedMemberToSend = { ...updatedMember, points: pointsToUpdate };
+      console.log("Sending to server:", updatedMemberToSend); // 추가: 전송 데이터 확인
 
       const response = await fetch(requestUrl, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedMember), // updatedMember 전체를 전송 (등급 포함)
+        body: JSON.stringify(updatedMemberToSend), // updatedMemberToSend 전송 (등급 포함)
       });
 
       if (!response.ok) {
@@ -111,6 +80,7 @@ function MemberDetails({ member, onClose, onUpdate }) {
       console.log("API Response Data:", updatedData);
       setUpdatedMember(updatedData);
       onUpdate(updatedData);
+      setTempPoints(null);
       alert("저장되었습니다.");
       onClose();
     } catch (error) {
@@ -152,7 +122,10 @@ function MemberDetails({ member, onClose, onUpdate }) {
                 <option value={1}>Silver</option>
               </select>
             </p>
-            <p>포인트: {updatedMember.points || 0}</p>
+            <p>
+              포인트:
+              {tempPoints !== null ? tempPoints : updatedMember.points || 0}
+            </p>
             <div className="point-management">
               <input
                 type="number"

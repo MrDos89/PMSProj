@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 
+import PropTypes from "prop-types";
+
 function Roulette({ userData }) {
+  const apiUserUrl = "http://localhost:3000/userList/";
+
   const data = [
     { id: 1, option: 10 },
     { id: 2, option: -30 },
@@ -26,7 +30,7 @@ function Roulette({ userData }) {
 
   const handleResult = async (resultPoint) => {
     try {
-      const requestUrl = `${apiUserUrl}${updatedMember.id}`; // 올바른 URL 생성
+      const requestUrl = `${apiUserUrl}${userData.id}`; // 올바른 URL 생성
       console.log("Request URL:", requestUrl); // 요청 URL 출력 (디버깅)
 
       const response = await fetch(requestUrl, {
@@ -35,7 +39,7 @@ function Roulette({ userData }) {
           "Content-Type": "application/json", // 요청 본문의 데이터 형식을 JSON으로 지정
         },
         body: JSON.stringify({
-          points: points + (resultPoint || 0), // 업데이트할 포인트 값
+          points: userData.points + (resultPoint || 0), // 업데이트할 포인트 값
           // amount: 후원(+1) 또는 강탈(-1) 여부
           // parsedAmount: 입력된 포인트 값
         }),
@@ -51,8 +55,6 @@ function Roulette({ userData }) {
 
       const updatedData = await response.json();
       console.log("API Response Data:", updatedData); // 응답 데이터 출력 (디버깅)
-      setUpdatedMember(updatedData);
-      onUpdate(updatedData);
       alert("포인트가 업데이트 되었습니다."); // 성공 메시지 추가
     } catch (error) {
       console.error("포인트 업데이트 실패:", error);
@@ -85,7 +87,11 @@ function Roulette({ userData }) {
             "#46AEFF",
             "#9145B7",
           ]}
-          onStopSpinning={handleResult(data[prizeNumber].option)}
+          onStopSpinning={() => {
+            setMustSpin(false);
+            alert(data[prizeNumber].option);
+            handleResult(data[prizeNumber].option);
+          }}
         />
         <button className="button2" onClick={handleSpinClick}>
           SPIN
@@ -97,5 +103,20 @@ function Roulette({ userData }) {
     </>
   );
 }
+Roulette.propTypes = {
+  userData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    grade: PropTypes.number.isRequired,
+    points: PropTypes.number.isRequired,
+    callUsage: PropTypes.number.isRequired,
+    dataUsage: PropTypes.number.isRequired,
+    photo: PropTypes.string.isRequired,
+    history: PropTypes.array.isRequired,
+    isAdmin: PropTypes.bool.isRequired,
+  }).isRequired,
+};
 
 export default Roulette;

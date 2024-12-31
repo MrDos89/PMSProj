@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../../cssall/Ladder.css";
 
-function Ladder() {
+import PropTypes from "prop-types";
+
+function Ladder({ userData }) {
   const [participants, setParticipants] = useState([]);
   const [ladder, setLadder] = useState([]);
   const [result, setResult] = useState(null);
@@ -9,10 +11,6 @@ function Ladder() {
   const [start, setStart] = useState(null);
   const [highlightPath, setHighlightPath] = useState(null);
   const ladderRef = useRef(null);
-
-  const handleNumParticipantsChange = (event) => {
-    setNumParticipantsInput(event.target.value);
-  };
 
   useEffect(() => {
     const initLadder = () => {
@@ -30,7 +28,7 @@ function Ladder() {
     initLadder();
   }, []);
 
-  const generateLadder = (start) => {
+  const generateLadder = () => {
     // const numParticipants = parseInt(numParticipantsInput, 10);
     const numParticipants = 6;
 
@@ -61,11 +59,13 @@ function Ladder() {
   };
 
   useEffect(() => {
+    console.log(ladder.length);
+    console.log(start);
     if (ladder.length > 0 && start === "number") {
       runLadder(currentStart);
       setStart(null);
     }
-  }, [ladder, start]);
+  }, [ladder, start, currentStart, runLadder]);
 
   const [currentStart, setCurrentStart] = useState(null);
 
@@ -208,5 +208,20 @@ function Ladder() {
     </div>
   );
 }
+Ladder.propTypes = {
+  userData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    grade: PropTypes.number.isRequired,
+    points: PropTypes.number.isRequired,
+    callUsage: PropTypes.number.isRequired,
+    dataUsage: PropTypes.number.isRequired,
+    photo: PropTypes.string.isRequired,
+    history: PropTypes.array.isRequired,
+    isAdmin: PropTypes.bool.isRequired,
+  }).isRequired,
+};
 
 export default Ladder;

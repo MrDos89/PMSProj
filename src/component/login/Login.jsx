@@ -21,6 +21,7 @@ function Login({ userList, onLogin }) {
     if (foundUser) {
       setUser(foundUser);
       setIsLoggedIn(true);
+      localStorage.setItem("loggedInUserPhone", foundUser.phone); // 전화번호 저장
       onLogin(foundUser); // App.jsx로 사용자 정보 전달
       if (foundUser.grade === 3) {
         setUserGrade("VIP 회원");

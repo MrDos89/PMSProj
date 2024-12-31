@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "../../cssall/Ladder.css";
 
 import PropTypes from "prop-types";
@@ -7,6 +7,8 @@ function Ladder({ userData }) {
   const [participants, setParticipants] = useState([]);
   const [ladder, setLadder] = useState([]);
   const [result, setResult] = useState(null);
+  const [currentStart, setCurrentStart] = useState(null);
+
   // const [numParticipantsInput, setNumParticipantsInput] = useState("");
   const [start, setStart] = useState(null);
   const [highlightPath, setHighlightPath] = useState(null);
@@ -28,8 +30,7 @@ function Ladder({ userData }) {
     initLadder();
   }, []);
 
-  const generateLadder = () => {
-    // const numParticipants = parseInt(numParticipantsInput, 10);
+  const generateLadder = (startIndex) => {
     const numParticipants = 6;
 
     const newLadder = [];
@@ -38,13 +39,13 @@ function Ladder({ userData }) {
     }
 
     for (let i = 0; i < newLadder.length; i++) {
-      let connected = new Array(numParticipants - 1).fill(false); // 각 세로선이 연결되었는지 추적
+      let connected = new Array(numParticipants - 1).fill(false);
       for (let j = 0; j < newLadder[0].length; j++) {
         if (Math.random() < 0.3 && !newLadder[i][j] && !connected[j]) {
           newLadder[i][j] = true;
-          connected[j] = true; // 현재 세로선 연결됨 표시
+          connected[j] = true;
           if (j + 1 < newLadder[0].length) {
-            connected[j + 1] = true; // 다음 세로선도 연결됨 표시 (최대 2개 연결)
+            connected[j + 1] = true;
           }
         }
       }
@@ -52,22 +53,14 @@ function Ladder({ userData }) {
 
     setLadder(newLadder);
     setResult(null);
+    setHighlightPath(null);
+    setCurrentStart(startIndex); // 시작 인덱스를 저장
+
     document.documentElement.style.setProperty(
       "--num-participants",
       numParticipants
     );
   };
-
-  useEffect(() => {
-    console.log(ladder.length);
-    console.log(start);
-    if (ladder.length > 0 && start === "number") {
-      runLadder(currentStart);
-      setStart(null);
-    }
-  }, [ladder, start, currentStart, runLadder]);
-
-  const [currentStart, setCurrentStart] = useState(null);
 
   const renderParticipantsBottom = () => {
     return (
@@ -81,7 +74,7 @@ function Ladder({ userData }) {
               <button
                 onClick={() => {
                   if (ladder.length === 0) {
-                    setStart(i);
+                    // setStart(i);
                     generateLadder(i); // key 값(i)을 generateLadder에 전달
                   } else {
                     runLadder(i);
@@ -97,43 +90,54 @@ function Ladder({ userData }) {
     );
   };
 
-  const runLadder = (start) => {
-    let current = start;
-    const path = [];
+  const runLadder = useCallback(
+    (startIndex) => {
+      if (!ladderRef.current) return;
 
-    const ladderElement = ladderRef.current;
-    if (!ladderElement) return;
+      let current = startIndex;
+      const path = [];
+      const ladderElement = ladderRef.current;
 
-    const rowHeight = ladderElement.offsetHeight / ladder.length;
-    const numParticipants = participants.length;
-    const segmentWidth = ladderElement.offsetWidth / numParticipants;
+      const rowHeight = ladderElement.offsetHeight / ladder.length;
+      const segmentWidth = ladderElement.offsetWidth / participants.length;
 
-    // 시작점 x 좌표를 segment의 시작 위치로 조정
-    path.push({ x: start * segmentWidth, y: 0 });
+      // 시작점
+      path.push({ x: current * segmentWidth, y: 0 });
 
-    for (let i = 0; i < ladder.length; i++) {
-      const prevX = current;
+      for (let i = 0; i < ladder.length; i++) {
+        const prevX = current;
 
-      if (ladder[i][current]) {
-        current++;
-      } else if (current > 0 && ladder[i][current - 1]) {
-        current--;
+        // 오른쪽으로 이동
+        if (current < ladder[i].length && ladder[i][current]) {
+          current++;
+        }
+        // 왼쪽으로 이동
+        else if (current > 0 && ladder[i][current - 1]) {
+          current--;
+        }
+
+        // 이동 경로 계산
+        if (prevX !== current) {
+          path.push({ x: prevX * segmentWidth, y: i * rowHeight + 12 });
+          path.push({ x: current * segmentWidth, y: i * rowHeight + 12 });
+        }
+
+        // 세로선 경로
+        path.push({ x: current * segmentWidth, y: (i + 1) * rowHeight + 12 });
       }
 
-      if (prevX !== current) {
-        // 가로선 시작점과 끝점 x 좌표를 정확하게 계산
-        const startX = prevX * segmentWidth;
-        const endX = current * segmentWidth;
+      setResult(current);
+      setHighlightPath({ start: startIndex, end: current, path });
+    },
+    [ladder, participants.length]
+  );
 
-        path.push({ x: startX, y: i * rowHeight + 12 });
-        path.push({ x: endX, y: i * rowHeight + 12 });
-      }
-      path.push({ x: current * segmentWidth, y: (i + 1) * rowHeight + 12 });
+  useEffect(() => {
+    if (ladder.length > 0 && currentStart !== null) {
+      runLadder(currentStart);
+      setCurrentStart(null); // 초기화
     }
-
-    setResult(current);
-    setHighlightPath({ start, end: current, path });
-  };
+  }, [ladder, currentStart, runLadder]);
 
   const drawHighlight = () => {
     if (!highlightPath || !ladderRef.current || !highlightPath.path)

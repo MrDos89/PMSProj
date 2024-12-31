@@ -50,7 +50,6 @@ function MemberDetails({ member, onClose, onUpdate }) {
       point: (updatedMember.points || 0) + amount * parsedAmount,
     });
 
-    //@todo - 데이터 업데이트가 안됨
     try {
       const requestUrl = `${apiUserUrl}${updatedMember.id}`; // 올바른 URL 생성
       console.log("Request URL:", requestUrl); // 요청 URL 출력 (디버깅)

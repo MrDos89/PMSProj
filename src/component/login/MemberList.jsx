@@ -5,7 +5,7 @@ const gradeImages = {
   3: "../../image/grade/3.jpg",
   2: "../../image/grade/2.jpg",
   1: "../../image/grade/1.jpg",
-  0: "/images/default_profile.png",
+  0: "../../image/thumbnail/God_1.gif",
 };
 
 class MemberList extends React.Component {

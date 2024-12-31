@@ -10,13 +10,13 @@
       "points": 41,
       "callUsage": 70,
       "dataUsage": 30,
-      "photo": "/images/profile1.jpg",
+      "photo": "/image/thumbnail/gildong.jpg",
       "history": [],
       "isAdmin": false
     },
     {
       "id": "2",
-      "name": "김영희",
+      "name": "윈터",
       "phone": "01033334444",
       "password": "1234",
       "grade": 2,
@@ -24,49 +24,8 @@
       "points": 1400,
       "callUsage": 20,
       "dataUsage": 90,
-      "photo": "/images/profile2.jpg",
-      "history": [
-        {
-          "id": "2",
-          "user_name": "김영희",
-          "item_id": 1,
-          "point": 100,
-          "remain_point": 2100,
-          "updateDate": "2024. 12. 31. 오후 4:25:16"
-        },
-        {
-          "id": "2",
-          "user_name": "김영희",
-          "item_id": 2,
-          "point": 200,
-          "remain_point": 1900,
-          "updateDate": "2024. 12. 31. 오후 4:25:21"
-        },
-        {
-          "id": "2",
-          "user_name": "김영희",
-          "item_id": 2,
-          "point": 200,
-          "remain_point": 1700,
-          "updateDate": "2024. 12. 31. 오후 4:26:37"
-        },
-        {
-          "id": "2",
-          "user_name": "김영희",
-          "item_id": 2,
-          "point": 200,
-          "remain_point": 1500,
-          "updateDate": "2024. 12. 31. 오후 4:27:47"
-        },
-        {
-          "id": "2",
-          "user_name": "김영희",
-          "item_id": 1,
-          "point": 100,
-          "remain_point": 1400,
-          "updateDate": "2024. 12. 31. 오후 4:36:02"
-        }
-      ],
+      "photo": "/image/thumbnail/winter.gif",
+      "history": [],
       "isAdmin": false
     },
     {
@@ -79,7 +38,7 @@
       "points": 800,
       "callUsage": 50,
       "dataUsage": 60,
-      "photo": "/images/profile3.jpg",
+      "photo": "/image/thumbnail/chulsu.jpg",
       "history": [],
       "isAdmin": false
     },
@@ -92,7 +51,7 @@
       "points": 3000,
       "callUsage": 90,
       "dataUsage": 10,
-      "photo": "/images/profile4.jpg",
+      "photo": "/image/thumbnail/jisung.gif",
       "history": [],
       "isAdmin": false
     },
@@ -105,7 +64,7 @@
       "points": 1800,
       "callUsage": 60,
       "dataUsage": 40,
-      "photo": "/images/profile5.jpg",
+      "photo": "/image/thumbnail/yuna.gif",
       "history": [],
       "isAdmin": false
     },
@@ -118,7 +77,7 @@
       "points": 1200,
       "callUsage": 40,
       "dataUsage": 70,
-      "photo": "/images/profile6.jpg",
+      "photo": "/image/thumbnail/ryu.gif",
       "history": [],
       "isAdmin": false
     },
@@ -131,46 +90,46 @@
       "points": 2500,
       "callUsage": 80,
       "dataUsage": 20,
-      "photo": "/images/profile7.jpg",
+      "photo": "/image/thumbnail/son.webp",
       "history": [],
       "isAdmin": false
     },
     {
       "id": "8",
-      "name": "추신수",
+      "name": "양준혁",
       "phone": "01024681357",
       "password": "1234",
       "grade": 2,
       "points": 2000,
       "callUsage": 55,
       "dataUsage": 55,
-      "photo": "/images/profile8.jpg",
+      "photo": "/image/thumbnail/yang.gif",
       "history": [],
       "isAdmin": false
     },
     {
       "id": "9",
-      "name": "박찬호",
+      "name": "박지원",
       "phone": "01013572468",
       "password": "1234",
       "grade": 1,
       "points": 900,
       "callUsage": 30,
       "dataUsage": 80,
-      "photo": "/images/profile9.jpg",
+      "photo": "/image/thumbnail/park.gif",
       "history": [],
       "isAdmin": false
     },
     {
       "id": "10",
-      "name": "이승엽",
+      "name": "카리나",
       "phone": "01098765432",
       "password": "1234",
       "grade": 3,
       "points": 2800,
       "callUsage": 85,
       "dataUsage": 15,
-      "photo": "/images/profile10.jpg",
+      "photo": "/image/thumbnail/karina.gif",
       "history": [],
       "isAdmin": false
     },
@@ -196,7 +155,7 @@
       "points": 30000,
       "callUsage": 70,
       "dataUsage": 30,
-      "photo": "/images/profile1.jpg",
+      "photo": "/image/thumbnail/man.jpg",
       "history": [],
       "isAdmin": false
     }

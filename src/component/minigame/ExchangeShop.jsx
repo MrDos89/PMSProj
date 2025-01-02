@@ -56,6 +56,7 @@ function ExchangeShop({ products, onUpdatePoints }) {
         const updatedPoints = userPoints - product.points;
 
         const newHistoryItem = {
+          id: member.history.length + 1,
           user_name: member.name,
           item_id: product.id,
           point: product.points,

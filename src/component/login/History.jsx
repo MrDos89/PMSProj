@@ -42,7 +42,15 @@ function History({ member, onClose }) {
                 <tr key={index}>
                   <td>{item.updateDate}</td>
                   <td>{item.user_name}</td>
-                  <td>{item.item_id}</td>
+                  <td>
+                    {item.item_id === 3
+                      ? "HA.MI 돈카츠 할인권"
+                      : item.item_id === 2
+                      ? "집게리아 할인권"
+                      : item.item_id === 1
+                      ? "4조 카페 할인권"
+                      : "분류없음"}
+                  </td>
                   <td>{item.point}</td>
                   <td>{item.remain_point}</td>
                 </tr>

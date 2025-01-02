@@ -186,12 +186,6 @@ ExchangeShop.propTypes = {
 
 export default ExchangeShop;
 
-
-
-
-
-
-
 // import React, { useState, useEffect } from "react";
 // import PropTypes from "prop-types";
 // import "../../cssall/ExchangeShop.css";
@@ -202,7 +196,6 @@ export default ExchangeShop;
 // function ExchangeShop({ products, onUpdatePoints }) {
 //   const [member, setMember] = useState(null);
 //   const [userPoints, setUserPoints] = useState(0);
-
 
 // // 데이터 가져오기 (1231)
 //  // 회원 데이터 가져오기
@@ -251,7 +244,6 @@ export default ExchangeShop;
 //   fetchLoggedInUser();
 // }, []);
 
-
 // const handlePurchase = (product) => {
 //   if (product.company === "벤츠") {
 //     alert("네가 과연 살 수 있을까?");
@@ -272,7 +264,6 @@ export default ExchangeShop;
 //   return <p>로딩 중...</p>;
 // }
 
-
 //   // 구매 함수
 //   // const handlePurchase = (product) => {
 //   //   const isPartnerCompany = product.company === "벤츠"; // 특정 회사 체크
@@ -292,7 +283,6 @@ export default ExchangeShop;
 //   //     alert("포인트가 부족합니다!"); // 포인트 부족 시 알림
 //   //   }
 //   // };
-
 
 //   return (
 //     <div className="exchange-shop">
@@ -334,7 +324,6 @@ export default ExchangeShop;
 //   );
 // }
 
-
 //   // return (
 //   //   <div className="exchange-shop">
 //   //     {/* 회원 정보 섹션 */}
@@ -347,7 +336,7 @@ export default ExchangeShop;
 //   //         <p className="point"><strong>포인트:</strong> {userPoints} point</p>
 //   //       </div>
 //   //     </div>
-      
+
 //       {/*
 //       <img
 //           src={member.profileImage}
@@ -360,8 +349,6 @@ export default ExchangeShop;
 //           <p><strong>포인트:</strong> {userPoints} point</p>
 //         </div>
 //         */}
-
-    
 
 //       {/* 상품 목록 섹션 */}
 // //       <h3 className="product-title">상품 목록</h3>
@@ -397,7 +384,6 @@ export default ExchangeShop;
 //   ).isRequired,
 //   onUpdatePoints: PropTypes.func.isRequired,
 // };
-
 
 // // ExchangeShop.propTypes = {
 // //   member: PropTypes.shape({

@@ -44,7 +44,7 @@ function Ladder({ userData }) {
             "Content-Type": "application/json", // 요청 본문의 데이터 형식을 JSON으로 지정
           },
           body: JSON.stringify({
-            points: userData.points + (resultPoint || 0), // 업데이트할 포인트 값
+            points: Number(userData.points) + Number(resultPoint || 0), // 업데이트할 포인트 값
           }),
         });
 

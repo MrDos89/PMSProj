@@ -3,20 +3,59 @@ import "../../cssall/Ladder.css";
 
 import PropTypes from "prop-types";
 
-function Ladder({ userData }) {
+function Ladder() {
   const apiUserUrl = "http://localhost:3000/userList/";
+
+  const [member, setMember] = useState(null);
+  const [loading, setLoading] = useState(true); // 로딩 상태
 
   const [participants, setParticipants] = useState([]);
   const [ladder, setLadder] = useState([]);
   const [result, setResult] = useState(null);
   const [currentStart, setCurrentStart] = useState(null);
-
   // const [numParticipantsInput, setNumParticipantsInput] = useState("");
-  const [start, setStart] = useState(null);
+  // const [start, setStart] = useState(null);
   const [highlightPath, setHighlightPath] = useState(null);
   const ladderRef = useRef(null);
 
-  const [userPoints, setUserPoints] = useState(userData.points);
+  const [userPoints, setUserPoints] = useState(0);
+
+  // ✅ 초기 로드 시 회원 정보 복구
+  useEffect(() => {
+    const fetchLoggedInUser = async () => {
+      try {
+        const loggedInUserPhone = localStorage.getItem("loggedInUserPhone");
+        if (!loggedInUserPhone) {
+          console.error("⚠️ 로그인된 회원의 전화번호를 찾을 수 없습니다.");
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch("http://localhost:3000/userList");
+        if (!response.ok) {
+          throw new Error("⚠️ 회원 데이터를 가져오는 데 실패했습니다.");
+        }
+
+        const userList = await response.json();
+        const foundMember = userList.find(
+          (user) => user.phone === loggedInUserPhone
+        );
+
+        if (foundMember) {
+          setMember(foundMember); // 회원 정보 저장
+          setUserPoints(foundMember.points); // 포인트 설정
+        } else {
+          console.error("⚠️ 로그인된 회원 정보를 찾을 수 없습니다.");
+        }
+      } catch (error) {
+        console.error("⚠️ 회원 정보를 가져오는 중 오류 발생:", error);
+      } finally {
+        setLoading(false); // 로딩 종료
+      }
+    };
+
+    fetchLoggedInUser();
+  }, []);
 
   useEffect(() => {
     const initLadder = () => {
@@ -37,7 +76,7 @@ function Ladder({ userData }) {
   const sendRequest = useCallback(
     async (resultPoint) => {
       try {
-        const requestUrl = `${apiUserUrl}${userData.id}`; // 올바른 URL 생성
+        const requestUrl = `${apiUserUrl}${member.id}`; // 올바른 URL 생성
         console.log("Request URL:", requestUrl); // 요청 URL 출력 (디버깅)
 
         const response = await fetch(requestUrl, {
@@ -46,7 +85,7 @@ function Ladder({ userData }) {
             "Content-Type": "application/json", // 요청 본문의 데이터 형식을 JSON으로 지정
           },
           body: JSON.stringify({
-            points: Number(userData.points) + Number(resultPoint || 0), // 업데이트할 포인트 값
+            points: Number(member.points) + Number(resultPoint || 0), // 업데이트할 포인트 값
           }),
         });
 
@@ -58,7 +97,7 @@ function Ladder({ userData }) {
           );
         }
 
-        setUserPoints(Number(userData.points) + Number(resultPoint));
+        setUserPoints(Number(member.points) + Number(resultPoint));
 
         const updatedData = await response.json();
         console.log("API Response Data:", updatedData); // 응답 데이터 출력 (디버깅)
@@ -68,7 +107,7 @@ function Ladder({ userData }) {
         alert("포인트 업데이트에 실패했습니다.");
       }
     },
-    [apiUserUrl, userData, participants, result]
+    [apiUserUrl, member, participants, result]
   );
 
   const generateLadder = (startIndex) => {
@@ -115,7 +154,6 @@ function Ladder({ userData }) {
               <button
                 onClick={() => {
                   if (ladder.length === 0) {
-                    // setStart(i);
                     generateLadder(i); // key 값(i)을 generateLadder에 전달
                   } else {
                     runLadder(i);
@@ -215,84 +253,79 @@ function Ladder({ userData }) {
   }, [participants]);
 
   return (
-    <div className="ladderGame">
-      <h1>사다리 게임</h1>
-      <div className="member-info">
-        <img
-          src={userData.photo}
-          alt={`${userData.name} 프로필`}
-          className="profile-image"
-        />
-        <div className="text-info">
-          <p>
-            <strong>이름:</strong> {userData.name}
-          </p>
-          <p>
-            <strong>전화번호:</strong> {userData.phone}
-          </p>
-          <p>
-            <strong>등급:</strong>{" "}
-            {userData.isAdmin
-              ? "신"
-              : userData.grade === 3
-              ? "VIP 회원"
-              : userData.grade === 2
-              ? "GOLD 회원"
-              : userData.grade === 1
-              ? "SILVER 회원"
-              : "일반 회원"}
-          </p>
-          <p className="point">
-            <strong>포인트:</strong> {userPoints} point
-          </p>
-        </div>
-      </div>
-      {renderParticipantsBottom()}
-      <div className="ladder-container">
-        {participants.length > 0 && (
-          <>
-            <div className="ladder" ref={ladderRef}>
-              {ladder.map((row, rowIndex) => (
-                <div key={rowIndex} className="ladder-row">
-                  {participants.slice(0, -1).map((_, colIndex) => (
-                    <div key={colIndex} className="ladder-segment">
-                      {row[colIndex] && <div className="ladder-bridge"></div>}
+    <>
+      {loading ? (
+        <p>로딩 중...</p>
+      ) : !member ? (
+        <p>회원 정보를 불러올 수 없습니다.</p>
+      ) : (
+        <div className="ladderGame">
+          <h1>사다리 게임</h1>
+          <div className="member-info">
+            <img
+              src={member.photo}
+              alt={`${member.name} 프로필`}
+              className="profile-image"
+            />
+            <div className="text-info">
+              <p>
+                <strong>이름:</strong> {member.name}
+              </p>
+              <p>
+                <strong>전화번호:</strong> {member.phone}
+              </p>
+              <p>
+                <strong>등급:</strong>{" "}
+                {member.isAdmin
+                  ? "신"
+                  : member.grade === 3
+                  ? "VIP 회원"
+                  : member.grade === 2
+                  ? "GOLD 회원"
+                  : member.grade === 1
+                  ? "SILVER 회원"
+                  : "일반 회원"}
+              </p>
+              <p className="point">
+                <strong>포인트:</strong> {userPoints} point
+              </p>
+            </div>
+          </div>
+          {renderParticipantsBottom()}
+          <div className="ladder-container">
+            {participants.length > 0 && (
+              <>
+                <div className="ladder" ref={ladderRef}>
+                  {ladder.map((row, rowIndex) => (
+                    <div key={rowIndex} className="ladder-row">
+                      {participants.slice(0, -1).map((_, colIndex) => (
+                        <div key={colIndex} className="ladder-segment">
+                          {row[colIndex] && (
+                            <div className="ladder-bridge"></div>
+                          )}
+                        </div>
+                      ))}
+                      {drawHighlight()}
                     </div>
                   ))}
-                  {drawHighlight()}
                 </div>
-              ))}
-            </div>
-            <div className="participants top">
-              {participants.map((p, i) => (
-                <div key={i} className="participant">
-                  {p}
+                <div className="participants top">
+                  {participants.map((p, i) => (
+                    <div key={i} className="participant">
+                      {p}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-      {result !== null && (
-        <div className="result">결과: {participants[result]}</div>
+              </>
+            )}
+          </div>
+          {result !== null && (
+            <div className="result">결과: {participants[result]}</div>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }
-Ladder.propTypes = {
-  userData: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    grade: PropTypes.number.isRequired,
-    points: PropTypes.number.isRequired,
-    callUsage: PropTypes.number.isRequired,
-    dataUsage: PropTypes.number.isRequired,
-    photo: PropTypes.string.isRequired,
-    history: PropTypes.array.isRequired,
-    isAdmin: PropTypes.bool.isRequired,
-  }).isRequired,
-};
 
 export default Ladder;

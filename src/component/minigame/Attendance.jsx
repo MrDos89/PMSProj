@@ -52,14 +52,52 @@ const AttendanceButton = styled.button`
   }
 `;
 
-function Attendance({ userData }) {
+function Attendance() {
   const apiUserUrl = "http://localhost:3000/userList/";
-
+  const [member, setMember] = useState(null);
   const [mileage, setMileage] = useState(0);
   const [attendedDays, setAttendedDays] = useState({});
   const todayString = new Date().toLocaleDateString();
+  const [loading, setLoading] = useState(true); // 로딩 상태
 
-  const [userPoints, setUserPoints] = useState(userData.points);
+  const [userPoints, setUserPoints] = useState(0);
+
+  // ✅ 초기 로드 시 회원 정보 복구
+  useEffect(() => {
+    const fetchLoggedInUser = async () => {
+      try {
+        const loggedInUserPhone = localStorage.getItem("loggedInUserPhone");
+        if (!loggedInUserPhone) {
+          console.error("⚠️ 로그인된 회원의 전화번호를 찾을 수 없습니다.");
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch("http://localhost:3000/userList");
+        if (!response.ok) {
+          throw new Error("⚠️ 회원 데이터를 가져오는 데 실패했습니다.");
+        }
+
+        const userList = await response.json();
+        const foundMember = userList.find(
+          (user) => user.phone === loggedInUserPhone
+        );
+
+        if (foundMember) {
+          setMember(foundMember); // 회원 정보 저장
+          setUserPoints(foundMember.points); // 포인트 설정
+        } else {
+          console.error("⚠️ 로그인된 회원 정보를 찾을 수 없습니다.");
+        }
+      } catch (error) {
+        console.error("⚠️ 회원 정보를 가져오는 중 오류 발생:", error);
+      } finally {
+        setLoading(false); // 로딩 종료
+      }
+    };
+
+    fetchLoggedInUser();
+  }, []);
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -80,7 +118,12 @@ function Attendance({ userData }) {
   const sendRequest = useCallback(
     async (resultPoint) => {
       try {
-        const requestUrl = `${apiUserUrl}${userData.id}`; // 올바른 URL 생성
+        if (!member) {
+          console.error("⚠️ 회원 정보가 로드되지 않았습니다.");
+          return;
+        }
+
+        const requestUrl = `${apiUserUrl}${member.id}`; // 올바른 URL 생성
         console.log("Request URL:", requestUrl); // 요청 URL 출력 (디버깅)
 
         const response = await fetch(requestUrl, {
@@ -89,7 +132,7 @@ function Attendance({ userData }) {
             "Content-Type": "application/json", // 요청 본문의 데이터 형식을 JSON으로 지정
           },
           body: JSON.stringify({
-            points: Number(userData.points) + Number(resultPoint || 0), // 업데이트할 포인트 값
+            points: Number(member.points) + Number(resultPoint || 0), // 업데이트할 포인트 값
           }),
         });
 
@@ -101,7 +144,7 @@ function Attendance({ userData }) {
           );
         }
 
-        setUserPoints(Number(userData.points) + Number(resultPoint));
+        setUserPoints(Number(member.points) + Number(resultPoint));
 
         const updatedData = await response.json();
         console.log("API Response Data:", updatedData); // 응답 데이터 출력 (디버깅)
@@ -111,7 +154,7 @@ function Attendance({ userData }) {
         // alert("포인트 업데이트에 실패했습니다.");
       }
     },
-    [apiUserUrl, userData]
+    [apiUserUrl, member]
   );
 
   const handleDateClick = useCallback(
@@ -133,7 +176,7 @@ function Attendance({ userData }) {
         alert("이미 출석체크를 완료했습니다.");
       }
     },
-    [attendedDays, todayString]
+    [attendedDays, todayString, sendRequest]
   );
 
   const renderTileContent = useCallback(
@@ -164,67 +207,66 @@ function Attendance({ userData }) {
 
   return (
     <>
-      <div className="member-info">
-        <img
-          src={userData.photo}
-          alt={`${userData.name} 프로필`}
-          className="profile-image"
-        />
-        <div className="text-info">
-          <p>
-            <strong>이름:</strong> {userData.name}
-          </p>
-          <p>
-            <strong>전화번호:</strong> {userData.phone}
-          </p>
-          <p>
-            <strong>등급:</strong>{" "}
-            {userData.isAdmin
-              ? "신"
-              : userData.grade === 3
-              ? "VIP 회원"
-              : userData.grade === 2
-              ? "GOLD 회원"
-              : userData.grade === 1
-              ? "SILVER 회원"
-              : "일반 회원"}
-          </p>
-          <p className="point">
-            <strong>포인트:</strong> {userPoints} point
-          </p>
-        </div>
-      </div>
-      <hr />
-      <h1 style={{ textAlign: "center", color: "#1976d2" }}>출석체크 이벤트</h1>
-      <CalendarContainer>
-        <Calendar
-          minDate={new Date("2024-01-01")}
-          maxDate={new Date("2025-01-31")}
-          tileContent={renderTileContent}
-        />
-        <div
-          style={{ marginTop: "20px", textAlign: "center", color: "#0d47a1" }}
-        >
-          현재 마일리지: <strong>{mileage}</strong>
-        </div>
-      </CalendarContainer>
+      {loading ? (
+        <p>로딩 중...</p>
+      ) : !member ? (
+        <p>회원 정보를 불러올 수 없습니다.</p>
+      ) : (
+        <>
+          <div className="member-info">
+            <img
+              src={member.photo}
+              alt={`${member.name} 프로필`}
+              className="profile-image"
+            />
+            <div className="text-info">
+              <p>
+                <strong>이름:</strong> {member.name}
+              </p>
+              <p>
+                <strong>전화번호:</strong> {member.phone}
+              </p>
+              <p>
+                <strong>등급:</strong>{" "}
+                {member.isAdmin
+                  ? "신"
+                  : member.grade === 3
+                  ? "VIP 회원"
+                  : member.grade === 2
+                  ? "GOLD 회원"
+                  : member.grade === 1
+                  ? "SILVER 회원"
+                  : "일반 회원"}
+              </p>
+              <p className="point">
+                <strong>포인트:</strong> {userPoints} point
+              </p>
+            </div>
+          </div>
+          <hr />
+          <h1 style={{ textAlign: "center", color: "#1976d2" }}>
+            출석체크 이벤트
+          </h1>
+          <CalendarContainer>
+            <Calendar
+              minDate={new Date("2024-01-01")}
+              maxDate={new Date("2025-01-31")}
+              tileContent={renderTileContent}
+            />
+            <div
+              style={{
+                marginTop: "20px",
+                textAlign: "center",
+                color: "#0d47a1",
+              }}
+            >
+              현재 마일리지: <strong>{mileage}</strong>
+            </div>
+          </CalendarContainer>
+        </>
+      )}
     </>
   );
 }
-Attendance.propTypes = {
-  userData: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    grade: PropTypes.number.isRequired,
-    points: PropTypes.number.isRequired,
-    callUsage: PropTypes.number.isRequired,
-    dataUsage: PropTypes.number.isRequired,
-    photo: PropTypes.string.isRequired,
-    history: PropTypes.array.isRequired,
-    isAdmin: PropTypes.bool.isRequired,
-  }).isRequired,
-};
 
 export default Attendance;

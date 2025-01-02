@@ -19,14 +19,13 @@ function MiniGameButtons({ games, userData }) {
 
   //@ todo - 미니게임용 창 만들기
   if (gameMode === "ATTENDANCE") {
-    body = <Attendance userData={userData}></Attendance>;
+    body = <Attendance></Attendance>;
   } else if (gameMode === "ROULETTE") {
-    body = <Roulette userData={userData}></Roulette>;
+    body = <Roulette></Roulette>;
   } else if (gameMode === "LADDER") {
-    body = <Ladder userData={userData}></Ladder>;
+    body = <Ladder></Ladder>;
   } else if (gameMode === "EXCHANGESHOP") {
-    // ExchangeShop를 위한 추가 데이터
-
+    //@note - 회원 디폴트 데이터
     const memberData = {
       profileImage: "https://via.placeholder.com/100",
       name: "홍길동",

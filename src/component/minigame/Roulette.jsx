@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Wheel } from "react-custom-roulette";
 
 import PropTypes from "prop-types";
 
-function Roulette({ userData }) {
+function Roulette() {
   const apiUserUrl = "http://localhost:3000/userList/";
 
   const data = [
@@ -17,8 +17,50 @@ function Roulette({ userData }) {
 
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
+  const [member, setMember] = useState(null); // 회원 정보
+  const [loading, setLoading] = useState(true); // 로딩 상태
 
-  const [userPoints, setUserPoints] = useState(userData.points);
+  const [userPoints, setUserPoints] = useState(0);
+
+  // ✅ 초기 로드 시 회원 정보 복구
+  useEffect(() => {
+    const fetchLoggedInUser = async () => {
+      try {
+        const loggedInUserPhone = localStorage.getItem("loggedInUserPhone");
+        if (!loggedInUserPhone) {
+          console.error("⚠️ 로그인된 회원의 전화번호를 찾을 수 없습니다.");
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch("http://localhost:3000/userList");
+        if (!response.ok) {
+          throw new Error("⚠️ 회원 데이터를 가져오는 데 실패했습니다.");
+        }
+
+        const userList = await response.json();
+        const foundMember = userList.find(
+          (user) => user.phone === loggedInUserPhone
+        );
+
+        if (foundMember) {
+          setMember(foundMember); // 회원 정보 저장
+          setUserPoints(foundMember.points); // 포인트 설정
+        } else {
+          console.error("⚠️ 로그인된 회원 정보를 찾을 수 없습니다.");
+        }
+      } catch (error) {
+        console.error("⚠️ 회원 정보를 가져오는 중 오류 발생:", error);
+      } finally {
+        setLoading(false); // 로딩 종료
+      }
+    };
+
+    fetchLoggedInUser();
+  }, []);
+
+  if (loading) return <p>로딩 중...</p>;
+  if (!member) return <p>회원 정보를 불러올 수 없습니다.</p>;
 
   const handleSpinClick = () => {
     if (mustSpin === true) {
@@ -32,7 +74,7 @@ function Roulette({ userData }) {
 
   const handleResult = async (resultPoint) => {
     try {
-      const requestUrl = `${apiUserUrl}${userData.id}`; // 올바른 URL 생성
+      const requestUrl = `${apiUserUrl}${member.id}`; // 올바른 URL 생성
       console.log("Request URL:", requestUrl); // 요청 URL 출력 (디버깅)
 
       const response = await fetch(requestUrl, {
@@ -41,7 +83,7 @@ function Roulette({ userData }) {
           "Content-Type": "application/json", // 요청 본문의 데이터 형식을 JSON으로 지정
         },
         body: JSON.stringify({
-          points: Number(userData.points) + Number(resultPoint || 0), // 업데이트할 포인트 값
+          points: Number(member.points) + Number(resultPoint || 0), // 업데이트할 포인트 값
           // amount: 후원(+1) 또는 강탈(-1) 여부
           // parsedAmount: 입력된 포인트 값
         }),
@@ -55,7 +97,7 @@ function Roulette({ userData }) {
         );
       }
 
-      setUserPoints(Number(userData.points) + Number(resultPoint));
+      setUserPoints(Number(member.points) + Number(resultPoint));
 
       const updatedData = await response.json();
       console.log("API Response Data:", updatedData); // 응답 데이터 출력 (디버깅)
@@ -68,89 +110,80 @@ function Roulette({ userData }) {
 
   return (
     <>
-      <div align="center">
-        <h1 align="center">Roulette Game</h1>
-        <div className="member-info">
-          <img
-            src={userData.photo}
-            alt={`${userData.name} 프로필`}
-            className="profile-image"
-          />
-          <div className="text-info">
-            <p>
-              <strong>이름:</strong> {userData.name}
-            </p>
-            <p>
-              <strong>전화번호:</strong> {userData.phone}
-            </p>
-            <p>
-              <strong>등급:</strong>{" "}
-              {userData.isAdmin
-                ? "신"
-                : userData.grade === 3
-                ? "VIP 회원"
-                : userData.grade === 2
-                ? "GOLD 회원"
-                : userData.grade === 1
-                ? "SILVER 회원"
-                : "일반 회원"}
-            </p>
-            <p className="point">
-              <strong>포인트:</strong> {userPoints} point
-            </p>
+      {loading ? (
+        <p>로딩 중...</p>
+      ) : !member ? (
+        <p>회원 정보를 불러올 수 없습니다.</p>
+      ) : (
+        <div align="center">
+          <h1 align="center">Roulette Game</h1>
+          <div className="member-info">
+            <img
+              src={member.photo}
+              alt={`${member.name} 프로필`}
+              className="profile-image"
+            />
+            <div className="text-info">
+              <p>
+                <strong>이름:</strong> {member.name}
+              </p>
+              <p>
+                <strong>전화번호:</strong> {member.phone}
+              </p>
+              <p>
+                <strong>등급:</strong>{" "}
+                {member.isAdmin
+                  ? "신"
+                  : member.grade === 3
+                  ? "VIP 회원"
+                  : member.grade === 2
+                  ? "GOLD 회원"
+                  : member.grade === 1
+                  ? "SILVER 회원"
+                  : "일반 회원"}
+              </p>
+              <p className="point">
+                <strong>포인트:</strong> {userPoints} point
+              </p>
+            </div>
           </div>
+          <hr />
+          <Wheel
+            mustStartSpinning={mustSpin}
+            prizeNumber={prizeNumber}
+            data={data}
+            outerBorderColor={["#f2f2f2"]}
+            outerBorderWidth={[25]}
+            innerBorderColor={["#f2f2f2"]}
+            radiusLineColor={["#dedede"]}
+            radiusLineWidth={[10]}
+            textColors={["#ffffff"]}
+            fontSize={[50]}
+            perpendicularText={[true]}
+            backgroundColors={[
+              "#F22B35",
+              "#F99533",
+              "#24CA69",
+              "#514E50",
+              "#46AEFF",
+              "#9145B7",
+            ]}
+            onStopSpinning={() => {
+              setMustSpin(false);
+              alert(data[prizeNumber].option);
+              handleResult(data[prizeNumber].option);
+            }}
+          />
+          <button className="button2" onClick={handleSpinClick}>
+            SPIN
+          </button>
+          <br />
+          {/* {!mustSpin ? data[prizeNumber].option : "0"} */}
+          <hr />
         </div>
-        <hr />
-        <Wheel
-          mustStartSpinning={mustSpin}
-          prizeNumber={prizeNumber}
-          data={data}
-          outerBorderColor={["#f2f2f2"]}
-          outerBorderWidth={[25]}
-          innerBorderColor={["#f2f2f2"]}
-          radiusLineColor={["#dedede"]}
-          radiusLineWidth={[10]}
-          textColors={["#ffffff"]}
-          fontSize={[50]}
-          perpendicularText={[true]}
-          backgroundColors={[
-            "#F22B35",
-            "#F99533",
-            "#24CA69",
-            "#514E50",
-            "#46AEFF",
-            "#9145B7",
-          ]}
-          onStopSpinning={() => {
-            setMustSpin(false);
-            alert(data[prizeNumber].option);
-            handleResult(data[prizeNumber].option);
-          }}
-        />
-        <button className="button2" onClick={handleSpinClick}>
-          SPIN
-        </button>
-        <br />
-        {/* {!mustSpin ? data[prizeNumber].option : "0"} */}
-        <hr />
-      </div>
+      )}
     </>
   );
 }
-Roulette.propTypes = {
-  userData: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    grade: PropTypes.number.isRequired,
-    points: PropTypes.number.isRequired,
-    callUsage: PropTypes.number.isRequired,
-    dataUsage: PropTypes.number.isRequired,
-    photo: PropTypes.string.isRequired,
-    history: PropTypes.array.isRequired,
-    isAdmin: PropTypes.bool.isRequired,
-  }).isRequired,
-};
 
 export default Roulette;

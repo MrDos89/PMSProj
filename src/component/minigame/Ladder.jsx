@@ -16,6 +16,8 @@ function Ladder({ userData }) {
   const [highlightPath, setHighlightPath] = useState(null);
   const ladderRef = useRef(null);
 
+  const [userPoints, setUserPoints] = useState(userData.points);
+
   useEffect(() => {
     const initLadder = () => {
       const newParticipants = Array.from(
@@ -55,6 +57,8 @@ function Ladder({ userData }) {
             `포인트 업데이트 실패: ${response.status} ${response.statusText}`
           );
         }
+
+        setUserPoints(Number(userData.points) + Number(resultPoint));
 
         const updatedData = await response.json();
         console.log("API Response Data:", updatedData); // 응답 데이터 출력 (디버깅)
@@ -213,13 +217,36 @@ function Ladder({ userData }) {
   return (
     <div className="ladderGame">
       <h1>사다리 게임</h1>
-      {/* <input
-        type="number"
-        placeholder="참가자 수를 입력하세요"
-        value={numParticipantsInput}
-        onChange={handleNumParticipantsChange}
-      /> */}
-      {/* <button onClick={generateLadder}>사다리 생성</button> */}
+      <div className="member-info">
+        <img
+          src={userData.photo}
+          alt={`${userData.name} 프로필`}
+          className="profile-image"
+        />
+        <div className="text-info">
+          <p>
+            <strong>이름:</strong> {userData.name}
+          </p>
+          <p>
+            <strong>전화번호:</strong> {userData.phone}
+          </p>
+          <p>
+            <strong>등급:</strong>{" "}
+            {userData.isAdmin
+              ? "신"
+              : userData.grade === 3
+              ? "VIP 회원"
+              : userData.grade === 2
+              ? "GOLD 회원"
+              : userData.grade === 1
+              ? "SILVER 회원"
+              : "일반 회원"}
+          </p>
+          <p className="point">
+            <strong>포인트:</strong> {userPoints} point
+          </p>
+        </div>
+      </div>
       {renderParticipantsBottom()}
       <div className="ladder-container">
         {participants.length > 0 && (

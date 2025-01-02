@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-around;
     width: calc(80px * var(--num-participants));
+    margin-top: 10px;
 }
 
 .participants.top {

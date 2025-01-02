@@ -11,7 +11,7 @@ import ExchangeShop from "./ExchangeShop";
 import PropTypes from "prop-types";
 
 ReactModal.setAppElement("#root");
-function MiniGameButtons({ games, userData }) {
+function MiniGameButtons({ games, userData, onUpdateUserData }) {
   const [isOpen, setIsOpen] = useState(false);
   const [gameMode, setGameMode] = useState("EXCHANGESHOP");
 
@@ -88,6 +88,7 @@ function MiniGameButtons({ games, userData }) {
   };
 
   const closeModal = () => {
+    onUpdateUserData(userData.id);
     setIsOpen(false);
   };
 
@@ -144,6 +145,7 @@ MiniGameButtons.propTypes = {
     })
   ).isRequired,
   userData: PropTypes.object,
+  onUpdateUserData: PropTypes.func,
 };
 
 export default MiniGameButtons;

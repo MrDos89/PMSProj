@@ -170,10 +170,21 @@ function App() {
     fetchGames();
   }, []); //  -> 컴포넌트가 처음 로딩되었을 때의 이펙트 발생
 
-  //@todo - 로딩창을 보여줄려고 하면 에러가 보임 아마 로딩창을 껏다켰다를 반복해서 그런듯
-  //        한번에 처리하는 방법으로 바꿔야함
-  // if (isLoading) return <div>데이터 로딩 중...</div>;
-  // if (error) return <div>에러: {error}</div>;
+  const onUpdateUserData = async (id) => {
+    try {
+      const response = await fetch(`${apiUserUrl}${id}`);
+      if (!response.ok) {
+        throw new Error("유저 데이터를 받아오지 못했습니다.");
+      }
+
+      const user = await response.json();
+      setUserData(user);
+      setIsLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setIsLoading(false);
+    }
+  };
 
   let body = null;
   if (mode === "MAIN") {
@@ -277,7 +288,11 @@ function App() {
       )}
       {mode === "HISTORY" && <div>상세정보 창입니다</div>}
       {/* @note - 미니게임 버튼 UI */}
-      <MiniGameButtons games={gameList} userData={userData}></MiniGameButtons>
+      <MiniGameButtons
+        games={gameList}
+        userData={userData}
+        onUpdateUserData={onUpdateUserData}
+      ></MiniGameButtons>
       {/* @note - 폰 리스트 나오는 바디 */}
       {body}
       <Ads />

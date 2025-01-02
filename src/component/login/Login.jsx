@@ -7,10 +7,11 @@ function Login({ userList, onLogin }) {
   const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 여부 상태
   const [user, setUser] = useState(null); // 로그인된 사용자 정보 저장
-  const [userGrade, setUserGrade] = useState("일반 회원");
+  const [userGrade, setUserGrade] = useState("일반 회원"); // 사용자 등급
 
+  // @note - 폼 제출 핸들러
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // @note - 폼 기본 제출 동작 방지
     setError("");
 
     // db.json의 userList에서 사용자 찾기
@@ -18,11 +19,13 @@ function Login({ userList, onLogin }) {
       (u) => u.phone === phone && u.password === password
     );
 
+    // @note - 사용자를 찾은 경우
     if (foundUser) {
-      setUser(foundUser);
-      setIsLoggedIn(true);
+      setUser(foundUser); // 사용자 정보 저장
+      setIsLoggedIn(true); //로그인 상태 true로 변경
       localStorage.setItem("loggedInUserPhone", foundUser.phone); // 전화번호 저장
       onLogin(foundUser); // App.jsx로 사용자 정보 전달
+      // @note - 사용자 등급 설정
       if (foundUser.grade === 3) {
         setUserGrade("VIP 회원");
       } else if (foundUser.grade === 2) {
@@ -39,7 +42,9 @@ function Login({ userList, onLogin }) {
   };
 
   return (
+    // @note - 로그인 컨테이너, 로그인 상태에 따라 hidden 클래스 추가/제거
     <div className={`login-container ${isLoggedIn ? "hidden" : ""}`}>
+      {/* @note - 로그인되지 않은 경우 로그인 폼 표시 */}
       {!isLoggedIn ? (
         <div className="login-form-wrapper">
           <h2>로그인</h2>
@@ -70,6 +75,7 @@ function Login({ userList, onLogin }) {
             alt="프로필 사진"
             className="profile-image"
           />
+          {/* @note - 사용자 정보 표시 */}
           <p>이름: {user.name}</p>
           <p>전화번호: {user.phone}</p>
           <p>회원 등급: {user.isAdmin ? "신" : userGrade}</p>

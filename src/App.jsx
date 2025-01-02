@@ -186,10 +186,10 @@ function App() {
 
   // @hs - 로그인 창
   // @todo - 로그인 데이터에 있는 데이터로 로그인 되도록 수정할 예정
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); //로그인 상태
   const [userData, setUserData] = useState(null); // 사용자 데이터 저장
   const [showMemberList, setShowMemberList] = useState(false); // 회원 목록 창 표시 여부
-  const [selectedMember, setSelectedMember] = useState(null);
+  const [selectedMember, setSelectedMember] = useState(null); // 선택된 회원
 
   const handleLogin = (user) => {
     // Login 컴포넌트에서 호출될 로그인 핸들러
@@ -231,12 +231,13 @@ function App() {
         <button class="dot" data-index="1"></button>
         <button class="dot" data-index="2"></button>
       </div> */}
-      {/* @hs -로그인 */}
-      <Login />
-      {!isLoggedIn ? ( // Login 컴포넌트 렌더링 방식 수정
+      <Login /> {/* 로그인 컴포넌트 */}
+      {/* @note - 로그인 상태에 따른 렌더링 */}
+      {!isLoggedIn ? (
         <Login userList={userList} onLogin={handleLogin} />
       ) : (
         <div className="login-container">
+          {/* ... (로그인 후 프로필 정보) */}
           <h2>프로필</h2>
           <img
             src={userData.photo || "https://via.placeholder.com/100"}
@@ -247,8 +248,8 @@ function App() {
           <p>전화번호: {userData.phone}</p>
           <p>회원 등급: {userData.isAdmin ? "신" : userGrade}</p>
           <p>마일리지: {userData.points} </p>
-          {/* isAdmin으로 변경 */}
           <button onClick={handleLogout}>로그아웃</button>
+          {/* @note - 관리자 권한인 경우 회원 목록 보기 버튼 표시 */}
           {isAdmin && (
             <div>
               <button onClick={() => setShowMemberList(true)}>
@@ -258,8 +259,7 @@ function App() {
           )}
         </div>
       )}
-
-      {/* MemberList를 로그인 여부와 관계없이 항상 렌더링 */}
+      {/* @note - 회원 목록 컴포넌트 */}
       {showMemberList && (
         <MemberList
           members={userList}
@@ -267,8 +267,7 @@ function App() {
           onSelect={setSelectedMember}
         />
       )}
-
-      {/* 기존 멤버 상세 정보 표시 부분 유지 */}
+      {/* @note - 회원 상세 정보 컴포넌트 */}
       {selectedMember && (
         <MemberDetails
           member={selectedMember}
@@ -276,12 +275,9 @@ function App() {
           onUpdate={handleUpdate}
         />
       )}
-
       {mode === "HISTORY" && <div>상세정보 창입니다</div>}
-
       {/* @note - 미니게임 버튼 UI */}
       <MiniGameButtons games={gameList} userData={userData}></MiniGameButtons>
-
       {/* @note - 폰 리스트 나오는 바디 */}
       {body}
       <Ads />

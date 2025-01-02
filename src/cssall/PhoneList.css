@@ -35,6 +35,16 @@
   font-style: normal;
 }
 
+.phone-rank {
+  background-color: #03588c;
+  color:white;
+  border-radius: 5px;
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+  font-family: 'SDSamliphopangche_Basic',sans-serif;
+}
+
 
 /* PhoneList.css */
 .phone-list {

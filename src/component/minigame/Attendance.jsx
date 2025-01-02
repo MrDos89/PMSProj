@@ -105,13 +105,13 @@ function Attendance({ userData }) {
 
         const updatedData = await response.json();
         console.log("API Response Data:", updatedData); // 응답 데이터 출력 (디버깅)
-        alert(`${resultPoint} 포인트를 획득하였습니다!`); // 성공 메시지 추가
+        // alert(`${resultPoint} 포인트를 획득하였습니다!`); // 성공 메시지 추가
       } catch (error) {
         console.error("포인트 업데이트 실패:", error);
-        alert("포인트 업데이트에 실패했습니다.");
+        // alert("포인트 업데이트에 실패했습니다.");
       }
     },
-    [apiUserUrl, userData, participants, result]
+    [apiUserUrl, userData]
   );
 
   const handleDateClick = useCallback(
@@ -213,7 +213,7 @@ function Attendance({ userData }) {
 }
 Attendance.propTypes = {
   userData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,

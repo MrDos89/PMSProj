@@ -139,7 +139,7 @@ function Roulette({ userData }) {
 }
 Roulette.propTypes = {
   userData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,

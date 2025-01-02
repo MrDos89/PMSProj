@@ -21,11 +21,28 @@
       "password": "1234",
       "grade": 2,
       "gradeImage": "/image/grade/2.jpg",
-      "points": 1400,
+      "points": 1431,
       "callUsage": 20,
       "dataUsage": 90,
       "photo": "/image/thumbnail/winter.gif",
-      "history": [],
+      "history": [
+        {
+          "id": "2",
+          "user_name": "윈터",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 1200,
+          "updateDate": "2025. 1. 2. 오후 12:41:17"
+        },
+        {
+          "id": "2",
+          "user_name": "윈터",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 1100,
+          "updateDate": "2025. 1. 2. 오후 12:41:19"
+        }
+      ],
       "isAdmin": false
     },
     {
@@ -47,7 +64,7 @@
       "name": "박지성",
       "phone": "01077778888",
       "password": "1234",
-      "grade": 3,
+      "grade": 2,
       "points": 3000,
       "callUsage": 90,
       "dataUsage": 10,

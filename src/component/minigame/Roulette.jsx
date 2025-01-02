@@ -55,7 +55,7 @@ function Roulette({ userData }) {
         );
       }
 
-      setUserPoints(resultPoint);
+      setUserPoints(Number(userData.points) + Number(resultPoint));
 
       const updatedData = await response.json();
       console.log("API Response Data:", updatedData); // 응답 데이터 출력 (디버깅)
@@ -131,7 +131,7 @@ function Roulette({ userData }) {
           SPIN
         </button>
         <br />
-        {!mustSpin ? data[prizeNumber].option : "0"}
+        {/* {!mustSpin ? data[prizeNumber].option : "0"} */}
         <hr />
       </div>
     </>

@@ -33,7 +33,8 @@ const CalendarContainer = styled.div`
   }
 `;
 
-const AttendanceButton = styled.button`
+const AttendanceButton = styled.div`
+  cursor: pointer;
   width: 80%;
   height: 35px; /* 버튼 높이 조정 */
   background-color: ${(props) => (props.disabled ? "#bbdefb" : "#2196f3")};

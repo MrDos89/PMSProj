@@ -17,7 +17,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px; /* 적절한 너비 설정 */
+    width: 500px; /* 적절한 너비 설정 */
     max-height: 80vh; /* 최대 높이 설정 (화면 높이의 80%) */
     overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
     position: relative; /* close button absolute position 기준점 */
@@ -72,3 +72,34 @@
 .history-content p {
     margin: 10px 0;
 }
+
+.table-container {
+    max-height: 400px; /* 원하는 최대 높이를 설정 */
+    overflow-y: auto; /* 수직 스크롤 활성화 */
+    border: 1px solid #ddd; /* 스크롤 컨테이너 경계선 */
+    position: relative; /* 헤더 고정에 필요한 기준점 */
+  }
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .history-table th,
+  .history-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .history-table th {
+    position: sticky; /* 헤더를 고정 */
+    top: 0; /* 고정 위치 */
+    background-color: #f4f4f4; /* 헤더 배경색 */
+    z-index: 2; /* 헤더가 위에 표시되도록 설정 */
+    font-weight: bold;
+  }
+  
+  .history-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* 행 색상 구분 */
+  }

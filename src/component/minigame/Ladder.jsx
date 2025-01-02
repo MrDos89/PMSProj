@@ -4,6 +4,8 @@ import "../../cssall/Ladder.css";
 import PropTypes from "prop-types";
 
 function Ladder({ userData }) {
+  const apiUserUrl = "http://localhost:3000/userList/";
+
   const [participants, setParticipants] = useState([]);
   const [ladder, setLadder] = useState([]);
   const [result, setResult] = useState(null);
@@ -29,6 +31,38 @@ function Ladder({ userData }) {
 
     initLadder();
   }, []);
+
+  const sendRequest = useCallback(async () => {
+    try {
+      const requestUrl = `${apiUserUrl}${userData.id}`; // 올바른 URL 생성
+      console.log("Request URL:", requestUrl); // 요청 URL 출력 (디버깅)
+
+      const response = await fetch(requestUrl, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json", // 요청 본문의 데이터 형식을 JSON으로 지정
+        },
+        body: JSON.stringify({
+          points: userData.points + (participants[result] || 0), // 업데이트할 포인트 값
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json(); // 서버에서 보낸 에러 데이터를 JSON 형태로 파싱
+        console.error("API Error Response:", errorData);
+        throw new Error(
+          `포인트 업데이트 실패: ${response.status} ${response.statusText}`
+        );
+      }
+
+      const updatedData = await response.json();
+      console.log("API Response Data:", updatedData); // 응답 데이터 출력 (디버깅)
+      alert("포인트가 업데이트 되었습니다."); // 성공 메시지 추가
+    } catch (error) {
+      console.error("포인트 업데이트 실패:", error);
+      alert("포인트 업데이트에 실패했습니다.");
+    }
+  }, [apiUserUrl, userData, participants, result]);
 
   const generateLadder = (startIndex) => {
     const numParticipants = 6;
@@ -91,7 +125,7 @@ function Ladder({ userData }) {
   };
 
   const runLadder = useCallback(
-    (startIndex) => {
+    async (startIndex) => {
       if (!ladderRef.current) return;
 
       let current = startIndex;
@@ -128,8 +162,11 @@ function Ladder({ userData }) {
 
       setResult(current);
       setHighlightPath({ start: startIndex, end: current, path });
+
+      // 서버로 데이터 전송
+      sendRequest();
     },
-    [ladder, participants.length]
+    [ladder, participants.length, sendRequest]
   );
 
   useEffect(() => {

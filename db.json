@@ -5,9 +5,9 @@
       "name": "홍길동",
       "phone": "01011112222",
       "password": "1234",
-      "grade": 3,
+      "grade": 1,
       "gradeImage": "/image/grade/3.jpg",
-      "points": 41,
+      "points": 81,
       "callUsage": 70,
       "dataUsage": 30,
       "photo": "/image/thumbnail/gildong.jpg",
@@ -52,11 +52,28 @@
       "password": "1234",
       "grade": 1,
       "gradeImage": "/image/grade/1.jpg",
-      "points": 800,
+      "points": 400,
       "callUsage": 50,
       "dataUsage": 60,
       "photo": "/image/thumbnail/chulsu.jpg",
-      "history": [],
+      "history": [
+        {
+          "id": 1,
+          "user_name": "이철수",
+          "item_id": 3,
+          "point": 300,
+          "remain_point": 500,
+          "updateDate": "2025. 1. 3. 오전 10:14:59"
+        },
+        {
+          "id": 2,
+          "user_name": "이철수",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 400,
+          "updateDate": "2025. 1. 3. 오전 10:15:02"
+        }
+      ],
       "isAdmin": false
     },
     {
@@ -65,11 +82,52 @@
       "phone": "01077778888",
       "password": "1234",
       "grade": 2,
-      "points": 3000,
+      "points": 2000,
       "callUsage": 90,
       "dataUsage": 10,
       "photo": "/image/thumbnail/jisung.gif",
-      "history": [],
+      "history": [
+        {
+          "id": 1,
+          "user_name": "박지성",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 2800,
+          "updateDate": "2025. 1. 3. 오전 10:15:23"
+        },
+        {
+          "id": 2,
+          "user_name": "박지성",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 2600,
+          "updateDate": "2025. 1. 3. 오전 10:15:25"
+        },
+        {
+          "id": 3,
+          "user_name": "박지성",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 2400,
+          "updateDate": "2025. 1. 3. 오전 10:15:26"
+        },
+        {
+          "id": 4,
+          "user_name": "박지성",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 2200,
+          "updateDate": "2025. 1. 3. 오전 10:15:28"
+        },
+        {
+          "id": 5,
+          "user_name": "박지성",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 2000,
+          "updateDate": "2025. 1. 3. 오전 10:15:31"
+        }
+      ],
       "isAdmin": false
     },
     {
@@ -77,12 +135,29 @@
       "name": "김연아",
       "phone": "01099990000",
       "password": "1234",
-      "grade": 2,
-      "points": 1800,
+      "grade": 3,
+      "points": 1600,
       "callUsage": 60,
       "dataUsage": 40,
       "photo": "/image/thumbnail/yuna.gif",
-      "history": [],
+      "history": [
+        {
+          "id": 1,
+          "user_name": "김연아",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 1700,
+          "updateDate": "2025. 1. 3. 오전 10:15:50"
+        },
+        {
+          "id": 2,
+          "user_name": "김연아",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 1600,
+          "updateDate": "2025. 1. 3. 오전 10:15:54"
+        }
+      ],
       "isAdmin": false
     },
     {
@@ -91,11 +166,52 @@
       "phone": "01012345678",
       "password": "1234",
       "grade": 1,
-      "points": 1200,
+      "points": 230,
       "callUsage": 40,
       "dataUsage": 70,
       "photo": "/image/thumbnail/ryu.gif",
-      "history": [],
+      "history": [
+        {
+          "id": 1,
+          "user_name": "류현진",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 1030,
+          "updateDate": "2025. 1. 3. 오전 10:16:20"
+        },
+        {
+          "id": 2,
+          "user_name": "류현진",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 830,
+          "updateDate": "2025. 1. 3. 오전 10:16:25"
+        },
+        {
+          "id": 3,
+          "user_name": "류현진",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 630,
+          "updateDate": "2025. 1. 3. 오전 10:16:25"
+        },
+        {
+          "id": 4,
+          "user_name": "류현진",
+          "item_id": 3,
+          "point": 300,
+          "remain_point": 330,
+          "updateDate": "2025. 1. 3. 오전 10:16:27"
+        },
+        {
+          "id": 5,
+          "user_name": "류현진",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 230,
+          "updateDate": "2025. 1. 3. 오전 10:16:28"
+        }
+      ],
       "isAdmin": false
     },
     {
@@ -104,11 +220,20 @@
       "phone": "01087654321",
       "password": "1234",
       "grade": 3,
-      "points": 2500,
+      "points": 2200,
       "callUsage": 80,
       "dataUsage": 20,
       "photo": "/image/thumbnail/son.webp",
-      "history": [],
+      "history": [
+        {
+          "id": 1,
+          "user_name": "손흥민",
+          "item_id": 3,
+          "point": 300,
+          "remain_point": 2200,
+          "updateDate": "2025. 1. 3. 오전 10:16:46"
+        }
+      ],
       "isAdmin": false
     },
     {
@@ -117,11 +242,60 @@
       "phone": "01024681357",
       "password": "1234",
       "grade": 2,
-      "points": 2000,
+      "points": 900,
       "callUsage": 55,
       "dataUsage": 55,
       "photo": "/image/thumbnail/yang.gif",
-      "history": [],
+      "history": [
+        {
+          "id": 1,
+          "user_name": "양준혁",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 1900,
+          "updateDate": "2025. 1. 3. 오전 10:17:07"
+        },
+        {
+          "id": 2,
+          "user_name": "양준혁",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 1700,
+          "updateDate": "2025. 1. 3. 오전 10:17:10"
+        },
+        {
+          "id": 3,
+          "user_name": "양준혁",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 1500,
+          "updateDate": "2025. 1. 3. 오전 10:17:14"
+        },
+        {
+          "id": 4,
+          "user_name": "양준혁",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 1300,
+          "updateDate": "2025. 1. 3. 오전 10:17:16"
+        },
+        {
+          "id": 5,
+          "user_name": "양준혁",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 1100,
+          "updateDate": "2025. 1. 3. 오전 10:17:17"
+        },
+        {
+          "id": 6,
+          "user_name": "양준혁",
+          "item_id": 2,
+          "point": 200,
+          "remain_point": 900,
+          "updateDate": "2025. 1. 3. 오전 10:17:18"
+        }
+      ],
       "isAdmin": false
     },
     {
@@ -130,11 +304,20 @@
       "phone": "01013572468",
       "password": "1234",
       "grade": 1,
-      "points": 900,
+      "points": 800,
       "callUsage": 30,
       "dataUsage": 80,
       "photo": "/image/thumbnail/park.gif",
-      "history": [],
+      "history": [
+        {
+          "id": 1,
+          "user_name": "박지원",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 800,
+          "updateDate": "2025. 1. 3. 오전 10:17:39"
+        }
+      ],
       "isAdmin": false
     },
     {
@@ -143,11 +326,28 @@
       "phone": "01098765432",
       "password": "1234",
       "grade": 3,
-      "points": 2800,
+      "points": 2400,
       "callUsage": 85,
       "dataUsage": 15,
       "photo": "/image/thumbnail/karina.gif",
-      "history": [],
+      "history": [
+        {
+          "id": 1,
+          "user_name": "카리나",
+          "item_id": 3,
+          "point": 300,
+          "remain_point": 2500,
+          "updateDate": "2025. 1. 3. 오전 10:17:57"
+        },
+        {
+          "id": 2,
+          "user_name": "카리나",
+          "item_id": 1,
+          "point": 100,
+          "remain_point": 2400,
+          "updateDate": "2025. 1. 3. 오전 10:17:59"
+        }
+      ],
       "isAdmin": false
     },
     {
